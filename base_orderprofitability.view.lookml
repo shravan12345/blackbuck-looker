@@ -64,7 +64,7 @@
     type: sum
     sql: ${TABLE}.total_revenue
     filters:
-       base_order.end_date : yesterday
+       base_order.end_date : 1 day ago
     drill_fields: [order_id,total_revenue]
        
   - measure: change_revenue
