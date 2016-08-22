@@ -73,10 +73,14 @@
   - measure: Total_Revenue
     type: sum
     sql: ${total_revenue}
+    filters:
+       total_revenue : '>0' 
     
   - measure: Total_Cost
     type: sum
-    sql: ${total_cost}
+    sql: ${total_cost} 
+    filters:
+       total_cost : '>0'
     
   - measure: Total_Profitability
     type: number

@@ -262,6 +262,7 @@
 
 - explore: base_location
   label: 'Location-Table'
+  hidden:  true
 
 - explore: base_locationadvancelimit
 
@@ -310,16 +311,7 @@
 - explore: base_order
   label: 'Order-Table'
   joins:
-   - join: base_location
-     type: left_outer
-     relationship: many_to_one
-     sql_on: ${base_location.id} = ${base_order.from_city_id}
-     
-   - join: base_googleplaces
-     type: left_outer  
-     relationship: one_to_one
-     sql_on: ${base_location.google_place_id} = ${base_googleplaces.id}
-     
+   
    - join: base_orderprofitability
      type: left_outer
      relationship: one_to_one
