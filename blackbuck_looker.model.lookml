@@ -262,7 +262,7 @@
 
 - explore: base_location
   label: 'Location-Table'
-  hidden:  true
+  
 
 - explore: base_locationadvancelimit
 
