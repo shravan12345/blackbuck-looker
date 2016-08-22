@@ -57,14 +57,14 @@
     type: sum
     sql: ${TABLE}.total_revenue
     filters:
-       base_order.end_date : today
+       base_order.start_date : today
     drill_fields: [order_id,total_revenue]
        
   - measure: total_revenue_yesterday
     type: sum
     sql: ${TABLE}.total_revenue
     filters:
-       base_order.end_date : 1 day ago
+       base_order.start_date : 1 day ago
     drill_fields: [order_id,total_revenue]
        
   - measure: change_revenue
