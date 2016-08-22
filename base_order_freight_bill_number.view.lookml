@@ -1,0 +1,21 @@
+- view: base_order_freight_bill_number
+  sql_table_name: blackbuck_prod.base_order_freight_bill_number
+  fields:
+
+  - dimension: id
+    primary_key: true
+    type: number
+    sql: ${TABLE}.id
+
+  - dimension: customerinvoice_id
+    type: number
+    sql: ${TABLE}.customerinvoice_id
+
+  - dimension: order_id
+    type: number
+    sql: ${TABLE}.order_id
+
+  - measure: count
+    type: count
+    drill_fields: [id]
+
