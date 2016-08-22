@@ -1,4 +1,5 @@
 - view: base_location
+  label: ' Location-Table'
   sql_table_name: blackbuck_prod.base_location
   fields:
 
