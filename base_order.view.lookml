@@ -1,4 +1,5 @@
 - view: base_order
+  label: 'Order-Table'
   sql_table_name: blackbuck_prod.base_order
   fields:
 
