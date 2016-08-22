@@ -362,6 +362,11 @@
      relationship: one_to_many
      sql_on: ${base_order.id} = ${POD_Sub.order_id} and ${POD_Sub.status} = "Docs Received"
      
+   - join: TDS
+     from: base_statushistory
+     relationship: one_to_many
+     sql_on: ${base_order.id} = ${TDS.order_id} and ${TDS.status} = "Truck Departure Source"
+     
   
      
      
