@@ -38,6 +38,7 @@
   - dimension: total_cost
     type: number
     sql: ${TABLE}.total_cost
+  
 
   - dimension: total_profitability
     type: number
@@ -46,6 +47,7 @@
   - dimension: total_revenue
     type: number
     sql: ${TABLE}.total_revenue
+   
 
   - measure: count
     type: count
@@ -72,15 +74,16 @@
      
   - measure: Total_Revenue
     type: sum
-    sql: ${total_revenue}
-    filters:
-       total_revenue : '>0' 
+    sql: CASE WHEN ${total_revenue} > 0 And ${total_cost} > 0 THEN ${total_revenue} ELSE NULL END
+    drill_fields: [order_id,base_order.user_id,auth_user.full_name,From_City.city,To_city.city,base_order.end_date,total_revenue,total_cost,total_profitability]
     
   - measure: Total_Cost
     type: sum
-    sql: ${total_cost} 
-    filters:
-       total_cost : '>0'
+    sql: CASE WHEN ${total_revenue} > 0 And ${total_cost} > 0 THEN ${total_cost} ELSE NULL END
+    
+   
+    drill_fields: [order_id,base_order.user_id,auth_user.full_name,From_City.city,To_city.city,base_order.end_date,total_revenue,total_cost,total_profitability]   
+  
     
   - measure: Total_Profitability
     type: number
