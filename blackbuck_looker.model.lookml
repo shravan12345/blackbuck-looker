@@ -96,6 +96,7 @@
 - explore: base_customermasterdiscount
 
 - explore: base_customermasterfrieghtrates
+  label: 'Customer-Contract-Rates'
   fields: [ALL_FIELDS*,-base_order.POD_Points_Index]
   joins:
    - join: base_customeruserprofile
@@ -260,6 +261,7 @@
 - explore: base_leadstatus
 
 - explore: base_location
+  label: 'Location-Table'
 
 - explore: base_locationadvancelimit
 
@@ -306,6 +308,7 @@
 - explore: base_notifications
 
 - explore: base_order
+  label: 'Order-Table'
   joins:
    - join: base_location
      type: left_outer
