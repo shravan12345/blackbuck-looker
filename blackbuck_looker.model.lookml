@@ -10,6 +10,7 @@
 - explore: auth_permission
 
 - explore: auth_user
+  label: 'Name- Database'
 
 - explore: auth_user_groups
 
