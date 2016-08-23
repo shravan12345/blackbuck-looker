@@ -86,7 +86,7 @@
 
   - dimension_group: end
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month,hour,hour_of_day,raw,day_of_week]
     sql: ${TABLE}.end_date
 
   - dimension: end_location_id
@@ -318,6 +318,10 @@
     drill_fields: detail*
     filters:
          base_order.end_date : 30 days
+         
+  - measure: Freight_value
+    type: number
+    sql: ${base_order.order_value}
     
   
   sets:

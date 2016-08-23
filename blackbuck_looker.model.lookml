@@ -391,6 +391,13 @@
 - explore: base_orderdocumentstatus
 
 - explore: base_orderdynamicprice
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index]
+  joins:
+     - join: base_order
+       type: left_outer
+       relationship: one_to_one
+       sql_on: ${base_orderdynamicprice.order_id} = ${base_order.id}
+     
 
 - explore: base_orderdynamicpricestatus
 
