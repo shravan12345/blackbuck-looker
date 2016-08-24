@@ -352,8 +352,9 @@
     
   - measure: Placement_24
     type: count_distinct
-    sql: CASE WHEN ${base_statushistory.status} IN('Truck Arrival Source,LR Generated,Order Completed,Advance DocVerification,Payment Pending,Payment Done,Truck Departure Destination,Truck In-Transit,Truck Arrival Destination,Truck Departure Destination,Truck Unloading,Settlement DocVerification,Settlement Pending, Settlement Done, Docs Received') AND 
-         ${base_statushistory.dt_updated_raw} = TODAY THEN 1 ELSE 0 END
+    sql: CASE WHEN ${base_statushistory.status} = 'Truck Arrival Source' THEN ${base_statushistory.order_id} ELSE 0 END
+    
+    
     
  
          
@@ -369,6 +370,15 @@
   - measure: Freight_value
     type: number
     sql: ${base_order.order_value}
+    
+  - dimension: Lane_name
+    type: string
+    sql: CONCAT(From_City.city,'',To_city.city)
+    
+  - measure: Transit_time
+    type: number
+    sql: TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},${TAD.dt_updated_raw})
+    value_format_name: decimal_1
     
  
          
