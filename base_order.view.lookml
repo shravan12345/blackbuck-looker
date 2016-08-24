@@ -350,6 +350,11 @@
     sql: CASE WHEN TIMESTAMPDIFF(day,${POD_Sub.dt_updated_raw},${TAD.dt_updated_raw}) < 2*TIMESTAMPDIFF(day,${TAD.dt_updated_raw},${TAS.dt_updated_raw}) + 10 THEN 1 ELSE 0 END
     drill_fields : [id,status,end_date]
     
+  - measure: Placement_24
+    type: count_distinct
+    sql: CASE WHEN ${base_statushistory.status} IN('Truck Arrival Source,LR Generated,Order Completed,Advance DocVerification,Payment Pending,Payment Done,Truck Departure Destination,Truck In-Transit,Truck Arrival Destination,Truck Departure Destination,Truck Unloading,Settlement DocVerification,Settlement Pending, Settlement Done, Docs Received') AND 
+         ${base_statushistory.dt_updated_raw} = TODAY THEN 1 ELSE 0 END
+    
  
          
          

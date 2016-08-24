@@ -98,7 +98,7 @@
 
 - explore: base_customermasterfrieghtrates
   label: 'Customer-Contract-Rates'
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24]
   joins:
    - join: base_customeruserprofile
      type: left_outer
@@ -134,6 +134,8 @@
      type: left_outer
      relationship: one_to_one
      sql_on: ${base_supplyprofile.user_id} = ${auth_user.id}
+     
+ 
      
    
      
@@ -391,7 +393,7 @@
 - explore: base_orderdocumentstatus
 
 - explore: base_orderdynamicprice
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24]
   joins:
      - join: base_order
        type: left_outer
@@ -418,7 +420,7 @@
 - explore: base_orderpaymentadvise
 
 - explore: base_orderprofitability
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24]
   joins:
    - join: base_order
      type: left_outer
