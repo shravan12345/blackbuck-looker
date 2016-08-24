@@ -6,15 +6,18 @@
     primary_key: true
     type: number
     sql: ${TABLE}.id
+    hidden: true
 
   - dimension_group: date_joined
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.date_joined
+    hidden: true
 
   - dimension: email
     type: string
     sql: ${TABLE}.email
+    hidden: true
 
   - dimension: first_name
     type: string
@@ -23,19 +26,23 @@
   - dimension: is_active
     type: yesno
     sql: ${TABLE}.is_active
+    hidden: true
 
   - dimension: is_staff
     type: yesno
     sql: ${TABLE}.is_staff
+    hidden: true
 
   - dimension: is_superuser
     type: yesno
     sql: ${TABLE}.is_superuser
+    hidden: true
 
   - dimension_group: last_login
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.last_login
+    hidden: true
 
   - dimension: last_name
     type: string
@@ -44,10 +51,12 @@
   - dimension: password
     type: string
     sql: ${TABLE}.password
+    hidden: true
 
   - dimension: username
     type: string
     sql: ${TABLE}.username
+    hidden: true
 
   - measure: count
     type: count

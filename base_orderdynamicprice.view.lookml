@@ -54,7 +54,7 @@
 
   - dimension_group: price
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month,hour_of_day,hour]
     sql: ${TABLE}.price_time
 
   - dimension_group: start
@@ -95,3 +95,21 @@
     type: count
     drill_fields: [id]
 
+  - measure: R1
+    type: number
+    sql: ${minimum_price}
+    
+  - measure: R2
+    type: number
+    sql: ${maximum_price}
+    
+  - measure: Placed_under_R2
+    type: count_distinct
+    sql: CASE WHEN ${base_order.order_value} <= ${maximum_price} THEN ${order_id}
+         ELSE 0 END
+    
+  
+    
+ 
+    
+    

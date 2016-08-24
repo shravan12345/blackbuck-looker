@@ -6,15 +6,18 @@
     primary_key: true
     type: number
     sql: ${TABLE}.id
+    hidden: true
 
   - dimension: contract_diesel_rate
     type: number
     sql: ${TABLE}.contract_diesel_rate
+    hidden: true
 
   - dimension_group: contract_diesel_rate
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.contract_diesel_rate_date
+    hidden: true
 
   - dimension: customer_id
     type: number
@@ -28,10 +31,12 @@
   - dimension: from_city_id
     type: number
     sql: ${TABLE}.from_city_id
+    hidden: true
 
   - dimension: from_warehouse_id
     type: number
     sql: ${TABLE}.from_warehouse_id
+    hidden: true
 
   - dimension_group: last_updated
     type: time
@@ -45,6 +50,7 @@
   - dimension: product_type_id
     type: number
     sql: ${TABLE}.product_type_id
+    hidden: true
 
   - dimension: rate
     type: number
@@ -62,10 +68,12 @@
   - dimension: to_city_id
     type: number
     sql: ${TABLE}.to_city_id
+    hidden: true
 
   - dimension: to_warehouse_id
     type: number
     sql: ${TABLE}.to_warehouse_id
+    hidden: true
 
   - dimension: truck_type_id
     type: number
@@ -84,12 +92,7 @@
     type: number
     sql: ${rate}
   
-  - measure: avg_rate_1
-    type: avg
-    sql: ${base_order.order_value}
-    filters:
-         base_order.end_date : 30 day 
-    drill_fields: [base_order.id,base_order.order_value]
+  
   
     
     

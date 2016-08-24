@@ -7,7 +7,7 @@
     primary_key: true
     type: number
     sql: ${TABLE}.id
-
+  
   - dimension: accepted_by
     type: number
     sql: ${TABLE}.accepted_by
@@ -15,14 +15,17 @@
   - dimension: accepted_by_imei_id
     type: number
     sql: ${TABLE}.accepted_by_imei_id
+    hidden: true
 
   - dimension: adhoc_rate
     type: number
     sql: ${TABLE}.adhoc_rate
+    hidden: true
 
   - dimension: adhoc_rate_reference_id
     type: number
     sql: ${TABLE}.adhoc_rate_reference_id
+    hidden: true
 
   - dimension: app_accepted_account_id
     type: number
@@ -31,26 +34,32 @@
   - dimension: assigned_driver_id
     type: number
     sql: ${TABLE}.assigned_driver_id
+    hidden: true
 
   - dimension: assigned_truck_id
     type: number
     sql: ${TABLE}.assigned_truck_id
+    hidden: true
 
   - dimension: bill_exchange_reqd
     type: yesno
     sql: ${TABLE}.bill_exchange_reqd
+    hidden: true
 
   - dimension: bonus_amount
     type: number
     sql: ${TABLE}.bonus_amount
+    hidden: true
 
   - dimension: bonus_scheme_id
     type: number
     sql: ${TABLE}.bonus_scheme_id
+    hidden: true
 
   - dimension: broker_id
     type: number
     sql: ${TABLE}.broker_id
+    hidden: true
 
   - dimension: cancel_reason_id
     type: number
@@ -59,26 +68,32 @@
   - dimension: contracted_rate_id
     type: number
     sql: ${TABLE}.contracted_rate_id
+    hidden: true
 
   - dimension: created_by_id
     type: number
     sql: ${TABLE}.created_by_id
+    hidden: true
 
   - dimension: custom_requirements
     type: string
     sql: ${TABLE}.custom_requirements
+    hidden: true
 
   - dimension: customer_order_id
     type: number
     sql: ${TABLE}.customer_order_id
+    hidden: true
 
   - dimension: cutoff_duration
     type: number
     sql: ${TABLE}.cutoff_duration
+    hidden: true
 
   - dimension: discount_percentage
     type: number
     sql: ${TABLE}.discount_percentage
+    hidden: true
 
   - dimension: distance
     type: number
@@ -92,11 +107,12 @@
   - dimension: end_location_id
     type: number
     sql: ${TABLE}.end_location_id
-
+    hidden: true
   - dimension_group: expiry
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.expiry_date
+    hidden: true
 
   - dimension: fleet_supply_partner_id
     type: number
@@ -105,10 +121,12 @@
   - dimension: from_city_id
     type: number
     sql: ${TABLE}.from_city_id
+    hidden: true
 
   - dimension: invoice_images
     type: string
     sql: ${TABLE}.invoice_images
+    hidden: true
 
   - dimension: lane_id
     type: number
@@ -121,10 +139,12 @@
   - dimension: market_price
     type: string
     sql: ${TABLE}.market_price
+    hidden: true
 
   - dimension: material_mvmt_type
     type: number
     sql: ${TABLE}.material_mvmt_type
+    hidden: true
 
   - dimension: mg_contract_id
     type: number
@@ -137,34 +157,42 @@
   - dimension: no_outlets
     type: number
     sql: ${TABLE}.no_outlets
+    hidden: true
 
   - dimension: no_trips
     type: number
     sql: ${TABLE}.no_trips
+    hidden: true
 
   - dimension: no_trucks
     type: number
     sql: ${TABLE}.no_trucks
+    hidden: true
 
   - dimension: num_loading_points
     type: number
     sql: ${TABLE}.num_loading_points
+    hidden: true
 
   - dimension: num_unloading_points
     type: number
     sql: ${TABLE}.num_unloading_points
+    hidden: true
 
   - dimension: ops_user_id
     type: number
     sql: ${TABLE}.ops_user_id
+    hidden: true
 
   - dimension: optimized_loading
     type: yesno
     sql: ${TABLE}.optimized_loading
+    hidden: true
 
   - dimension: order_invoice_status
     type: string
     sql: ${TABLE}.order_invoice_status
+    hidden: true
 
   - dimension: order_value
     type: number
@@ -173,18 +201,22 @@
   - dimension: owner_id
     type: number
     sql: ${TABLE}.owner_id
+    hidden: true
 
   - dimension: payment_status_customer
     type: string
     sql: ${TABLE}.payment_status_customer
+    hidden: true
 
   - dimension: payment_status_truck
     type: string
     sql: ${TABLE}.payment_status_truck
+    hidden: true
 
   - dimension: product_id
     type: number
     sql: ${TABLE}.product_id
+    hidden: true
 
   - dimension: profitability_index
     type: number
@@ -202,23 +234,28 @@
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.reporting_time
+    hidden: true
 
   - dimension: routes_covered
     type: number
     sql: ${TABLE}.routes_covered
+    hidden: true
 
   - dimension: shipment_type
     type: number
     sql: ${TABLE}.shipment_type
+    hidden: true
 
   - dimension_group: start
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.start_date
+    
 
   - dimension: start_location_id
     type: number
     sql: ${TABLE}.start_location_id
+    
 
   - dimension: status
     type: string
@@ -228,15 +265,18 @@
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.status_transition_expiry_time
+    hidden: true
 
   - dimension_group: status_updated
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.status_updated_time
+    hidden: true
 
   - dimension: stock_quantity
     type: number
     sql: ${TABLE}.stock_quantity
+    hidden: true
 
   - dimension: supply_partner_id
     type: number
@@ -249,6 +289,7 @@
   - dimension: to_pay_model
     type: yesno
     sql: ${TABLE}.to_pay_model
+    hidden: true
 
   - dimension: tonnage
     type: number
@@ -265,6 +306,7 @@
   - dimension: use_to_address_for_invoice
     type: yesno
     sql: ${TABLE}.use_to_address_for_invoice
+    hidden: true
 
   - dimension: user_id
     type: number
@@ -323,6 +365,9 @@
     type: number
     sql: ${base_order.order_value}
     
+ 
+         
+    
   
   sets:
     detail: 
@@ -335,5 +380,7 @@
         - To_city.city
         - order_value
         - base_orderprofitability.total_profitability
+        - base_orderdynamicprice.maximum_price
+        - base_orderdynamicprice.minimum_price
         
    
