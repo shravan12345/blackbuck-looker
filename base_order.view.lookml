@@ -1,5 +1,5 @@
 - view: base_order
-  label: 'Order-Table'
+  
   sql_table_name: blackbuck_prod.base_order
   fields:
 
@@ -192,7 +192,7 @@
   - dimension: order_invoice_status
     type: string
     sql: ${TABLE}.order_invoice_status
-    hidden: true
+    
 
   - dimension: order_value
     type: number
@@ -354,6 +354,11 @@
     type: count_distinct
     sql: CASE WHEN ${base_statushistory.status} = 'Truck Arrival Source' THEN ${base_statushistory.order_id} ELSE 0 END
     
+  - measure: Responsiveness_Index
+    type: sum
+    sql: CASE WHEN TIMESTAMPDIFF(minute,${TAS.dt_updated_raw},${end_raw}) > 0 THEN 1 ELSE 0 END
+    drill_fields: detail*
+    
     
     
  
@@ -380,6 +385,9 @@
     sql: TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},${TAD.dt_updated_raw})
     value_format_name: decimal_1
     
+  
+    
+    
  
          
     
@@ -394,8 +402,6 @@
         - From_City.city
         - To_city.city
         - order_value
-        - base_orderprofitability.total_profitability
-        - base_orderdynamicprice.maximum_price
-        - base_orderdynamicprice.minimum_price
+        - order_invoice_status
         
    
