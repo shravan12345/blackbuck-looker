@@ -320,6 +320,8 @@
      relationship: one_to_one
      sql_on: ${base_order.id}=${base_orderprofitability.order_id}
      
+     
+     
    - join: base_customeruserprofile
      type: left_outer
      relationship: many_to_one
