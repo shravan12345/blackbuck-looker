@@ -399,6 +399,11 @@
     filters:
         base_order.end_date: 2 day ago
     drill_fields: detail*
+    
+  - measure: Expected_Loss_Index
+    type: number
+    sql: ${Count_Orders_Yesterday}*({base_orderdynamicprice.Target_Rates} - ${Avg_Order_Rate_Yesterday})
+    value_format_name : decimal_2
   
     
     
