@@ -404,6 +404,8 @@
     type: number
     sql: ${Count_Orders_Yesterday}*({base_orderdynamicprice.Target_Rates} - ${Avg_Order_Rate_Yesterday})
     value_format_name : decimal_2
+    drill_fields: detail*
+    
   
     
     
