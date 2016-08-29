@@ -112,6 +112,9 @@
     type: avg
     sql: ${cft_price}
     value_format_name: decimal_2
+    filters:
+        base_order.end_date : yesterday
+    drill_fields: [order_id,cft_price]
     
   
     

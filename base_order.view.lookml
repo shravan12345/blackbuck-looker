@@ -385,6 +385,14 @@
     sql: TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},${TAD.dt_updated_raw})
     value_format_name: decimal_1
     
+  - measure: Avg_Order_Rate_Yesterday
+    type: avg
+    sql: NULLIF(${order_value},0)
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : Yesterday
+    
   
     
     
