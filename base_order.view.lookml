@@ -391,8 +391,13 @@
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-         base_order.end_date : Yesterday
-    
+         base_order.end_date : 2 day ago
+         
+  - measure: Count_Orders_Yesterday
+    type: count
+    filters:
+        base_order.end_date: 2 day ago
+    drill_fields: detail*
   
     
     
@@ -410,6 +415,7 @@
         - From_City.city
         - To_city.city
         - order_value
+        - base_orderdynamicprice.cft_price
         - order_invoice_status
         
    
