@@ -387,11 +387,12 @@
     
   - measure: Avg_Order_Rate_Yesterday
     type: avg
-    sql: NULLIF(${order_value},0)
+    sql: CASE WHEN ${order_value} > 0 THEN ${order_value} ELSE 0 END
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
          base_order.end_date : 2 day ago
+         
          
   - measure: Count_Orders_Yesterday
     type: count
