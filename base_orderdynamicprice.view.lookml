@@ -107,6 +107,11 @@
     type: count_distinct
     sql: CASE WHEN ${base_order.order_value} <= ${maximum_price} THEN ${order_id}
          ELSE 0 END
+         
+  - measure: Target_Rates
+    type: avg
+    sql: ${cft_price}
+    value_format_name: decimal_2
     
   
     

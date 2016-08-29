@@ -372,6 +372,11 @@
      relationship: one_to_many
      sql_on: ${base_order.id} = ${TDS.order_id} and ${TDS.status} = "Truck Departure Source"
      
+   - join: base_orderdynamicprice
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_orderdynamicprice.order_id} = ${base_order.id}
+     
   
      
      
@@ -395,6 +400,7 @@
 # - explore: base_orderdocumentstatus
 
 - explore: base_orderdynamicprice
+  label: 'Target_Rates Table'
   fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index]
   joins:
      - join: base_order
