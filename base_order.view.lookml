@@ -406,15 +406,7 @@
     value_format_name : decimal_2
     drill_fields: detail*
     
-  - measure: Count_24
-    type: count_distinct
-    sql: CASE WHEN TIMEDIFF(hour,${end_raw},${base_status.dt_updated_raw}) < 24 THEN ${base_status.order_id} ELSE 0 END
-    filters:
-        base_status.status : 'Truck Arrival Source'
-    drill_fields: [order_id,base_order.end_date,base_order.status] 
-    
-   
-  
+
     
     
  
