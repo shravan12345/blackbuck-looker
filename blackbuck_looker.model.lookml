@@ -518,7 +518,7 @@
 
 - explore: base_status
 
-
+- explore: base_statushistory
 
 # - explore: base_statustransitionexpirytime
 # 
