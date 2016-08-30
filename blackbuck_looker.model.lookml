@@ -376,6 +376,11 @@
      type: left_outer
      relationship: one_to_one
      sql_on: ${base_orderdynamicprice.order_id} = ${base_order.id}
+  
+   - join: base_status
+     type: left_outer
+     relationship: one_to_many
+     sql_on: ${base_order.id} = ${base_status.order_id}
      
   
      

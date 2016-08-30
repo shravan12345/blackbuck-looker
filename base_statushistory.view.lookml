@@ -135,10 +135,5 @@
     type: date
     sql: ${TABLE}.dt_updated
     
-  - measure: placment_24
-    type: count_distinct
-    sql: ${order_id}
-    filters:
-        base_statushistory.status : 'Truck Arrival Source,LR Generated'
-    drill_fields: [order_id,base_order.end_date]
+  
 

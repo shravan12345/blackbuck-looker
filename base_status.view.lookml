@@ -54,7 +54,7 @@
 
   - dimension_group: dt_updated
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month,raw]
     sql: ${TABLE}.dt_updated
 
   - dimension: helper_number
@@ -128,4 +128,14 @@
   - measure: count
     type: count
     drill_fields: [id, blocked_by_name, driver_name, broker_name]
+    
+  - measure: Count_24
+    type: count_distinct
+    sql: ${order_id}
+    filters:
+        status : 'Truck Arrival Source'
+    drill_fields: [order_id,base_order.end_date,base_order.status] 
+
+# Ask Chris that why this join is not working as desired 
+
 
