@@ -322,7 +322,14 @@
   - measure: placement
     type : count
     filters:
-        base_order.status : 'Truck Arrival Source,LR Generated,Docs Pending,Order Completed,Advance DocVerification,Payment Pending,Payment Done,Truck Departure Destination,Truck In-Transit,Truck Arrival Destination,Truck Departure Destination,Truck Unloading,Settlement DocVerification,Settlement Pending, Settlement Done, Docs Received'
+        base_order.status : ['Truck Arrival Source', 'LR Generated', 'Advance DocVerification',
+       'Advance Docs Rejected' , 'Advance Docs Approval Requested','Payment Pending', 'Advance Payment Rejected' ,
+       'Payment Done', 'Order Finalized', 'Started Trip',
+       'Truck Departure Source', 'Truck In-Transit', 'Truck Arrival Destination',
+       'Truck Unloading', 'Truck Departure Destination', 'Settlement DocVerification',
+       'Settlement Docs Rejected','Settlement Docs Approval Requested','Settlement Pending',
+       'Settlement Payment Rejected', 'Settlement Done', 'Docs Pending','Docs Received',
+       'Order Completed']
     drill_fields: detail*
     
   - measure: placement_index

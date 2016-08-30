@@ -522,6 +522,9 @@
 - explore: base_state
 
 - explore: base_status
+  fields: [ALL_FIELDS*,-base_status.Count_24,-base_status.PI_24,-base_status.Count_48,-base_status.PI_48]
+   
+
 
 - explore: base_statushistory
 

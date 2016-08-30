@@ -131,10 +131,57 @@
     
   - measure: Count_24
     type: count_distinct
-    sql: ${order_id}
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Truck Arrival Source' THEN ${order_id} ELSE 0 END
     filters:
-        status : 'Truck Arrival Source'
+        base_order.status : ['Truck Arrival Source', 'LR Generated', 'Advance DocVerification',
+       'Advance Docs Rejected' , 'Advance Docs Approval Requested','Payment Pending', 'Advance Payment Rejected' ,
+       'Payment Done', 'Order Finalized', 'Started Trip',
+       'Truck Departure Source', 'Truck In-Transit', 'Truck Arrival Destination',
+       'Truck Unloading', 'Truck Departure Destination', 'Settlement DocVerification',
+       'Settlement Docs Rejected','Settlement Docs Approval Requested','Settlement Pending',
+       'Settlement Payment Rejected', 'Settlement Done', 'Docs Pending','Docs Received',
+       'Order Completed']
     drill_fields: [order_id,base_order.end_date,base_order.status] 
+    
+  - measure: Count_48
+    type: count_distinct
+    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Truck Arrival Source' THEN ${order_id} ELSE 0 END
+    filters:
+        base_order.status : ['Truck Arrival Source', 'LR Generated', 'Advance DocVerification',
+       'Advance Docs Rejected' , 'Advance Docs Approval Requested','Payment Pending', 'Advance Payment Rejected' ,
+       'Payment Done', 'Order Finalized', 'Started Trip',
+       'Truck Departure Source', 'Truck In-Transit', 'Truck Arrival Destination',
+       'Truck Unloading', 'Truck Departure Destination', 'Settlement DocVerification',
+       'Settlement Docs Rejected','Settlement Docs Approval Requested','Settlement Pending',
+       'Settlement Payment Rejected', 'Settlement Done', 'Docs Pending','Docs Received',
+       'Order Completed']
+    drill_fields: [order_id,base_order.end_date,base_order.status]   
+    
+  - measure: PI_24
+    type: number
+    sql: 100*${Count_24}/${base_order.count}
+    value_format_name: decimal_1
+    drill_fields: detail*
+    
+  - measure: PI_48
+    type: number
+    sql: 100*${Count_48}/${base_order.count}
+    value_format_name: decimal_1
+    drill_fields: detail*
+    
+  
+  sets:
+    detail: 
+        - base_order.id
+        - base_order.user_id
+        - base_order.status
+        - base_order.end_date
+        - From_City.city
+        - To_city.city
+        - base_order.order_value
+        - base_orderdynamicprice.cft_price
+        - base_order.order_invoice_status  
+    
 
 # Ask Chris that why this join is not working as desired 
 
