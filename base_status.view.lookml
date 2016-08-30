@@ -162,6 +162,8 @@
     sql: 100*${Count_24}/${base_order.count}
     value_format_name: decimal_1
     drill_fields: detail*
+    html: |
+        <a href={{ base_status.Count_24._link }}> {{ rendered_value }} </a>
     
   - measure: PI_48
     type: number
