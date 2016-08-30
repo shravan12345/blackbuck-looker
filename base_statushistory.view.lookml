@@ -134,4 +134,11 @@
   - measure: date_updated
     type: date
     sql: ${TABLE}.dt_updated
+    
+  - measure: placment_24
+    type: count_distinct
+    sql: ${order_id}
+    filters:
+        base_statushistory.status : 'Truck Arrival Source,LR Generated,Docs Pending,Order Completed,Advance DocVerification,Payment Pending,Payment Done,Truck Departure Destination,Truck In-Transit,Truck Arrival Destination,Truck Departure Destination,Truck Unloading,Settlement DocVerification,Settlement Pending, Settlement Done, Docs Received'
+    drill_fields: [order_id,base_order.end_date]
 
