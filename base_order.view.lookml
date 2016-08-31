@@ -417,6 +417,20 @@
          accepted_by : '9'
     drill_fields: detail*
     
+  - measure: Incomplete_Orders
+    type: count_distinct
+    sql: ${id}
+    filters:
+         status: 'Order Incomplete'
+    drill_fields: detail*
+         
+  - measure: Incomplete_Orders_Percentage
+    type: number
+    sql: 100*${Incomplete_Orders}/${count}
+    value_format_name: decimal_1
+    html:
+        <a href={{ base_order.Incomplete_Orders._link }}> {{ rendered_value }} </a>
+    
   - measure: App_Placement_Percentage
     type: number
     sql: 100*${App_Placed_Count}/${count}
