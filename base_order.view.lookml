@@ -412,7 +412,7 @@
     
   - measure: App_Placed_Count
     type: count_distinct
-    sql: $(id}
+    sql: ${id}
     filters:
          accepted_by : '9'
     drill_fields: detail*
