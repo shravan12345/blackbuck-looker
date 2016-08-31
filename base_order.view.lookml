@@ -412,7 +412,9 @@
     
   - measure: App_Placed_Count
     type: count_distinct
-    sql: CASE WHEN ${accepted_by} = '9' THEN ${id} ELSE 0 END
+    sql: $(id}
+    filters:
+         accepted_by : '9'
     drill_fields: detail*
     
   - measure: App_Placement_Percentage
