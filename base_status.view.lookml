@@ -130,8 +130,8 @@
     drill_fields: [id, blocked_by_name, driver_name, broker_name]
     
   - measure: Count_24
-    type: count_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Truck Arrival Source' THEN ${order_id} ELSE 0 END
+    type: sum
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Truck Arrival Source' THEN 1 ELSE 0 END
     filters:
         base_order.status : ['Truck Arrival Source', 'LR Generated', 'Advance DocVerification',
        'Advance Docs Rejected' , 'Advance Docs Approval Requested','Payment Pending', 'Advance Payment Rejected' ,
@@ -144,8 +144,8 @@
     drill_fields: [order_id,base_order.end_date,base_order.status] 
     
   - measure: Count_48
-    type: count_distinct
-    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Truck Arrival Source' THEN ${order_id} ELSE 0 END
+    type: sum
+    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Truck Arrival Source' THEN 1 ELSE 0 END
     filters:
         base_order.status : ['Truck Arrival Source', 'LR Generated', 'Advance DocVerification',
        'Advance Docs Rejected' , 'Advance Docs Approval Requested','Payment Pending', 'Advance Payment Rejected' ,
