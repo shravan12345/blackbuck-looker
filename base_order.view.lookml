@@ -391,7 +391,9 @@
     
   - measure: Avg_Order_Rate_Yesterday
     type: avg
-    sql: CASE WHEN ${order_value} > 0 THEN ${order_value} ELSE 0 END
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
