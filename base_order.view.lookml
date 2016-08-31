@@ -454,6 +454,14 @@
     type: number
     sql : TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${base_orderinvoicerelatedinfo.date_of_arrival_raw})
     
+  - measure: Avg_Freight_Value
+    type: avg
+    sql: ${order_value}
+    value_format_name: decimal_1
+    
+  
+    
+    
  
          
     
