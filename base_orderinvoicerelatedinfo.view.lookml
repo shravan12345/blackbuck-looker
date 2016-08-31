@@ -31,7 +31,7 @@
 
   - dimension_group: date_of_arrival
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month,raw]
     sql: ${TABLE}.date_of_arrival
 
   - dimension_group: date_of_delivery

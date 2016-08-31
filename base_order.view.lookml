@@ -441,9 +441,18 @@
         <a href={{ base_order.App_Placed_Count._link }}> {{ rendered_value }} </a>
     
   
-    
+  - measure: Performance_Index
+    type: count_distinct
+    sql: CASE WHEN TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${base_orderinvoicerelatedinfo.date_of_arrival_raw}) <= ceil(${distance}/350000) THEN NULL ELSE ${id} END
+    drill_fields: [id,Performance_Index,Actual_Transit_Time,Ex_TT]
 
+  - measure: Ex_TT
+    type: number
+    sql: ceil(${distance}/350000)
     
+  - measure: Actual_Transit_Time
+    type: number
+    sql : TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${base_orderinvoicerelatedinfo.date_of_arrival_raw})
     
  
          
@@ -459,7 +468,8 @@
         - From_City.city
         - To_city.city
         - order_value
-        - base_orderdynamicprice.cft_price
-        - order_invoice_status
+        - Actual_Transit_Time
+        - Ex_TT
+
         
    
