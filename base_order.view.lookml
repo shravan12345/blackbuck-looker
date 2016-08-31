@@ -357,10 +357,7 @@
     sql: CASE WHEN TIMESTAMPDIFF(day,${POD_Sub.dt_updated_raw},${TAD.dt_updated_raw}) < ${distance}/35000  + 10 THEN 1 ELSE 0 END
     drill_fields : [id,status,end_date]
     
-  - measure: Placement_24
-    type: count_distinct
-    sql: CASE WHEN ${base_statushistory.status} = 'Truck Arrival Source' THEN ${base_statushistory.order_id} ELSE 0 END
-    
+
   - measure: Responsiveness_Index
     type: sum
     sql: CASE WHEN TIMESTAMPDIFF(minute,${TAS.dt_updated_raw},${end_raw}) > 0 THEN 1 ELSE 0 END
@@ -412,6 +409,20 @@
     sql: ${Count_Orders_Yesterday}*(${base_orderdynamicprice.Target_Rates} - ${Avg_Order_Rate_Yesterday})
     value_format_name : decimal_2
     drill_fields: detail*
+    
+  - measure: App_Placed_Count
+    type: count_distinct
+    sql: CASE WHEN ${accepted_by} = '9' THEN ${id} ELSE 0 END
+    drill_fields: detail*
+    
+  - measure: App_Placement_Percentage
+    type: number
+    sql: 100*${App_Placed_Count}/${count}
+    value_format_name: decimal_2
+    html:
+        <a href={{ base_order.App_Placed_Count._link }}> {{ rendered_value }} </a>
+    
+  
     
 
     
