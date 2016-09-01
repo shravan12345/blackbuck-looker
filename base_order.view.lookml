@@ -431,14 +431,14 @@
     sql: 100*${Incomplete_Orders}/${count}
     value_format_name: decimal_1
     html:
-        <a href={{ base_order.Incomplete_Orders._link }}> {{ rendered_value }} </a>
+        <a target="_self" href={{ base_order.Incomplete_Orders._link }}> {{ rendered_value }} </a>
     
   - measure: App_Placement_Percentage
     type: number
     sql: 100*${App_Placed_Count}/${count}
     value_format_name: decimal_2
     html:
-        <a href={{ base_order.App_Placed_Count._link }}> {{ rendered_value }} </a>
+        <a target="_self" href={{ base_order.App_Placed_Count._link }}> {{ rendered_value }} </a>
     
   
   - measure: Performance_Index
@@ -458,6 +458,12 @@
     type: avg
     sql: ${order_value}
     value_format_name: decimal_1
+    
+  - measure: Std_Dev
+    type: number
+    sql: STDDEV(${order_value})
+    value_format_name: decimal_1
+    
     
   
     
