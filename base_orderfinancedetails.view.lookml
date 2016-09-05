@@ -196,11 +196,16 @@
     sql: ${TABLE}.freight_amount + ${TABLE}.loading_charges + NULLIF(${TABLE}.unloading_charges,0) + ${TABLE}.halt_charges
     drill_fields: [order_id,base_order.user_id,base_order.start_date,base_order.end_date,base_order.status,From_City.city,To_city.city,freight_amount]
 
+  - dimension: Fuel_Percentage
+    type: number
+    sql: 100*${advance_fuel_amount}/${freight_amount}
+    value_format_name: decimal_2
+    
   - measure: Fuel_Percentage_Count
     type: count_distinct
     sql: ${order_id}
     filters:
-       advance_fuel_percentage: '>=40'
-    drill_fields: [order_id,advance_fuel_percentage]
+       Fuel_Percentage: '>40'
+    drill_fields: [order_id,Fuel_Percentage]
         
     
