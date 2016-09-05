@@ -386,6 +386,11 @@
      type: left_outer
      relationship: one_to_one
      sql_on: ${base_order.id} = ${base_orderinvoicerelatedinfo.order_id}
+     
+   - join: base_orderfinancedetails
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_order.id} = ${base_orderfinancedetails.order_id}
   
      
      
