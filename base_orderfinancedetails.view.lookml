@@ -205,7 +205,7 @@
     type: count_distinct
     sql: ${order_id}
     filters:
-       Fuel_Percentage: '>40'
+       Fuel_Percentage: '>=30'
     drill_fields: [order_id,Fuel_Percentage]
         
     
