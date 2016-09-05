@@ -354,7 +354,7 @@
     
   - measure: POD_Points_Index
     type: sum_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(day,${POD_Sub.dt_updated_raw},${TDS.dt_updated_raw}) < 2*(${distance}/350000) + 10 THEN 1 ELSE 0 END
+    sql: CASE WHEN TIMESTAMPDIFF(day,${POD_Sub.dt_updated_raw},${TDS.dt_updated_raw}) < (2*(${distance}/350000) + 10) THEN 1 ELSE 0 END
     drill_fields : [id,status,end_date]
     
 
