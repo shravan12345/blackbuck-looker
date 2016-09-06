@@ -98,7 +98,7 @@
 
 - explore: base_customermasterfrieghtrates
   label: 'Customer-Contract-Rates'
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Actual_POD_Time]
   joins:
    - join: base_customeruserprofile
      type: left_outer
@@ -415,7 +415,7 @@
 
 - explore: base_orderdynamicprice
   label: 'Target_Rates Table'
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Actual_POD_Time]
   joins:
      - join: base_order
        type: left_outer
@@ -443,7 +443,7 @@
 # - explore: base_orderpaymentadvise
 
 - explore: base_orderprofitability
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Actual_POD_Time]
   joins:
    - join: base_order
      type: left_outer

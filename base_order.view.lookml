@@ -354,8 +354,8 @@
     
   - measure: POD_Points_Index
     type: sum_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(day,${POD_Sub.dt_updated_raw},${TDS.dt_updated_raw}) < (2*(${distance}/350000) + 10) THEN 1 ELSE 0 END
-    drill_fields : [id,status,end_date]
+    sql: CASE WHEN TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${POD_Sub.dt_updated_raw}) < (2*(${distance}/350000) + 10) THEN 1 ELSE 0 END
+    drill_fields : [id,status,end_date,Actual_POD_Time,Estimated_POD_Time]
     
 
   - measure: Responsiveness_Index
@@ -463,6 +463,14 @@
     type: number
     sql: STDDEV(${order_value})
     value_format_name: decimal_1
+    
+  - measure: Actual_POD_Time
+    type: number
+    sql : TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${POD_Sub.dt_updated_raw})
+    
+  - measure: Estimated_POD_Time
+    type: number
+    sql : ceil(2*(${distance}/350000) + 10)
     
     
   
