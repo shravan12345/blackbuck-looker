@@ -397,13 +397,13 @@
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-         base_order.end_date : 2 day ago
+         base_order.end_date : 1 day ago
          
          
   - measure: Count_Orders_Yesterday
     type: count
     filters:
-        base_order.end_date: 2 day ago
+        base_order.end_date: 1 day ago
     drill_fields: detail*
     
   - measure: Expected_Loss_Index
