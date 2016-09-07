@@ -361,7 +361,7 @@
   - measure: Responsiveness_Index
     type: sum
     sql: CASE WHEN TIMESTAMPDIFF(minute,${TAS.dt_updated_raw},${end_raw}) > 0 THEN 1 ELSE 0 END
-    drill_fields: detail*
+    drill_fields: [id,Responsiveness_Index]
     
     
     
@@ -471,6 +471,24 @@
   - measure: Estimated_POD_Time
     type: number
     sql : ceil(2*(${distance}/350000) + 10)
+    
+  
+    
+  - measure: Responsiveness
+    type: number
+    sql: 100*${Responsiveness_Index}/${count}
+    html:
+        <a target="_self" href={{ base_order.Responsiveness_Index._link }}> {{ rendered_value }} </a>
+        
+  - measure: Count_TAS
+    type: count_distinct
+    sql: ${id}
+    filters:
+        base_status.status: 'Truck Arrival Source'
+        
+  
+    
+    
     
     
   
