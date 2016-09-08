@@ -484,7 +484,7 @@
     type: count_distinct
     sql: ${id}
     filters:
-        base_status.status: 'Truck Arrival Source'
+        base_order.status: 'Truck Arrival Source'
         
   
     

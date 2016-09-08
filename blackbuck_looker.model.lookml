@@ -316,6 +316,7 @@
   joins:
    
    - join: base_orderprofitability
+     view_label: 'Profitability-Table'
      type: left_outer
      relationship: one_to_one
      sql_on: ${base_order.id}=${base_orderprofitability.order_id}
@@ -324,25 +325,30 @@
      
    - join: base_customeruserprofile
      type: left_outer
+     view_label: 'Customer-Table'
      relationship: many_to_one
      sql_on: ${base_order.user_id}=${base_customeruserprofile.user_id}
      
    - join: From_City
+     view_label: 'From City-Table'
      from: base_location
      relationship: many_to_one
      sql_on: ${base_order.from_city_id} = ${From_City.id}
    
    - join: To_city
      from: base_location
+     view_label: 'To City-Table'
      relationship: many_to_one
      sql_on: ${base_order.to_city_id} = ${To_city.id}
    
    - join: base_trucktype
+     view_label: 'Truck-Table'
      type: left_outer
      relationship: many_to_one
      sql_on: ${base_order.truck_type_id} = ${base_trucktype.id}
    
    - join: auth_user
+     view_label: 'User Name-Table'
      type: left_outer 
      relationship: one_to_one
      sql_on: ${base_order.supply_partner_id} = ${auth_user.id}
