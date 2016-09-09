@@ -170,6 +170,23 @@
     value_format_name: decimal_1
     html:
          <a href={{ base_status.Count_48._link }}> {{ rendered_value }} </a>
+         
+  - measure: Count_POD
+    type: count
+    filters:
+        status : "Docs Received"
+    drill_fields: [order_id,status]
+        
+  - measure: Count_TAS
+    type: count
+    filters:
+        status: "Truck Arrival Source"
+      
+  - measure: pod_submitted
+    type: number
+    sql: 100*${Count_POD}/${Count_TAS}
+    value_format_name: decimal_1
+    
     
   
   sets:

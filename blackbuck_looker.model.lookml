@@ -11,7 +11,7 @@
 
 - explore: auth_user
   label: 'Name- Database'
-
+  
 # - explore: auth_user_groups
 
 # - explore: auth_user_user_permissions
@@ -98,7 +98,7 @@
 
 - explore: base_customermasterfrieghtrates
   label: 'Customer-Contract-Rates'
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Actual_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.Actual_POD_Time]
   joins:
    - join: base_customeruserprofile
      type: left_outer
@@ -312,11 +312,12 @@
 # - explore: base_notifications
 
 - explore: base_order
-  label: 'Order-Table'
+  label: 'View Orders'
+  view_label: 'Orders'
   joins:
    
    - join: base_orderprofitability
-     view_label: 'Profitability-Table'
+     view_label: 'Profitability'
      type: left_outer
      relationship: one_to_one
      sql_on: ${base_order.id}=${base_orderprofitability.order_id}
@@ -325,30 +326,30 @@
      
    - join: base_customeruserprofile
      type: left_outer
-     view_label: 'Customer-Table'
+     view_label: 'Customer'
      relationship: many_to_one
      sql_on: ${base_order.user_id}=${base_customeruserprofile.user_id}
      
    - join: From_City
-     view_label: 'From City-Table'
+     view_label: 'From City'
      from: base_location
      relationship: many_to_one
      sql_on: ${base_order.from_city_id} = ${From_City.id}
    
    - join: To_city
      from: base_location
-     view_label: 'To City-Table'
+     view_label: 'To City'
      relationship: many_to_one
      sql_on: ${base_order.to_city_id} = ${To_city.id}
    
    - join: base_trucktype
-     view_label: 'Truck-Table'
+     view_label: 'Truck'
      type: left_outer
      relationship: many_to_one
      sql_on: ${base_order.truck_type_id} = ${base_trucktype.id}
    
    - join: auth_user
-     view_label: 'User Name-Table'
+     view_label: 'User Name'
      type: left_outer 
      relationship: one_to_one
      sql_on: ${base_order.supply_partner_id} = ${auth_user.id}
@@ -421,7 +422,7 @@
 
 - explore: base_orderdynamicprice
   label: 'Target_Rates Table'
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Actual_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Actual_POD_Time]
   joins:
      - join: base_order
        type: left_outer
@@ -449,7 +450,7 @@
 # - explore: base_orderpaymentadvise
 
 - explore: base_orderprofitability
-  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Actual_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Actual_POD_Time]
   joins:
    - join: base_order
      type: left_outer
@@ -543,6 +544,7 @@
 
 
 - explore: base_statushistory
+  
 
 # - explore: base_statustransitionexpirytime
 # 

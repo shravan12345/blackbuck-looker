@@ -1,8 +1,7 @@
 - view: base_order
-  
   sql_table_name: blackbuck_prod.base_order
   fields:
-
+  
   - dimension: id
     primary_key: true
     type: number
@@ -51,6 +50,12 @@
     sql: ${TABLE}.bonus_amount
     hidden: true
 
+  - dimension: sp_name
+    type: string
+    sql: CASE WHEN ${supply_partner_id} IS NOT NULL THEN ${auth_user.full_name} ELSE NULL END
+    full_suggestions: true
+      
+    
   - dimension: bonus_scheme_id
     type: number
     sql: ${TABLE}.bonus_scheme_id
@@ -343,10 +348,6 @@
     sql: ${supply_partner_id}
     drill_fields: [supply_partner_id,auth_user.full_name,placement]
     
-  - dimension_group: end_1
-    type: time
-    timeframes: [time, date, week, month]
-    sql: ${TABLE}.end_date
     
   - measure: Date
     type: date
@@ -464,6 +465,13 @@
     sql: STDDEV(${order_value})
     value_format_name: decimal_1
     
+  - measure: Avg_POD_Time
+    type: avg
+    sql :  
+        CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${POD_Sub.dt_updated_raw}) ELSE 0 END
+    value_format_name: decimal_1
+    drill_fields: [id,Actual_POD_Time]
+    
   - measure: Actual_POD_Time
     type: number
     sql : TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${POD_Sub.dt_updated_raw})
@@ -485,7 +493,20 @@
     sql: ${id}
     filters:
         base_order.status: 'Truck Arrival Source'
+  
+  - filter: name_SP
+    type: string
+    suggest_dimension: sp_name
         
+  - measure: count_by_customer
+    type: sum
+    sql: |
+       CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN 1 ELSE 0 END
+    filters:
+       base_order.status: '-Cancelled , - Cancelled By Customer'
+       
+ 
+       
   
     
     

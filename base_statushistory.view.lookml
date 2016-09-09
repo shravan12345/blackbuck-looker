@@ -1,4 +1,5 @@
 - view: base_statushistory
+  
   sql_table_name: blackbuck_prod.base_statushistory
   fields:
 
