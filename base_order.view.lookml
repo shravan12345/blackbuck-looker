@@ -504,10 +504,22 @@
        CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN 1 ELSE 0 END
     filters:
        base_order.status: '-Cancelled , - Cancelled By Customer'
-       
- 
-       
+
+  - measure: Avg_Order_value
+    type: avg
+    sql: ${order_value}
+    drill_fields: detail*
+    
   
+  - measure: Count_Lanes
+    type: count_distinct
+    sql: ${To_city.city}
+    
+  - measure : Count_Lane_Dispersion
+    type: count_distinct
+    sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${To_city.city} ELSE 0 END
+    drill_fields: [From_City.city,To_city.city]
+    
     
     
     
