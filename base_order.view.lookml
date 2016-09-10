@@ -520,6 +520,22 @@
     sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${To_city.city} ELSE 0 END
     drill_fields: [From_City.city,To_city.city]
     
+  - measure: utilized_days
+    type: sum
+    sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ceil(${distance}/350000) ELSE 0 END
+    drill_fields: [id,distance]
+    
+  - measure: count_no_show
+    type: number
+    sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${base_statushistory.count_noshow} ELSE 0 END
+    drill_fields: [ base_statushistory.order_id,base_statushistory.count_noshow]
+    
+  - measure: count_rejected
+    type: number
+    sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${base_statushistory.count_rejected} ELSE 0 END
+    drill_fields: [ base_statushistory.order_id,base_statushistory.count_rejected]
+    
+  
     
     
     
