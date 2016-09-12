@@ -360,9 +360,16 @@
     
 
   - measure: Responsiveness_Index
-    type: sum
-    sql: CASE WHEN TIMESTAMPDIFF(minute,${TAS.dt_updated_raw},${end_raw}) > 0 THEN 1 ELSE 0 END
+    type: count_distinct
+    sql: CASE WHEN TIMESTAMPDIFF(minute,${TAS.dt_updated_raw},${end_raw}) > 0 THEN ${id} ELSE 0 END
     drill_fields: [id,Responsiveness_Index]
+    
+  - measure: Responsiveness_Level
+    type: number
+    sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${Responsiveness_Index} ELSE 0 END
+    drill_fields: [id,Responsiveness_Index]
+    
+    
     
     
     
@@ -466,9 +473,9 @@
     value_format_name: decimal_1
     
   - measure: Avg_POD_Time
-    type: avg
+    type: number
     sql :  
-        CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${POD_Sub.dt_updated_raw}) ELSE 0 END
+        CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN AVG(TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${POD_Sub.dt_updated_raw})) ELSE 0 END
     value_format_name: decimal_1
     drill_fields: [id,Actual_POD_Time]
     
