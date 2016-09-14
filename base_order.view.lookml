@@ -454,7 +454,7 @@
     sql: TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${TAD.dt_updated_raw})
     drill_fields: [id,Performance_Index]
     
-  - dimension: Transit_Tier
+  - dimension: transit_tier
     type: tier
     tiers: [0,24,48,72]
     sql: ${Performance_Index}
