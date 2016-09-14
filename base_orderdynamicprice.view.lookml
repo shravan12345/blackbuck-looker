@@ -93,7 +93,7 @@
 
   - measure: count
     type: count
-    drill_fields: [id]
+    drill_fields: [id,base_order.id]
 
   - measure: R1
     type: number
