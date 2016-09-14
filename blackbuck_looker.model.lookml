@@ -366,24 +366,24 @@
      sql_on: ${base_order.id} = ${base_statushistory.order_id}
      
    - join: TAS
-     from: base_statushistory
+     from: base_status
      relationship: one_to_many
      sql_on: ${base_order.id} = ${TAS.order_id} and ${TAS.status} = "Truck Arrival Source"
      
    - join: TAD
-     from: base_statushistory
+     from: base_status
      relationship: one_to_many
      sql_on: ${base_order.id} = ${TAD.order_id} and ${TAD.status} = "Truck Arrival Destination"
      
    - join: POD_Sub
-     from: base_statushistory
+     from: base_status
      relationship: one_to_many
      sql_on: ${base_order.id} = ${POD_Sub.order_id} and ${POD_Sub.status} = "Docs Received"
      
    - join: TDS
-     from: base_statushistory
+     from: base_status
      relationship: one_to_many
-     sql_on: ${base_order.id} = ${TDS.order_id} and ${TDS.status} = "Truck Departure Source"
+     sql_on: ${base_order.id} = ${TDS.order_id} and ${TDS.status} = "Payment Done"
      
    - join: base_orderdynamicprice
      type: left_outer

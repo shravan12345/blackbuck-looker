@@ -450,9 +450,14 @@
     
   
   - measure: Performance_Index
-    type: count_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${base_orderinvoicerelatedinfo.date_of_arrival_raw}) <= ceil(${distance}/350000) THEN NULL ELSE ${id} END
-    drill_fields: [id,Performance_Index,Actual_Transit_Time,Ex_TT]
+    type: number
+    sql: TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${TAD.dt_updated_raw})
+    drill_fields: [id,Performance_Index]
+    
+  - dimension: Transit_Tier
+    type: tier
+    tiers: [0,24,48,72]
+    sql: ${Performance_Index}
 
   - measure: Ex_TT
     type: number
@@ -460,7 +465,7 @@
     
   - measure: Actual_Transit_Time
     type: number
-    sql : TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${base_orderinvoicerelatedinfo.date_of_arrival_raw})
+    sql : TIMESTAMPDIFF(hour,${TDS.dt_updated_raw},${base_orderinvoicerelatedinfo.date_of_arrival_raw})
     
   - measure: Avg_Freight_Value
     type: avg
