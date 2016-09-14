@@ -159,6 +159,8 @@
     type: number
     sql: ${TABLE}.mode_of_payment
 
+
+
   - dimension: no_outlets
     type: number
     sql: ${TABLE}.no_outlets
@@ -299,6 +301,8 @@
   - dimension: tonnage
     type: number
     sql: ${TABLE}.tonnage
+    
+
 
   - dimension: truck_type_id
     type: number
@@ -449,15 +453,21 @@
         <a target="_self" href={{ base_order.App_Placed_Count._link }}> {{ rendered_value }} </a>
     
   
-  - measure: Performance_Index
+  - dimension: performance_index
     type: number
-    sql: TIMESTAMPDIFF(day,${TDS.dt_updated_raw},${TAD.dt_updated_raw})
-    drill_fields: [id,Performance_Index]
+    sql:  ceil(TIMESTAMPDIFF(hour,${TDS.dt_updated_raw},${TAD.dt_updated_raw}) - ((${distance}/350000)*24))
+    drill_fields: [id,performance_index]
     
   - dimension: transit_tier
     type: tier
     tiers: [0,24,48,72]
-    sql: ${Performance_Index}
+    style: interval
+    sql: ${performance_index}
+    
+  
+    
+    
+  
 
   - measure: Ex_TT
     type: number
@@ -569,7 +579,7 @@
         - From_City.city
         - To_city.city
         - order_value
-        - Actual_Transit_Time
+        - performance_index
         - Ex_TT
 
         
