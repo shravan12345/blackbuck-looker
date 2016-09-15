@@ -351,6 +351,8 @@
     type: count_distinct
     sql: ${supply_partner_id}
     drill_fields: [supply_partner_id,auth_user.full_name,placement]
+    filters:
+        base_order.end_date: this month
     
     
   - measure: Date
@@ -411,6 +413,110 @@
     filters:
          base_order.end_date : 1 day ago
          
+  - measure: Avg_Order_Rate_Today
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : 0 day ago
+         
+  - measure: Avg_Order_Rate_2
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : 2 day ago
+  
+  - measure: Avg_Order_Rate_3
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : 3 day ago
+         
+  - measure: Avg_Order_Rate_4
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : 4 day ago
+
+
+  - measure: Avg_Order_Rate_5
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : 5 day ago 
+         
+         
+  - measure: Avg_Order_Rate_6
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : 6 day ago
+         
+         
+
+  
+  - measure: Avg_Order_Rate_7
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : 7 day ago
+         
+  - measure: Avg_Order_Rate_15
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : 23 day ago for 15 days
+         
+  - measure: Avg_Order_Rate_mon
+    type: avg
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : this month
+         
+  - measure: Min_Order_Rate_month
+    type: min
+    sql:  IF 
+            (${order_value} > 0, ${order_value} ,0)
+                
+    value_format_name: decimal_0
+    drill_fields: detail*
+    filters:
+         base_order.end_date : this month
          
   - measure: Count_Orders_Yesterday
     type: count
