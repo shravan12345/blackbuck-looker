@@ -413,6 +413,10 @@
     filters:
          base_order.end_date : 1 day ago
          
+  - measure: Target_Adhered
+    type: yesno
+    sql: ${base_orderdynamicprice.Target_Rates} > ${Avg_Order_Rate_mon}
+         
   - measure: Avg_Order_Rate_Today
     type: avg
     sql:  IF 
