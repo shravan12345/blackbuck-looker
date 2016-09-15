@@ -347,7 +347,7 @@
     drill_fields: detail*
     value_format_name: percent_1
     
-  - measure: No_of_SP
+  - measure: Total_No_of_SP
     type: count_distinct
     sql: ${supply_partner_id}
     drill_fields: [supply_partner_id,auth_user.full_name,placement]
