@@ -113,7 +113,7 @@
     sql: ${cft_price}
     value_format_name: decimal_2
     filters:
-        base_order.end_date : 1 day ago
+        base_order.end_date : 7 days
     drill_fields: [order_id,cft_price]
     
   

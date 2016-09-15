@@ -405,7 +405,10 @@
      relationship: one_to_one
      sql_on: ${base_order.id} = ${base_orderfinancedetails.order_id}
   
-     
+   - join: dlp_laneratetargets
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_order.from_city_id} = ${dlp_laneratetargets.from_city_id} and ${base_order.to_city_id} = ${dlp_laneratetargets.to_city_id} 
      
    
      
