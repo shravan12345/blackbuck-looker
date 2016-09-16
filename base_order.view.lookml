@@ -417,7 +417,7 @@
   - measure: Avg_Order_Rate_Yesterday
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -431,7 +431,7 @@
   - measure: Avg_Order_Rate_Today
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -441,7 +441,7 @@
   - measure: Avg_Order_Rate_2
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -451,7 +451,7 @@
   - measure: Avg_Order_Rate_3
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -461,7 +461,7 @@
   - measure: Avg_Order_Rate_4
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -472,7 +472,7 @@
   - measure: Avg_Order_Rate_5
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -483,7 +483,7 @@
   - measure: Avg_Order_Rate_6
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -496,7 +496,7 @@
   - measure: Avg_Order_Rate_7
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -506,27 +506,28 @@
   - measure: Avg_Order_Rate_15
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-         base_order.end_date : 23 day ago for 15 days
+         base_order.end_date : after 2016/09/01
+         base_order.end_date : before 7 days ago
          
   - measure: Avg_Order_Rate_mon
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-         base_order.end_date : this month
+         base_order.end_date : this month 
          
   - measure: Min_Order_Rate_month
     type: min
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,0)
+            (${order_value} > 0, ${order_value} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
