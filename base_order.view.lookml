@@ -320,7 +320,18 @@
   - dimension: user_id
     type: number
     sql: ${TABLE}.user_id
-
+    
+  - dimension: from_sublocation_id
+    type: number
+    sql: ${TABLE}.from_sublocation_id
+    hidden: true
+    
+  
+  - dimension: to_sublocation_id
+    type: number
+    sql: ${TABLE}.to_sublocation_id
+    hidden: true
+    
   - measure: count
     type: count
     filters:
@@ -415,7 +426,7 @@
          
   - measure: Target_Adhered
     type: yesno
-    sql: ${base_orderdynamicprice.Target_Rates} > ${Avg_Order_Rate_mon}
+    sql: ${dlp_laneratetargets.Target_Rate} > ${Avg_Order_Rate_mon}
          
   - measure: Avg_Order_Rate_Today
     type: avg
