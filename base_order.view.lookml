@@ -685,10 +685,7 @@
     sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${base_statushistory.count_rejected} ELSE 0 END
     drill_fields: [ base_statushistory.order_id,base_statushistory.count_rejected]
     
-  - measure: count_mon_orders
-    type: count_distinct
-    sql: CASE WHEN ${end_date} > this month and ${end_date} < today THEN ${id} ELSE 0 END
-       
+  
   
   
     
