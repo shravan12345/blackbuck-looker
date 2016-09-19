@@ -511,8 +511,8 @@
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-         base_order.end_date : after 2016/09/01
-         base_order.end_date : before 7 days ago
+        base_order.end_date: before 7 days ago
+    
          
   - measure: Avg_Order_Rate_mon
     type: avg
@@ -520,14 +520,14 @@
             (${order_value} > 0, ${order_value} ,null)
     value_format_name: decimal_0
     drill_fields: detail*
-    
+    filters:
+         base_order.end_date : this month
    
          
     
             
                 
-    value_format_name: decimal_0
-    drill_fields: detail*
+   
     
          
   - measure: Min_Order_Rate_month
@@ -684,6 +684,14 @@
     type: number
     sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${base_statushistory.count_rejected} ELSE 0 END
     drill_fields: [ base_statushistory.order_id,base_statushistory.count_rejected]
+    
+  - measure: count_mon_orders
+    type: count_distinct
+    sql: CASE WHEN ${end_date} > this month and ${end_date} < today THEN ${id} ELSE 0 END
+       
+  
+  
+    
     
   
     
