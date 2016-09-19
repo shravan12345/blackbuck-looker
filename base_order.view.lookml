@@ -511,7 +511,7 @@
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-         base_order.end_date : after 2016/09/01
+         base_order.end_date : after this month
          base_order.end_date : before 7 days ago
          
   - measure: Avg_Order_Rate_mon
@@ -522,7 +522,7 @@
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-         base_order.end_date : this month 
+         base_order.end_date : after this month 
          base_order.end_date: before today
          
   - measure: Min_Order_Rate_month
