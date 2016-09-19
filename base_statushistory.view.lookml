@@ -55,7 +55,7 @@
 
   - dimension_group: dt_updated
     type: time
-    timeframes: [time, date,week, month, raw]
+    timeframes: [time, date,week, month, raw,hour]
     sql: ${TABLE}.dt_updated
 
   - dimension: helper_number
