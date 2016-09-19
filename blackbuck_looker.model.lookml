@@ -409,7 +409,22 @@
      type: cross
      relationship: many_to_one
      sql_on: ${base_order.from_city_id} = ${dlp_laneratetargets.from_city_id} and ${base_order.to_city_id} = ${dlp_laneratetargets.to_city_id} and  ${base_order.from_sublocation_id} = ${dlp_laneratetargets.from_sublocation_id} and ${base_order.to_sublocation_id} = ${dlp_laneratetargets.to_sublocation_id} and ${base_order.truck_type_id} = ${dlp_laneratetargets.truck_type_id}
+   
      
+   - join: base_financialtransaction
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_financialtransaction.order_id} = ${base_order.id}
+     
+   - join: base_fuelcards
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_fuelcards.card_number} = ${base_financialtransaction.beneficiary_acc_num}
+     
+   - join: base_fuelpartnertransaction
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_fuelpartnertransaction.fin_transaction_id} = ${base_financialtransaction.id}  
    
      
      

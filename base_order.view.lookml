@@ -189,7 +189,7 @@
   - dimension: ops_user_id
     type: number
     sql: ${TABLE}.ops_user_id
-    hidden: true
+    
 
   - dimension: optimized_loading
     type: yesno
