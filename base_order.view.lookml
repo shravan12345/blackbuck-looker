@@ -520,6 +520,8 @@
             (${order_value} > 0, ${order_value} ,null)
     value_format_name: decimal_0
     drill_fields: detail*
+    filters:
+         base_order.end_date : this month
    
          
     
