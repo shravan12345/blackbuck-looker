@@ -523,6 +523,7 @@
     drill_fields: detail*
     filters:
          base_order.end_date : this month 
+         base_order.end_date: before today
          
   - measure: Min_Order_Rate_month
     type: min
