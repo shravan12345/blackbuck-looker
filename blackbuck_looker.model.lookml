@@ -572,6 +572,23 @@
 
 
 - explore: base_statushistory
+  joins:
+   - join: base_userprofile_role
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_userprofile_role.userprofile_id} = ${base_userprofile.id}
+   - join: base_role
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_userprofile_role.role_id} = ${base_role.id}
+   - join: auth_user
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_statushistory.last_modified_by_id} = ${auth_user.id}
+   - join: base_userprofile
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_userprofile.user_id} = ${auth_user.id}
   
 
 # - explore: base_statustransitionexpirytime
