@@ -549,6 +549,20 @@
 
 - explore: base_status
   fields: [ALL_FIELDS*,-base_status.Count_24,-base_status.PI_24,-base_status.Count_48,-base_status.PI_48]
+  joins:
+   - join: base_userprofile_role
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_status.last_modified_by_id} = ${base_userprofile_role.userprofile_id}
+   - join: base_role
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_userprofile_role.role_id} = ${base_role.id}
+   - join: auth_user
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_status.last_modified_by_id} = ${auth_user.id}
+   
    
 
 
