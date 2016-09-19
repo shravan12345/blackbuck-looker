@@ -209,3 +209,7 @@
     type: count
     drill_fields: [id,name]
 
+  - dimension: truck_type_name
+    sql: ${base_trucktype.truck_type}
+    
+    

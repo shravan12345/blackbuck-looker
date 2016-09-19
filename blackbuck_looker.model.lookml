@@ -604,6 +604,12 @@
 # - explore: base_transitiongcm
 
 - explore: base_truck
+  joins:
+  -  join: base_trucktype
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_truck.truck_type_id} = ${base_trucktype.id}
+  
 
 # - explore: base_truck_ignore_product
 # 
