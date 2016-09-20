@@ -148,6 +148,7 @@
     
   - measure: count_true
     type: count
+    drill_fields: [order_id,status,date_updated]
     
   
 

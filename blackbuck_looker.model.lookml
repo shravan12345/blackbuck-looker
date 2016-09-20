@@ -834,6 +834,10 @@
        type: left_outer
        relationship: one_to_many
        sql_on: ${base_ordereta.order_id} = ${base_orderetahistory.order_id}
+     - join: eta_revised_view
+       type: left_outer
+       relationship: one_to_one
+       sql_on: ${base_ordereta.order_id} = ${eta_revised_view.order_id}
      
 - explore: eta_revised_view
   fields: [ALL_FIELDS*,-base_ordereta.deviation]
