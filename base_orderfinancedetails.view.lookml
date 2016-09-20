@@ -207,5 +207,20 @@
     filters:
        Fuel_Percentage: '>=30'
     drill_fields: [order_id,Fuel_Percentage]
+    
+  - measure: average_damage_month
+    type: avg
+    sql: IF 
+           ( ${damages} > 0 ,${damages},null)
+    value_format_name: decimal_1
+    drill_fields: [order_id,damages]
+    
+    
+  - measure: average_detention_month
+    type: avg
+    sql: IF(${TABLE}.halt_charges > 0 ,${TABLE}.halt_charges,null) + IF(${TABLE}.dest_halt_charges > 0 ,${TABLE}.dest_halt_charges,null)
+    value_format_name: decimal_1
+    drill_fields: [order_id,halt_charges,dest_halt_charges]
+    
         
     
