@@ -511,7 +511,7 @@
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-        base_order.end_date: before 7 days ago
+        base_order.and_filter1: "Yes"
     
          
   - measure: Avg_Order_Rate_mon
@@ -521,7 +521,16 @@
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
-         base_order.end_date : this month
+         base_order.and_filter: "Yes"
+         
+         
+  - dimension: and_filter
+    type: yesno
+    sql: ${base_order.end_date} > (DATE(NOW()) - INTERVAL (EXTRACT( DAY FROM NOW())) DAY) and ${base_order.end_date} < DATE(NOW())
+    
+  - dimension: and_filter1
+    type: yesno
+    sql: ${base_order.end_date} > (DATE(NOW()) - INTERVAL (EXTRACT( DAY FROM NOW())) DAY) and ${base_order.end_date} < (DATE(NOW()) - INTERVAL 7 DAY)
    
          
     
