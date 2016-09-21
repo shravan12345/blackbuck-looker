@@ -324,6 +324,7 @@
      
      
      
+     
    - join: base_customeruserprofile
      type: left_outer
      view_label: 'Customer'
@@ -425,6 +426,11 @@
      type: left_outer
      relationship: one_to_one
      sql_on: ${base_fuelpartnertransaction.fin_transaction_id} = ${base_financialtransaction.id}  
+     
+   - join: supply_breath_calc
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${From_City.id} = ${supply_breath_calc.from_city_id}
    
      
      
@@ -868,3 +874,6 @@
        type: left_outer
        relationship: one_to_one
        sql_on: ${base_ordereta.order_id} = ${eta_revised_view.order_id}
+       
+- explore: supply_breath_calc
+
