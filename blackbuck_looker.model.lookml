@@ -843,6 +843,23 @@
        type: left_outer
        relationship: one_to_one
        sql_on: ${base_ordereta.order_id} = ${base_order.id}
+     - join: From_City
+       view_label: 'From City'
+       from: base_location
+       relationship: many_to_one
+       sql_on: ${base_order.from_city_id} = ${From_City.id}
+   
+     - join: To_city
+       from: base_location
+       view_label: 'To City'
+       relationship: many_to_one
+       sql_on: ${base_order.to_city_id} = ${To_city.id}
+       
+     - join: base_customeruserprofile
+       type: left_outer
+       view_label: 'Customer'
+       relationship: many_to_one
+       sql_on: ${base_order.user_id}=${base_customeruserprofile.user_id}
      
 - explore: eta_revised_view
   fields: [ALL_FIELDS*,-base_ordereta.deviation]
