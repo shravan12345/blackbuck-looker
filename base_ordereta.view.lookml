@@ -23,7 +23,7 @@
 
   - measure: count
     type: count
-    drill_fields: [id]
+    drill_fields: [order_id,eta_raw,eta_revised_view_raw]
     
   - dimension: deviation
     type: tier
@@ -33,7 +33,7 @@
   - dimension: deviation_transit
     type: number
     sql: IF(
-             TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}) > 0,TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}),null)
+             TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}) >= 0,TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}),null)
     value_format_name: decimal_0     
     
   - dimension: truck_in_transit_deviation
