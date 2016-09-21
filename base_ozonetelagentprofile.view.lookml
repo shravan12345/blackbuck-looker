@@ -1,5 +1,5 @@
 - view: base_ozonetelagentprofile
-  sql_table_name: blackbuck_prod.base_ozonetelagentprofile
+  sql_table_name: zinka.base_ozonetelagentprofile
   fields:
 
   - dimension: id
@@ -30,4 +30,3 @@
   - measure: count
     type: count
     drill_fields: [id, agent_name, campaign_name]
-

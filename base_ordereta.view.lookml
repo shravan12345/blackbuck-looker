@@ -1,5 +1,5 @@
 - view: base_ordereta
-  sql_table_name: blackbuck_prod.base_ordereta
+  sql_table_name: zinka.base_ordereta
   fields:
 
   - dimension: id
@@ -29,4 +29,14 @@
     type: tier
     tiers: [0,24,48,72]
     sql: TIMESTAMPDIFF(hour,${eta_raw},${base_orderetahistory.latest_date})
-
+    
+  - dimension: deviation_transit
+    type: number
+    sql: IF(
+             TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}) > 0,TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}),null)
+    value_format_name: decimal_0     
+    
+  - dimension: truck_in_transit_deviation
+    type: tier
+    tiers: [24,48,72]
+    sql: ${deviation_transit}

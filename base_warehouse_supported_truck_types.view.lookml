@@ -1,5 +1,5 @@
 - view: base_warehouse_supported_truck_types
-  sql_table_name: blackbuck_prod.base_warehouse_supported_truck_types
+  sql_table_name: zinka.base_warehouse_supported_truck_types
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

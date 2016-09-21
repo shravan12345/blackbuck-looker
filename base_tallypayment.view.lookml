@@ -1,5 +1,5 @@
 - view: base_tallypayment
-  sql_table_name: blackbuck_prod.base_tallypayment
+  sql_table_name: zinka.base_tallypayment
   fields:
 
   - dimension: id
@@ -31,4 +31,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

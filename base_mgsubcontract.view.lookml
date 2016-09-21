@@ -1,5 +1,5 @@
 - view: base_mgsubcontract
-  sql_table_name: blackbuck_prod.base_mgsubcontract
+  sql_table_name: zinka.base_mgsubcontract
   fields:
 
   - dimension: id
@@ -115,4 +115,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

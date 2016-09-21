@@ -1,5 +1,5 @@
 - view: base_leadsgroup
-  sql_table_name: blackbuck_prod.base_leadsgroup
+  sql_table_name: zinka.base_leadsgroup
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id, name]
-

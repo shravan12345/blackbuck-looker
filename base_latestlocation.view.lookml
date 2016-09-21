@@ -1,5 +1,5 @@
 - view: base_latestlocation
-  sql_table_name: blackbuck_prod.base_latestlocation
+  sql_table_name: zinka.base_latestlocation
   fields:
 
   - dimension: id
@@ -56,4 +56,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

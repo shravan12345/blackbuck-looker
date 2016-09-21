@@ -1,5 +1,5 @@
 - view: base_coupon
-  sql_table_name: blackbuck_prod.base_coupon
+  sql_table_name: zinka.base_coupon
   fields:
 
   - dimension: id
@@ -53,4 +53,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

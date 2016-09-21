@@ -1,5 +1,5 @@
 - view: bbauth_uservalidationstatushistory
-  sql_table_name: blackbuck_prod.bbauth_uservalidationstatushistory
+  sql_table_name: zinka.bbauth_uservalidationstatushistory
   fields:
 
   - dimension: id
@@ -32,4 +32,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

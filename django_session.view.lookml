@@ -1,5 +1,5 @@
 - view: django_session
-  sql_table_name: blackbuck_prod.django_session
+  sql_table_name: zinka.django_session
   fields:
 
   - dimension_group: expire
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: []
-

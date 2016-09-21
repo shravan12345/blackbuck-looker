@@ -1,5 +1,5 @@
 - view: base_orderdocument
-  sql_table_name: blackbuck_prod.base_orderdocument
+  sql_table_name: zinka.base_orderdocument
   fields:
 
   - dimension: id
@@ -48,4 +48,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

@@ -1,5 +1,5 @@
 - view: base_customeruserprofile_reports_to_users
-  sql_table_name: blackbuck_prod.base_customeruserprofile_reports_to_users
+  sql_table_name: zinka.base_customeruserprofile_reports_to_users
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

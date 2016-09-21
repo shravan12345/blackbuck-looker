@@ -1,5 +1,5 @@
 - view: django_content_type
-  sql_table_name: blackbuck_prod.django_content_type
+  sql_table_name: zinka.django_content_type
   fields:
 
   - dimension: id
@@ -22,4 +22,3 @@
   - measure: count
     type: count
     drill_fields: [id, name]
-

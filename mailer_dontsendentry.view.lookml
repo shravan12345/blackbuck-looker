@@ -1,5 +1,5 @@
 - view: mailer_dontsendentry
-  sql_table_name: blackbuck_prod.mailer_dontsendentry
+  sql_table_name: zinka.mailer_dontsendentry
   fields:
 
   - dimension: id
@@ -19,4 +19,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

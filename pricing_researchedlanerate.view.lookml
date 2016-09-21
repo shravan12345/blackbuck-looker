@@ -1,5 +1,5 @@
 - view: pricing_researchedlanerate
-  sql_table_name: blackbuck_prod.pricing_researchedlanerate
+  sql_table_name: zinka.pricing_researchedlanerate
   fields:
 
   - dimension: id
@@ -60,4 +60,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

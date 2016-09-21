@@ -1,5 +1,5 @@
 - view: base_order
-  sql_table_name: blackbuck_prod.base_order
+  sql_table_name: zinka.base_order
   fields:
   
   - dimension: id

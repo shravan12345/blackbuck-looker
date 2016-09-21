@@ -1,5 +1,5 @@
 - view: courier_track_courierservice
-  sql_table_name: blackbuck_prod.courierTrack_courierservice
+  sql_table_name: zinka.courierTrack_courierservice
   fields:
 
   - dimension: id
@@ -22,4 +22,3 @@
   - measure: count
     type: count
     drill_fields: [id, name, short_name]
-

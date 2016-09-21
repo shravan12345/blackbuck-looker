@@ -1,5 +1,5 @@
 - view: base_mgtruckrejectedcity
-  sql_table_name: blackbuck_prod.base_mgtruckrejectedcity
+  sql_table_name: zinka.base_mgtruckrejectedcity
   fields:
 
   - dimension: id
@@ -27,4 +27,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

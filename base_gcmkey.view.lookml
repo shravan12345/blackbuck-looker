@@ -1,5 +1,5 @@
 - view: base_gcmkey
-  sql_table_name: blackbuck_prod.base_gcmkey
+  sql_table_name: zinka.base_gcmkey
   fields:
 
   - dimension: id
@@ -23,4 +23,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

@@ -1,5 +1,5 @@
 - view: base_cashcard
-  sql_table_name: blackbuck_prod.base_cashcard
+  sql_table_name: zinka.base_cashcard
   fields:
 
   - dimension: id
@@ -26,4 +26,3 @@
   - measure: count
     type: count
     drill_fields: [id, card_user_name, beneficiary_name]
-

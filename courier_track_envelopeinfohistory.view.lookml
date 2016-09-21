@@ -1,5 +1,5 @@
 - view: courier_track_envelopeinfohistory
-  sql_table_name: blackbuck_prod.courierTrack_envelopeinfohistory
+  sql_table_name: zinka.courierTrack_envelopeinfohistory
   fields:
 
   - dimension: id
@@ -66,4 +66,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

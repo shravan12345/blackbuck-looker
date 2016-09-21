@@ -1,5 +1,5 @@
 - view: base_androidregkey
-  sql_table_name: blackbuck_prod.base_androidregkey
+  sql_table_name: zinka.base_androidregkey
   fields:
 
   - dimension: id
@@ -28,4 +28,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

@@ -1,5 +1,5 @@
 - view: base_geolocation
-  sql_table_name: blackbuck_prod.base_geolocation
+  sql_table_name: zinka.base_geolocation
   fields:
 
   - dimension: id
@@ -58,4 +58,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

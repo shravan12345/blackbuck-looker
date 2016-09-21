@@ -1,5 +1,5 @@
 - view: base_orderinvoicestatus
-  sql_table_name: blackbuck_prod.base_orderinvoicestatus
+  sql_table_name: zinka.base_orderinvoicestatus
   fields:
 
   - dimension: id
@@ -36,4 +36,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

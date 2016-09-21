@@ -1,5 +1,5 @@
 - view: base_customermasterloadunloadrates
-  sql_table_name: blackbuck_prod.base_customermasterloadunloadrates
+  sql_table_name: zinka.base_customermasterloadunloadrates
   fields:
 
   - dimension: id
@@ -61,4 +61,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

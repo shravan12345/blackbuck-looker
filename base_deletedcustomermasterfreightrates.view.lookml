@@ -1,5 +1,5 @@
 - view: base_deletedcustomermasterfreightrates
-  sql_table_name: blackbuck_prod.base_deletedcustomermasterfreightrates
+  sql_table_name: zinka.base_deletedcustomermasterfreightrates
   fields:
 
   - dimension: id
@@ -83,4 +83,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

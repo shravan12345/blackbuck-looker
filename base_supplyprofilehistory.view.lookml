@@ -1,5 +1,5 @@
 - view: base_supplyprofilehistory
-  sql_table_name: blackbuck_prod.base_supplyprofilehistory
+  sql_table_name: zinka.base_supplyprofilehistory
   fields:
 
   - dimension: id
@@ -23,4 +23,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

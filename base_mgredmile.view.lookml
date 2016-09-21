@@ -1,5 +1,5 @@
 - view: base_mgredmile
-  sql_table_name: blackbuck_prod.base_mgredmile
+  sql_table_name: zinka.base_mgredmile
   fields:
 
   - dimension: id
@@ -82,4 +82,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

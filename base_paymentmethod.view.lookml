@@ -1,5 +1,5 @@
 - view: base_paymentmethod
-  sql_table_name: blackbuck_prod.base_paymentmethod
+  sql_table_name: zinka.base_paymentmethod
   fields:
 
   - dimension: id
@@ -54,4 +54,3 @@
   - measure: count
     type: count
     drill_fields: [id, beneficiary_name]
-

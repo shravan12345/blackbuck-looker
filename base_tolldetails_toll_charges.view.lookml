@@ -1,5 +1,5 @@
 - view: base_tolldetails_toll_charges
-  sql_table_name: blackbuck_prod.base_tolldetails_toll_charges
+  sql_table_name: zinka.base_tolldetails_toll_charges
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

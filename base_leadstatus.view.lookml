@@ -1,5 +1,5 @@
 - view: base_leadstatus
-  sql_table_name: blackbuck_prod.base_leadstatus
+  sql_table_name: zinka.base_leadstatus
   fields:
 
   - dimension: id
@@ -32,4 +32,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

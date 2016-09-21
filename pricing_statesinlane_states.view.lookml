@@ -1,5 +1,5 @@
 - view: pricing_statesinlane_states
-  sql_table_name: blackbuck_prod.pricing_statesinlane_states
+  sql_table_name: zinka.pricing_statesinlane_states
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

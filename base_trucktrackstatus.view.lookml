@@ -1,5 +1,5 @@
 - view: base_trucktrackstatus
-  sql_table_name: blackbuck_prod.base_trucktrackstatus
+  sql_table_name: zinka.base_trucktrackstatus
   fields:
 
   - dimension: id
@@ -67,4 +67,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

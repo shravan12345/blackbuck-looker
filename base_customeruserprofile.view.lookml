@@ -1,5 +1,5 @@
 - view: base_customeruserprofile
-  sql_table_name: blackbuck_prod.base_customeruserprofile
+  sql_table_name: zinka.base_customeruserprofile
   fields:
 
   - dimension: id
@@ -299,4 +299,3 @@
     - tally_ledger_name
     - finance_contact_name
     - logistic_contact_name
-

@@ -1,5 +1,5 @@
 - view: base_financialtransaction
-  sql_table_name: blackbuck_prod.base_financialtransaction
+  sql_table_name: zinka.base_financialtransaction
   fields:
 
   - dimension: id
@@ -105,4 +105,3 @@
   - measure: count
     type: count
     drill_fields: [id, beneficiary_name, returned_beneficiary_name]
-

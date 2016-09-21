@@ -1,5 +1,5 @@
 - view: django_admin_log
-  sql_table_name: blackbuck_prod.django_admin_log
+  sql_table_name: zinka.django_admin_log
   fields:
 
   - dimension: id
@@ -39,4 +39,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

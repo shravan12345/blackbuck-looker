@@ -1,5 +1,5 @@
 - view: base_supplybankaccountshistory
-  sql_table_name: blackbuck_prod.base_supplybankaccountshistory
+  sql_table_name: zinka.base_supplybankaccountshistory
   fields:
 
   - dimension: id
@@ -36,4 +36,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

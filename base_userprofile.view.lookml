@@ -1,5 +1,5 @@
 - view: base_userprofile
-  sql_table_name: blackbuck_prod.base_userprofile
+  sql_table_name: zinka.base_userprofile
   fields:
 
   - dimension: id
@@ -116,4 +116,3 @@
   - measure: count
     type: count
     drill_fields: [id, bank_account_name, company_name]
-

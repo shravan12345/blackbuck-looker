@@ -1,5 +1,5 @@
 - view: base_androidapp
-  sql_table_name: blackbuck_prod.base_androidapp
+  sql_table_name: zinka.base_androidapp
   fields:
 
   - dimension: id
@@ -22,4 +22,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

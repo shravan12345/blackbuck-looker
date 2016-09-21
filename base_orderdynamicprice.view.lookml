@@ -1,5 +1,5 @@
 - view: base_orderdynamicprice
-  sql_table_name: blackbuck_prod.base_orderdynamicprice
+  sql_table_name: zinka.base_orderdynamicprice
   fields:
 
   - dimension: id

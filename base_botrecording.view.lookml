@@ -1,5 +1,5 @@
 - view: base_botrecording
-  sql_table_name: blackbuck_prod.base_botrecording
+  sql_table_name: zinka.base_botrecording
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

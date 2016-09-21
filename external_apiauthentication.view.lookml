@@ -1,5 +1,5 @@
 - view: external_apiauthentication
-  sql_table_name: blackbuck_prod.external_apiauthentication
+  sql_table_name: zinka.external_apiauthentication
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id, customer_name]
-

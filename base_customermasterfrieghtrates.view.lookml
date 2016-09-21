@@ -1,5 +1,5 @@
 - view: base_customermasterfrieghtrates
-  sql_table_name: blackbuck_prod.base_customermasterfrieghtrates
+  sql_table_name: zinka.base_customermasterfrieghtrates
   fields:
 
   - dimension: id
@@ -97,4 +97,3 @@
     
     
     
-

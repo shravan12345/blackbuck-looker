@@ -1,5 +1,5 @@
 - view: base_truckfinancedetails
-  sql_table_name: blackbuck_prod.base_truckfinancedetails
+  sql_table_name: zinka.base_truckfinancedetails
   fields:
 
   - dimension: id
@@ -38,4 +38,3 @@
   - measure: count
     type: count
     drill_fields: [id, bank_name]
-

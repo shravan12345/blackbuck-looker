@@ -1,5 +1,5 @@
 - view: base_smsmessagetemplate
-  sql_table_name: blackbuck_prod.base_smsmessagetemplate
+  sql_table_name: zinka.base_smsmessagetemplate
   fields:
 
   - dimension: id
@@ -22,4 +22,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

@@ -1,5 +1,5 @@
 - view: base_leadsdetail
-  sql_table_name: blackbuck_prod.base_leadsdetail
+  sql_table_name: zinka.base_leadsdetail
   fields:
 
   - dimension: id
@@ -93,4 +93,3 @@
   - measure: count
     type: count
     drill_fields: [id, truck_owner_name, origin_file_name]
-

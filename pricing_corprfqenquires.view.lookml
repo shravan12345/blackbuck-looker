@@ -1,5 +1,5 @@
 - view: pricing_corprfqenquires
-  sql_table_name: blackbuck_prod.pricing_corprfqenquires
+  sql_table_name: zinka.pricing_corprfqenquires
   fields:
 
   - dimension: id
@@ -48,4 +48,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

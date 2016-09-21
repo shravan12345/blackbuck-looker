@@ -1,5 +1,5 @@
 - view: mailer_messagelog
-  sql_table_name: blackbuck_prod.mailer_messagelog
+  sql_table_name: zinka.mailer_messagelog
   fields:
 
   - dimension: id
@@ -36,4 +36,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

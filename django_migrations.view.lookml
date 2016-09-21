@@ -1,5 +1,5 @@
 - view: django_migrations
-  sql_table_name: blackbuck_prod.django_migrations
+  sql_table_name: zinka.django_migrations
   fields:
 
   - dimension: id
@@ -23,4 +23,3 @@
   - measure: count
     type: count
     drill_fields: [id, name]
-

@@ -1,5 +1,5 @@
 - view: base_apkversion
-  sql_table_name: blackbuck_prod.base_apkversion
+  sql_table_name: zinka.base_apkversion
   fields:
 
   - dimension: id
@@ -43,4 +43,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

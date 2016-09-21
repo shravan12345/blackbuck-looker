@@ -1,5 +1,5 @@
 - view: base_customermasterdetentionrates
-  sql_table_name: blackbuck_prod.base_customermasterdetentionrates
+  sql_table_name: zinka.base_customermasterdetentionrates
   fields:
 
   - dimension: id
@@ -65,4 +65,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

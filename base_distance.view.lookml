@@ -1,5 +1,5 @@
 - view: base_distance
-  sql_table_name: blackbuck_prod.base_distance
+  sql_table_name: zinka.base_distance
   fields:
 
   - dimension: id
@@ -30,4 +30,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

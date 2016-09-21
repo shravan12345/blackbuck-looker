@@ -1,5 +1,5 @@
 - view: base_tallyorderledger
-  sql_table_name: blackbuck_prod.base_tallyorderledger
+  sql_table_name: zinka.base_tallyorderledger
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id, ledger_name]
-

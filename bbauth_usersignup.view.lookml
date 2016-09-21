@@ -1,5 +1,5 @@
 - view: bbauth_usersignup
-  sql_table_name: blackbuck_prod.bbauth_usersignup
+  sql_table_name: zinka.bbauth_usersignup
   fields:
 
   - dimension: id
@@ -39,4 +39,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

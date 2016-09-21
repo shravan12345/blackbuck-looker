@@ -1,5 +1,5 @@
 - view: base_botdailyorderdetails
-  sql_table_name: blackbuck_prod.base_botdailyorderdetails
+  sql_table_name: zinka.base_botdailyorderdetails
   fields:
 
   - dimension: id
@@ -60,4 +60,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

@@ -1,5 +1,5 @@
 - view: base_hashtag
-  sql_table_name: blackbuck_prod.base_hashtag
+  sql_table_name: zinka.base_hashtag
   fields:
 
   - dimension: id
@@ -22,4 +22,3 @@
   - measure: count
     type: count
     drill_fields: [id, tag_name]
-

@@ -1,5 +1,5 @@
 - view: auth_permission
-  sql_table_name: blackbuck_prod.auth_permission
+  sql_table_name: zinka.auth_permission
   fields:
 
   - dimension: id
@@ -22,4 +22,3 @@
   - measure: count
     type: count
     drill_fields: [id, name, codename]
-

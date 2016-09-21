@@ -1,5 +1,5 @@
 - view: base_customerwallet
-  sql_table_name: blackbuck_prod.base_customerwallet
+  sql_table_name: zinka.base_customerwallet
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

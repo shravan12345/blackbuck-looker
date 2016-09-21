@@ -1,5 +1,5 @@
 - view: base_ftreasonmapping
-  sql_table_name: blackbuck_prod.base_ftreasonmapping
+  sql_table_name: zinka.base_ftreasonmapping
   fields:
 
   - dimension: id
@@ -22,4 +22,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

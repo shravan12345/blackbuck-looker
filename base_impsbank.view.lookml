@@ -1,5 +1,5 @@
 - view: base_impsbank
-  sql_table_name: blackbuck_prod.base_impsbank
+  sql_table_name: zinka.base_impsbank
   fields:
 
   - dimension: id
@@ -26,4 +26,3 @@
   - measure: count
     type: count
     drill_fields: [id, tally_ledger_name]
-

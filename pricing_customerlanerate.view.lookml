@@ -1,5 +1,5 @@
 - view: pricing_customerlanerate
-  sql_table_name: blackbuck_prod.pricing_customerlanerate
+  sql_table_name: zinka.pricing_customerlanerate
   fields:
 
   - dimension: id
@@ -64,4 +64,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

@@ -1,5 +1,5 @@
 - view: pricing_submittedratehistory
-  sql_table_name: blackbuck_prod.pricing_submittedratehistory
+  sql_table_name: zinka.pricing_submittedratehistory
   fields:
 
   - dimension: id
@@ -55,4 +55,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

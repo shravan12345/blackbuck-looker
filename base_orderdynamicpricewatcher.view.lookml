@@ -1,5 +1,5 @@
 - view: base_orderdynamicpricewatcher
-  sql_table_name: blackbuck_prod.base_orderdynamicpricewatcher
+  sql_table_name: zinka.base_orderdynamicpricewatcher
   fields:
 
   - dimension: id
@@ -44,4 +44,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

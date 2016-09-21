@@ -1,5 +1,5 @@
 - view: base_billdiscountingfinancier
-  sql_table_name: blackbuck_prod.base_billdiscountingfinancier
+  sql_table_name: zinka.base_billdiscountingfinancier
   fields:
 
   - dimension: id
@@ -51,4 +51,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

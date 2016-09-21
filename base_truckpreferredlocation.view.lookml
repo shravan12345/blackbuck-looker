@@ -1,5 +1,5 @@
 - view: base_truckpreferredlocation
-  sql_table_name: blackbuck_prod.base_truckpreferredlocation
+  sql_table_name: zinka.base_truckpreferredlocation
   fields:
 
   - dimension: id
@@ -40,4 +40,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

@@ -1,5 +1,5 @@
 - view: base_botcalllivetrack
-  sql_table_name: blackbuck_prod.base_botcalllivetrack
+  sql_table_name: zinka.base_botcalllivetrack
   fields:
 
   - dimension: id
@@ -19,4 +19,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

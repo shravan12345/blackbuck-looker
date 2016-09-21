@@ -1,5 +1,5 @@
 - view: dlp_laneratetargets
-  sql_table_name: blackbuck_prod.dlp_laneratetargets
+  sql_table_name: zinka.dlp_laneratetargets
   fields:
 
   - dimension: id
@@ -68,4 +68,3 @@
     type: average 
     sql: ${cft_target_rate}
     drill_fields: [from_city_id,to_city_id,from_sublocation_id,to_sublocation_id,truck_type_id,cft_target_rate]
-

@@ -1,5 +1,5 @@
 - view: base_team
-  sql_table_name: blackbuck_prod.base_team
+  sql_table_name: zinka.base_team
   fields:
 
   - dimension: id
@@ -14,4 +14,3 @@
   - measure: count
     type: count
     drill_fields: [id, name]
-

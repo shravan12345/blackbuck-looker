@@ -1,5 +1,5 @@
 - view: base_fuelpartnertransaction
-  sql_table_name: blackbuck_prod.base_fuelpartnertransaction
+  sql_table_name: zinka.base_fuelpartnertransaction
   fields:
 
   - dimension: id
@@ -34,4 +34,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

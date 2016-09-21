@@ -1,5 +1,5 @@
 - view: dlp_productratedelta
-  sql_table_name: blackbuck_prod.dlp_productratedelta
+  sql_table_name: zinka.dlp_productratedelta
   fields:
 
   - dimension: id
@@ -42,4 +42,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

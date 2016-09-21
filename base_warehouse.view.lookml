@@ -1,5 +1,5 @@
 - view: base_warehouse
-  sql_table_name: blackbuck_prod.base_warehouse
+  sql_table_name: zinka.base_warehouse
   fields:
 
   - dimension: id
@@ -162,4 +162,3 @@
     - contact_name
     - customer_loc_name
     - supervisor_name
-

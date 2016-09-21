@@ -1,5 +1,5 @@
 - view: dlp_includedrates
-  sql_table_name: blackbuck_prod.dlp_includedrates
+  sql_table_name: zinka.dlp_includedrates
   fields:
 
   - dimension: id
@@ -42,4 +42,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

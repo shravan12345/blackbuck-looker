@@ -1,5 +1,5 @@
 - view: pricing_fromcitylesserthanlimit
-  sql_table_name: blackbuck_prod.pricing_fromcitylesserthanlimit
+  sql_table_name: zinka.pricing_fromcitylesserthanlimit
   fields:
 
   - dimension: id
@@ -26,4 +26,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

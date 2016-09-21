@@ -1,5 +1,5 @@
 - view: base_statustransitiontype
-  sql_table_name: blackbuck_prod.base_statustransitiontype
+  sql_table_name: zinka.base_statustransitiontype
   fields:
 
   - dimension: id
@@ -26,4 +26,3 @@
   - measure: count
     type: count
     drill_fields: [id, display_name]
-

@@ -1,5 +1,5 @@
 - view: base_customermasterdiscount
-  sql_table_name: blackbuck_prod.base_customermasterdiscount
+  sql_table_name: zinka.base_customermasterdiscount
   fields:
 
   - dimension: id
@@ -45,4 +45,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

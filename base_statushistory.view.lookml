@@ -1,6 +1,6 @@
 - view: base_statushistory
   
-  sql_table_name: blackbuck_prod.base_statushistory
+  sql_table_name: zinka.base_statushistory
   fields:
 
   - dimension: id
@@ -151,4 +151,3 @@
     drill_fields: [order_id,status,date_updated]
     
   
-

@@ -1,5 +1,5 @@
 - view: base_supplybankaccounts
-  sql_table_name: blackbuck_prod.base_supplybankaccounts
+  sql_table_name: zinka.base_supplybankaccounts
   fields:
 
   - dimension: id
@@ -42,4 +42,3 @@
   - measure: count
     type: count
     drill_fields: [id, beneficiary_name]
-

@@ -1,5 +1,5 @@
 - view: base_invoicerejectionreason
-  sql_table_name: blackbuck_prod.base_invoicerejectionreason
+  sql_table_name: zinka.base_invoicerejectionreason
   fields:
 
   - dimension: id
@@ -27,4 +27,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

@@ -1,5 +1,5 @@
 - view: base_language_states
-  sql_table_name: blackbuck_prod.base_language_states
+  sql_table_name: zinka.base_language_states
   fields:
 
   - dimension: id
@@ -18,4 +18,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

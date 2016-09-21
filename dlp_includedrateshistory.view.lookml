@@ -1,5 +1,5 @@
 - view: dlp_includedrateshistory
-  sql_table_name: blackbuck_prod.dlp_includedrateshistory
+  sql_table_name: zinka.dlp_includedrateshistory
   fields:
 
   - dimension: id
@@ -44,4 +44,3 @@
   - measure: count
     type: count
     drill_fields: [id]
-

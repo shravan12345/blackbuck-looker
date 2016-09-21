@@ -1,5 +1,5 @@
 - view: base_status
-  sql_table_name: blackbuck_prod.base_status
+  sql_table_name: zinka.base_status
   fields:
 
   - dimension: id
@@ -205,5 +205,3 @@
     
 
 # Ask Chris that why this join is not working as desired 
-
-

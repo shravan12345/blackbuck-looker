@@ -1,5 +1,5 @@
 - view: base_dailybotcallcount
-  sql_table_name: blackbuck_prod.base_dailybotcallcount
+  sql_table_name: zinka.base_dailybotcallcount
   fields:
 
   - dimension: id
@@ -15,6 +15,3 @@
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.dt_added
-
-
-

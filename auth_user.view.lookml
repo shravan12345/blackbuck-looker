@@ -1,5 +1,5 @@
 - view: auth_user
-  sql_table_name: blackbuck_prod.auth_user
+  sql_table_name: zinka.auth_user
   fields:
 
   - dimension: id
@@ -65,4 +65,3 @@
   - dimension: full_name
     type: string
     sql: CONCAT(${first_name},'',${last_name})
-

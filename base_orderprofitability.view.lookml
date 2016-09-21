@@ -1,5 +1,5 @@
 - view: base_orderprofitability
-  sql_table_name: blackbuck_prod.base_orderprofitability
+  sql_table_name: zinka.base_orderprofitability
   fields:
 
   - dimension: id

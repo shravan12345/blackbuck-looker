@@ -1,5 +1,5 @@
 - view: base_supplyprofile
-  sql_table_name: blackbuck_prod.base_supplyprofile
+  sql_table_name: zinka.base_supplyprofile
   fields:
 
   - dimension: id
@@ -56,4 +56,3 @@
   - dimension: Full_name
     type: string
     sql: CONCAT(${auth_user.first_name},'',${auth_user.last_name})
-
