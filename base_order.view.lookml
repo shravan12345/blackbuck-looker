@@ -694,13 +694,11 @@
     sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${base_statushistory.count_rejected} ELSE 0 END
     drill_fields: [ base_statushistory.order_id,base_statushistory.count_rejected]
     
-  - measure: count_new
-    type: number
-    sql: COUNT(${id})
+  
     
   - measure: repeat_sp
     type: count_distinct
-    sql: CASE WHEN ${count_new} > 1 THEN ${supply_partner_id} ELSE NULL END
+    sql: CASE WHEN ${count} > 1 THEN ${supply_partner_id} ELSE NULL END
     
   - measure: Avg_Transit_time
     type: avg
