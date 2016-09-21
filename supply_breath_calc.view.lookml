@@ -12,9 +12,7 @@
      
   fields:
   
-  - dimension: id
-    type: number
-    primary_key: true
+ 
   
   
   
@@ -34,6 +32,7 @@
   - dimension: from_city_id
     type: number
     sql: ${TABLE}.city_id
+    primary_key: true
     
   - dimension: Location_orders
     type: number
