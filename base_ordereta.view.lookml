@@ -38,5 +38,5 @@
     
   - dimension: truck_in_transit_deviation
     type: tier
-    tiers: [24,48,72]
+    tiers: [0,24,48,72]
     sql: ${deviation_transit}
