@@ -429,7 +429,7 @@
      
    - join: supply_breath_calc
      type: left_outer
-     relationship: one_to_one
+     relationship: many_to_one
      sql_on: ${From_City.id} = ${supply_breath_calc.from_city_id}
    
      
