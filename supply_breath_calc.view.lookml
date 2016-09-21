@@ -12,6 +12,11 @@
      
   fields:
   
+  - dimension: id
+    type: number
+    primary_key: true
+  
+  
   
   - dimension: city
     type: string
