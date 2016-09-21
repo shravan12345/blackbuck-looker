@@ -694,6 +694,19 @@
     sql: CASE WHEN {% condition name_SP %} ${sp_name} {% endcondition %} THEN ${base_statushistory.count_rejected} ELSE 0 END
     drill_fields: [ base_statushistory.order_id,base_statushistory.count_rejected]
     
+  - measure: repeat_sp
+    type: count_distinct
+    sql: CASE WHEN ${count} > 1 THEN ${supply_partner_id} ELSE NULL END
+    
+  - measure: Avg_Transit_time
+    type: avg
+    sql: NULLIF(TIMESTAMPDIFF(hour,${TDS.dt_updated_raw},${TAD.dt_updated_raw}),0)
+    
+  - measure: supply_demand_ratio
+    type: number
+    sql: (${repeat_sp}*${supply_breath_calc.supply_breadth})/(${count}*${Avg_Transit_time})
+    value_format_name: decimal_1
+    
   
   
   

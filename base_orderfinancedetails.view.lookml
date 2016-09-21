@@ -213,6 +213,8 @@
     sql: IF 
            ( ${damages} > 0 ,${damages},null)
     value_format_name: decimal_1
+    filters:
+          base_order.end_date: 45 days ago for 30 days
     drill_fields: [order_id,damages]
     
     
@@ -220,6 +222,8 @@
     type: avg
     sql: IF(${TABLE}.halt_charges > 0 ,${TABLE}.halt_charges,null) + IF(${TABLE}.dest_halt_charges > 0 ,${TABLE}.dest_halt_charges,null)
     value_format_name: decimal_1
+    filters:
+          base_order.end_date: 45 days ago for 30 days
     drill_fields: [order_id,halt_charges,dest_halt_charges]
     
         
