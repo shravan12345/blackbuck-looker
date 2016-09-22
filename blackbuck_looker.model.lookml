@@ -678,6 +678,7 @@
 # - explore: base_transitiongcm
 
 - explore: base_truck
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.performance_index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Actual_POD_Time,-base_order.Count_Lanes,-base_order.Count_Lane_Dispersion,-base_order.count_no_show,-base_order.count_rejected,-base_order.Target_Adhered,-base_order.Avg_Transit_time,-base_order.supply_demand_ratio]
   joins:
   -  join: base_trucktype
      type: left_outer
@@ -689,6 +690,22 @@
      type: left_outer
      relationship: one_to_many
      sql_on: ${base_truck.home_location_id} = ${From_City.id}
+  -  join: base_order
+     type: left_outer
+     relationship: one_to_many
+     sql_on: ${base_truck.id} = ${base_order.assigned_truck_id}
+  -  join: auth_user
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_truck.owner_id} = ${auth_user.id}
+  -  join: base_userprofile
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_userprofile.id} = {auth_user.id}
+  -  join: base_orderfinancedetails
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_order.id} = ${base_orderfinancedetails.order_id}
      
   
 

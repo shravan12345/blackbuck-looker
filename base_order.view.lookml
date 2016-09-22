@@ -709,6 +709,15 @@
     sql: (${repeat_sp}*${supply_breath_calc.supply_breadth})/(${count}*${Avg_Transit_time})
     value_format_name: decimal_1
     
+  - measure: avg_rate_per_km
+    type: avg
+    sql: ${order_value}/${distance}
+    
+  - measure: avg_distance_covered_per_order
+    type: avg
+    sql: ${distance}/${count}
+  
+ 
   
   
   
