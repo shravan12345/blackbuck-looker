@@ -436,6 +436,11 @@
      type: left_outer
      relationship: one_to_many
      sql_on:  ${From_City.new_state_id} = ${base_zone_states.state_id}
+     
+   - join: base_zone
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_zone_states.zone_id} = ${base_zone.id}
    
      
      
