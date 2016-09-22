@@ -212,4 +212,7 @@
   - dimension: truck_type_name
     sql: ${base_trucktype.truck_type}
     
+  - dimension: home_location_name
+    sql: CASE WHEN ${home_location_id} THEN ${From_City.city}
+    
     

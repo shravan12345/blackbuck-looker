@@ -683,6 +683,13 @@
      type: left_outer
      relationship: many_to_one
      sql_on: ${base_truck.truck_type_id} = ${base_trucktype.id}
+     
+  -  join: From_City
+     from: base_location
+     type: left_outer
+     relationship: one_to_many
+     sql_on: ${base_truck.home_location_id} = ${From_City.id}
+     
   
 
 # - explore: base_truck_ignore_product
