@@ -688,7 +688,7 @@
   -  join: From_City
      from: base_location
      type: left_outer
-     relationship: one_to_many
+     relationship: many_to_one
      sql_on: ${base_truck.home_location_id} = ${From_City.id}
   -  join: base_order
      type: left_outer
@@ -701,7 +701,7 @@
   -  join: base_userprofile
      type: left_outer
      relationship: one_to_one
-     sql_on: ${base_userprofile.id} = {auth_user.id}
+     sql_on: ${base_userprofile.id} = ${auth_user.id}
   -  join: base_orderfinancedetails
      type: left_outer
      relationship: one_to_one
