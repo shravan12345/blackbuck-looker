@@ -255,7 +255,7 @@
 
   - dimension_group: start
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month,raw]
     sql: ${TABLE}.start_date
     
 
@@ -378,7 +378,8 @@
 
   - measure: Responsiveness_Index
     type: count_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(minute,${TAS.dt_updated_raw},${end_raw}) > 0 THEN ${id} ELSE 0 END
+    sql: CASE WHEN TIMESTAMPDIFF(minute,${TAS.dt_updated_raw},${end_raw}) > 0 THEN ${id} 
+              WHEN DATE(${start_raw}) = DATE(${end_raw}) and Date(${TAS.dt_updated_raw}) = DATE(${end_raw}) and HOUR(${TAS.dt_updated_raw}) < 15 THEN ${id} ELSE 0 END
     drill_fields: [id,Responsiveness_Index]
     
   - measure: Responsiveness_Level
