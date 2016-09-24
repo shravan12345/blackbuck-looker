@@ -143,7 +143,7 @@
     
   - measure: count_rejected
     type: sum
-    sql: CASE WHEN ${unblock_reason} IS NOT NULL THEN 1 ELSE 0 END
+    sql: CASE WHEN ${unblock_reason} = '2' THEN 1 ELSE 0 END
     drill_fields: [order_id,count_rejected]
     
   - measure: count_true
