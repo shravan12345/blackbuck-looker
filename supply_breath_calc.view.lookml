@@ -40,10 +40,19 @@
     type: number
     sql: ${TABLE}.location_orders
     
+  - measure: SP_orders_sum
+    type: sum
+    sql: ${SP_orders}
+    
+  - measure: Location_orders_sum
+    type: sum
+    sql: ${Location_orders}
+    
+    
     
   - measure: Supply_breadth_index
     type: sum
-    sql: power(${SP_orders}/${Location_orders},2)
+    sql: power(${SP_orders_sum}/${Location_orders_sum},2)
     value_format_name: decimal_1
     
   - measure: supply_breadth
