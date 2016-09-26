@@ -7,6 +7,7 @@
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
      LEFT JOIN ( Select c.city as x  , CONCAT(b.first_name,' ',b.last_name) as y ,count(a.id) as z FROM base_order as a LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
+     WHERE a.end_date >  (DATE(NOW()) - INTERVAL 7 DAY)
      GROUP BY 1,2)new ON new.x = c.city WHERE a.end_date > (DATE(NOW()) - INTERVAL 7 DAY) GROUP BY 1,2,3;
    sql_trigger_value: SELECT CURDATE()
    indexes: [city_id]
