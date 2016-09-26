@@ -1,7 +1,7 @@
 - view: supply_breath_calc
   derived_table:
    sql: 
-     SELECT a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders , new.z as SP_orders
+     SELECT a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders , new.z as SP_orders, power(count(
      FROM base_order AS a
      LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
@@ -51,8 +51,8 @@
     
     
   - measure: Supply_breadth_index
-    type: number
-    sql: power(${SP_orders_sum}/${Location_orders_sum},2)
+    type: sum
+    sql: power(${SP_orders}/${Location_orders},2)
     value_format_name: decimal_1
     
   - measure: supply_breadth
