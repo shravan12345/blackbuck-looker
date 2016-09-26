@@ -51,7 +51,7 @@
     
     
   - measure: Supply_breadth_index
-    type: sum
+    type: number
     sql: power(${SP_orders_sum}/${Location_orders_sum},2)
     value_format_name: decimal_1
     
