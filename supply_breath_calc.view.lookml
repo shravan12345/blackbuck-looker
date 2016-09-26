@@ -9,7 +9,7 @@
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
      GROUP BY 1,2)new ON new.x = c.city GROUP BY 1,2,3;
    sql_trigger_value: SELECT CURDATE()
-   indexes: [ from_city_id]
+   indexes: [city_id]
      
      
   fields:
@@ -31,7 +31,7 @@
     type: number
     sql: ${TABLE}.SP_orders
     
-  - dimension: from_city_id
+  - dimension: city_id
     type: number
     sql: ${TABLE}.city_id
     primary_key: true
