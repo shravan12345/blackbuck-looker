@@ -1,14 +1,14 @@
 - view: supply_breath_calc
   derived_table:
    sql: 
-     SELECT a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders , new.z as SP_orders
+     SELECT a.end_date,a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders , new.z as SP_orders
      FROM base_order AS a
      LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
-     LEFT JOIN ( Select c.city as x  , CONCAT(b.first_name,' ',b.last_name) as y ,count(a.id) as z FROM base_order as a LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
+     LEFT JOIN ( Select a.end_date,c.city as x  , CONCAT(b.first_name,' ',b.last_name) as y ,count(a.id) as z FROM base_order as a LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
-     WHERE a.end_date >  (DATE(NOW()) - INTERVAL 7 DAY) and a.status NOT IN("Cancelled","Cancelled By Customer")
-     GROUP BY 1,2)new ON new.x = c.city WHERE a.end_date > (DATE(NOW()) - INTERVAL 7 DAY) and a.status NOT IN("Cancelled","Cancelled By Customer") GROUP BY 1,2,3;
+     WHERE a.end_date >  (DATE(NOW()) - INTERVAL 30 DAY) and a.status NOT IN("Cancelled","Cancelled By Customer")
+     GROUP BY 1,2)new ON new.x = c.city WHERE a.end_date > (DATE(NOW()) - INTERVAL 30 DAY) and a.status NOT IN("Cancelled","Cancelled By Customer") GROUP BY 1,2,3;
    sql_trigger_value: SELECT CURDATE()
    indexes: [city_id]
      
