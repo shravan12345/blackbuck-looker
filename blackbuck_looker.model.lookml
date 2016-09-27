@@ -943,12 +943,12 @@
      
    - join: repeat_sp
      type: left_outer
-     relationship: many_to_one
+     relationship: many_to_many
      sql_on: ${supply_breath_calc.city_id}=${repeat_sp.city_id}
    
    - join: base_order
      type: left_outer
-     relationship: one_to_many
+     relationship: many_to_many
      sql_on: ${supply_breath_calc.city_id} = ${base_order.from_city_id}
   
 
