@@ -449,7 +449,7 @@
      
    - join: repeat_sp
      type: left_outer
-     relationship: one_to_many
+     relationship: many_to_many
      sql_on: ${repeat_sp.city_id} = ${base_order.from_city_id}
    
      
