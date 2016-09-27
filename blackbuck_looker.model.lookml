@@ -446,6 +446,11 @@
      type: left_outer
      relationship: many_to_many
      sql_on: ${base_podspercourier.last_modified_by_id} = ${base_order.user_id}
+     
+   - join: repeat_sp
+     type: left_outer
+     relationship: one_to_many
+     sql_on: ${repeat_sp.city_id} = ${base_order.from_city_id}
    
      
      
@@ -927,7 +932,7 @@
    
    - join: supply_breadth_calc_30
      type: left_outer
-     relationship: many_to_one
+     relationship: one_to_one
      sql_on: ${supply_breath_calc.city_id}=${supply_breadth_calc_30.city_id}
      
    - join: repeat_sp
@@ -939,7 +944,7 @@
      type: left_outer
      relationship: one_to_many
      sql_on: ${supply_breath_calc.city_id} = ${base_order.from_city_id}
-     
+  
 
 - explore: supply_breadth_calc_30
 - explore: supply_breadth_calc_90
