@@ -1,14 +1,16 @@
 - view: supply_breath_calc
   derived_table:
    sql: 
-     SELECT a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders , new.z as SP_orders
+     SELECT a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders, new.z as SP_orders
      FROM base_order AS a
      LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
      LEFT JOIN ( Select c.city as x  , CONCAT(b.first_name,' ',b.last_name) as y ,count(a.id) as z FROM base_order as a LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
      WHERE a.end_date >  (DATE(NOW()) - INTERVAL 7 DAY) 
-     GROUP BY 1,2)new ON new.x = c.city WHERE a.end_date > (DATE(NOW()) - INTERVAL 7 DAY) GROUP BY 1,2,3;
+     GROUP BY 1,2)new ON new.x = c.city
+     WHERE a.end_date >  (DATE(NOW()) - INTERVAL 7 DAY) 
+    
    sql_trigger_value: SELECT CURDATE()
    indexes: [city_id]
      
@@ -32,6 +34,7 @@
     type: number
     sql: ${TABLE}.SP_orders
     
+    
   - dimension: city_id
     type: number
     sql: ${TABLE}.city_id
@@ -41,27 +44,24 @@
     type: number
     sql: ${TABLE}.location_orders
     
-  - measure: SP_orders_sum
-    type: sum
-    sql: ${SP_orders}
+
+
     
-  - measure: Location_orders_sum
-    type: sum
-    sql: ${Location_orders}
-    
+
     
     
   - measure: Supply_breadth_index
     type: sum
     sql: power(${SP_orders}/${Location_orders},2)
     value_format_name: decimal_1
-    
+
+  
   - measure: supply_breadth
     type: number
     sql: (1 - ${Supply_breadth_index})
     value_format_name: decimal_1
     
-    
+
     
 
 
