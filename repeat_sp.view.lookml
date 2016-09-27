@@ -1,55 +1,41 @@
 - view: repeat_sp
-
-# # You can specify the table name if it's different from the view name:
-#   sql_table_name: my_schema_name.repeat_sp
-#
-#   fields:
-# #     Define your dimensions and measures here, like this:
-#     - dimension: id
-#       description: "The unique ID for each order"
-#       type: number
-#       sql: ${TABLE}.id
-#
-#     - dimension_group: created
-#       description: "Transaction created date"
-#       type: time
-#       timeframes: [date, week, month, year]
-#       sql: ${TABLE}.created_at
-#
-#     - measure: count
-#       description: "Count of orders"
-#       type: count
-#
-#
-# # Or, you could make this view a derived table, like this:
-#   derived_table:
-#     sql: |
-#       SELECT
-#         user_id as user_id
-#         , COUNT(*) as lifetime_orders
-#         , MAX(orders.created_at) as most_recent_purchase_at
-#       FROM orders
-#       GROUP BY user_id
-#
-#   fields:
-# #     Define your dimensions and measures here, like this:
-#     - dimension: user_id
-#       description: "Unique ID for each user that has ordered"
-#       type: number
-#       sql: ${TABLE}.user_id
-#
-#     - dimension: lifetime_orders
-#       description: "The total number of orders for each user"
-#       type: number
-#       sql: ${TABLE}.lifetime_orders
-#
-#     - dimension_group: most_recent_purchase
-#       description: "The date when each user last ordered"
-#       type: time
-#       timeframes: [date, week, month, year]
-#       sql: ${TABLE}.most_recent_purchase_at
-#
-#     - measure: total_lifetime_orders
-#       description: "Use this for counting lifetime orders across many users"
-#       type: sum
-#       sql: ${lifetime_orders}
+  derived_table:
+   sql:
+      SELECT a.from_city_id as city_id,b.city as city , CONCAT(c.first_name,'',c.last_name) as SP_Name , count(a.id) as Order_Count , (CASE WHEN count(a.id) > 1 THEN "YES" ELSE "NO" END) as Repeat_Alert from base_order as a 
+      left join base_location as b ON b.id = a.from_city_id 
+      left join auth_user as c ON c.id = a.supply_partner_id where supply_partner_id IS NOT NULL and a.end_date > NOW() - INTERVAL 7 DAY GROUP BY 1,2;
+  
+  
+  
+   fields:
+   
+   
+   
+   - dimension: city
+     type: string
+     sql: ${TABLE}.city
+    
+   - dimension: city_id
+     type: number
+     sql: ${TABLE}.city_id
+    
+   - dimension: order_count
+     type: number
+     sql: ${TABLE}.Order_Count
+    
+   - dimension: SP_name
+     type: string
+     sql: ${TABLE}.SP_Name
+    
+   - dimension: Repeat_Index
+     type: yesno
+     sql: ${TABLE}.Repeat_Alert = "YES" 
+     
+   - measure: count
+     type: count_distinct
+     sql: ${SP_name}
+     filters:
+         Repeat_Index : "Yes"
+    
+    
+    
