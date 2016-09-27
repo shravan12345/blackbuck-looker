@@ -1,7 +1,7 @@
 - view: supply_breadth_calc_30
   derived_table:
    sql: 
-     SELECT a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders, new.z as SP_orders
+     SELECT a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders_30, new.z as SP_orders_30
      FROM base_order AS a
      LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
@@ -31,9 +31,9 @@
     timeframes: [time, date, week, month,hour,hour_of_day,raw,day_of_week]
     sql: ${TABLE}.end_date
     
-  - dimension: SP_orders
+  - dimension: SP_orders_30
     type: number
-    sql: ${TABLE}.SP_orders
+    sql: ${TABLE}.SP_orders_30
     
     
   - dimension: city_id
@@ -41,9 +41,9 @@
     sql: ${TABLE}.city_id
     primary_key: true
     
-  - dimension: Location_orders
+  - dimension: Location_orders_30
     type: number
-    sql: ${TABLE}.location_orders
+    sql: ${TABLE}.location_orders_30
     
 
 
@@ -51,14 +51,14 @@
 
     
     
-  - measure: Supply_breadth_index
+  - measure: Supply_breadth_index_30
     type: sum
-    sql: power(${SP_orders}/${Location_orders},2)
+    sql: power(${SP_orders_30}/${Location_orders_30},2)
     value_format_name: decimal_1
 
   
-  - measure: supply_breadth
+  - measure: supply_breadth_30
     type: number
-    sql: (1 - ${Supply_breadth_index})
+    sql: (1 - ${Supply_breadth_index_30})
     value_format_name: decimal_1
     

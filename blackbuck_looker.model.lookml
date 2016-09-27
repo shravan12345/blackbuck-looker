@@ -547,7 +547,7 @@
 
 - explore: base_placementdata
 
-# - explore: base_podspercourier
+- explore: base_podspercourier
 # 
 # - explore: base_product
 # 
@@ -917,6 +917,17 @@
        sql_on: ${base_ordereta.order_id} = ${eta_revised_view.order_id}
        
 - explore: supply_breath_calc
+  joins:
+   
+   - join: supply_breadth_calc_30
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${supply_breath_calc.city}=${supply_breadth_calc_30.city}
+     
+   - join: supply_breadth_calc_90
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${supply_breath_calc.city}=${supply_breadth_calc_90.city}
 
 - explore: supply_breadth_calc_30
 - explore: supply_breadth_calc_90
