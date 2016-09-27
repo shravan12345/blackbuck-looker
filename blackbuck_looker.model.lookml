@@ -932,8 +932,14 @@
    
    - join: supply_breadth_calc_30
      type: left_outer
-     relationship: one_to_one
+     relationship: many_to_many
      sql_on: ${supply_breath_calc.city_id}=${supply_breadth_calc_30.city_id}
+     
+   - join: supply_breadth_calc_90
+     type: left_outer
+     relationship: many_to_many
+     sql_on: ${supply_breath_calc.city_id}=${supply_breadth_calc_90.city_id}
+     
      
    - join: repeat_sp
      type: left_outer
