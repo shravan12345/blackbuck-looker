@@ -429,7 +429,7 @@
      
    - join: supply_breath_calc
      type: left_outer
-     relationship: many_to_one
+     relationship: many_to_many
      sql_on: ${From_City.id} = ${supply_breath_calc.city_id}
      
    - join: base_zone_states
@@ -943,7 +943,7 @@
      
    - join: repeat_sp
      type: left_outer
-     relationship: one_to_one
+     relationship: many_to_one
      sql_on: ${supply_breath_calc.city_id}=${repeat_sp.city_id}
    
    - join: base_order

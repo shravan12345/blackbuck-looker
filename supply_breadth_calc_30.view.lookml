@@ -1,7 +1,7 @@
 - view: supply_breadth_calc_30
   derived_table:
    sql: 
-      SELECT CAST(@rownum := @rownum + 1 AS UNSIGNED) AS prim_key, x.* FROM (SELECT a.from_city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders, new.z as SP_orders
+      SELECT CAST(@rownum := @rownum + 1 AS UNSIGNED) AS prim_key, x.* FROM (SELECT a.from_city_id as city_id,c.city as city,new.y as SP_name,COUNT( a.id ) as location_orders_30, new.z as SP_orders_30
      FROM base_order AS a
      LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
