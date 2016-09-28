@@ -42,6 +42,10 @@
      sql: ${SP_name}
      filters:
          Repeat_Index : "Yes"
+         
+   - measure: count_total
+     type: count_distinct
+     sql: ${SP_name}
     
     
     
