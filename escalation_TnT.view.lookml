@@ -1,6 +1,6 @@
 - view: escalation_tnt
-  derived table:
-   sql:
+  derived_table:
+    sql:
      SELECT a.* FROM
      base_trucktrackstatus as a 
      WHERE dt_added = ( SELECT MAX(b.dt_added) from base_trucktrackstatus as b where a.order_id = b.order_id) and secondary_status IS NOT NULL;
@@ -27,7 +27,7 @@
      
    - dimension_group: dt_added
      type: time
-     time_frames: [time, date, week, month,hour,hour_of_day,raw,day_of_week]
+     timeframes: [time, date, week, month,hour,hour_of_day,raw,day_of_week]
      sql: ${TABLE}.end_date
      
    - dimension: called_to
