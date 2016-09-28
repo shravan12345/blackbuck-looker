@@ -616,7 +616,7 @@
 
   - measure: Ex_TT
     type: number
-    sql: ceil(${distance}/350000)
+    sql: ceil(*${distance}/350000)*24)
     
   - measure: Actual_Transit_Time
     type: number
