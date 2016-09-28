@@ -615,8 +615,10 @@
   
 
   - measure: Ex_TT
-    type: number
+    type: avg
     sql: ceil((${distance}/350000)*24)
+    value_format_name: decimal_1
+    drill_fields: [id,Ex_TT]
     
   - measure: Actual_Transit_Time
     type: number
