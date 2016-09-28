@@ -28,7 +28,7 @@
    - dimension_group: dt_added
      type: time
      timeframes: [time, date, week, month,hour,hour_of_day,raw,day_of_week]
-     sql: ${TABLE}.end_date
+     sql: ${TABLE}.dt_added
      
    - dimension: called_to
      type: string
