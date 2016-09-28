@@ -17,6 +17,10 @@
      primary_key: true
      sql: ${TABLE}.id
      
+   - dimension: comments
+     type: string
+     sql: ${TABLE}.comments
+     
    - dimension: order_id
      type: number
      sql: ${TABLE}.order_id
@@ -51,6 +55,7 @@
         
    - measure: count
      type: count
+     drill_fields: [order_id,secondary_status_name,comments] 
        
        
        
