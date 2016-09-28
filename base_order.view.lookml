@@ -364,6 +364,13 @@
     drill_fields: [supply_partner_id,auth_user.full_name,placement]
     filters:
         base_order.end_date: this month
+        
+  - measure: Total_No_of_SP_1
+    type: count_distinct
+    sql: ${supply_partner_id}
+    drill_fields: [supply_partner_id,auth_user.full_name,placement]
+    filters:
+        base_order.end_date: 7 days
     
     
   - measure: Date
