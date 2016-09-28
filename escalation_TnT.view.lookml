@@ -49,4 +49,10 @@
         "Not Answered": ${secondary_status} = 9
         "Others": ${secondary_status} = 99
         
+   - measure: count
+     type: count
+       
+       
+       
+        
     
