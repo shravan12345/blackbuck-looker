@@ -370,7 +370,7 @@
     sql: ${supply_partner_id}
     drill_fields: [supply_partner_id,auth_user.full_name,placement]
     filters:
-        base_order.end_date: 7 days
+        base_order.end_date: 90 days
     
     
   - measure: Date
