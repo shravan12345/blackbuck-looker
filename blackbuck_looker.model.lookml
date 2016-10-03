@@ -995,10 +995,10 @@
   joins:
   
      
-   - join: repeat_sp
+   - join: repeat_sp_lane
      type: left_outer
      relationship: many_to_many
-     sql_on: ${supply_breath_lane_calc.from_city_id}=${repeat_sp.city_id} and  ${supply_breath_lane_calc.to_city_id}=${repeat_sp.city_id}
+     sql_on: ${supply_breath_lane_calc.from_city_id}=${repeat_sp_lane.from_city_id} and  ${supply_breath_lane_calc.to_city_id}=${repeat_sp_lane.to_city_id}
    
    - join: base_order
      type: left_outer
