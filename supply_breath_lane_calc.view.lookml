@@ -12,7 +12,7 @@
      WHERE a.end_date > (DATE(NOW()) - INTERVAL 7 DAY) and a.user_id != 3
      GROUP BY 1,2,3)new ON new.x = c.city and new.q = K.city
      WHERE a.end_date > (DATE(NOW()) - INTERVAL 7 DAY) and a.user_id != 3
-     GROUP BY 1,2,3,4 ) as x, (SELECT @rownum := 0) r
+     GROUP BY 1,2,3,4,5) as x, (SELECT @rownum := 0) r
     
    sql_trigger_value: SELECT CURDATE()
    indexes: [prim_key]
