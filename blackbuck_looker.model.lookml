@@ -366,7 +366,7 @@
      view_label: 'User Name_New'
      type: left_outer 
      relationship: one_to_one
-     sql_on: ${base_order.owner_id} = ${auth_user.id}
+     sql_on: ${base_order.user_id} = ${auth_user.id}
      
    - join: base_statushistory
      type: left_outer
