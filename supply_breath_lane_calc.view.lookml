@@ -10,7 +10,7 @@
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
      LEFT JOIN base_location AS K ON K.id = a.to_city_id
      WHERE a.end_date > (DATE(NOW()) - INTERVAL 7 DAY) and a.user_id != 3
-     GROUP BY 1,2,3)new ON new.x = c.city amd new.q = K.city
+     GROUP BY 1,2,3)new ON new.x = c.city and new.q = K.city
      WHERE a.end_date > (DATE(NOW()) - INTERVAL 7 DAY) and a.user_id != 3
      GROUP BY 1,2,3,4 ) as x, (SELECT @rownum := 0) r
     
