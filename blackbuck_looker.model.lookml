@@ -361,6 +361,13 @@
      relationship: one_to_one
      sql_on: ${base_order.supply_partner_id} = ${auth_user.id}
      
+   - join: auth_user_1
+     from: auth_user
+     view_label: 'User Name_New'
+     type: left_outer 
+     relationship: one_to_one
+     sql_on: ${base_order.user_id} = ${auth_user.id}
+     
    - join: base_statushistory
      type: left_outer
      relationship: one_to_many
@@ -451,6 +458,13 @@
      type: left_outer
      relationship: many_to_many
      sql_on: ${repeat_sp.city_id} = ${base_order.from_city_id}
+     
+   - join: base_userprofile
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_userprofile.user_id} = ${base_order.user_id}
+     
+     
    
      
      
