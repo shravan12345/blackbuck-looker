@@ -1004,5 +1004,7 @@
      type: left_outer
      relationship: many_to_many
      sql_on: ${supply_breath_lane_calc.from_city_id} = ${base_order.from_city_id} and ${supply_breath_lane_calc.to_city_id} = ${base_order.to_city_id}
+     
+- explore: temp_supply_calc_view
 
 
