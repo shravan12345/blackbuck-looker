@@ -403,7 +403,7 @@
          
   - measure: Avg_Order_Rate
     type: avg
-    sql: NULLIF(${order_value},0)
+    sql: NULLIF(${base_orderfinancedetails.freight_amount},0)
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
@@ -425,7 +425,7 @@
   - measure: Avg_Order_Rate_Yesterday
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -439,7 +439,7 @@
   - measure: Avg_Order_Rate_Today
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -449,7 +449,7 @@
   - measure: Avg_Order_Rate_2
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -459,7 +459,7 @@
   - measure: Avg_Order_Rate_3
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -469,7 +469,7 @@
   - measure: Avg_Order_Rate_4
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -480,7 +480,7 @@
   - measure: Avg_Order_Rate_5
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+           (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -491,7 +491,7 @@
   - measure: Avg_Order_Rate_6
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -504,7 +504,7 @@
   - measure: Avg_Order_Rate_7
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -514,7 +514,7 @@
   - measure: Avg_Order_Rate_15
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
@@ -525,7 +525,7 @@
   - measure: Avg_Order_Rate_mon
     type: avg
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
@@ -550,7 +550,7 @@
   - measure: Min_Order_Rate_month
     type: min
     sql:  IF 
-            (${order_value} > 0, ${order_value} ,null)
+            (${base_orderfinancedetails.freight_amount} > 0, ${base_orderfinancedetails.freight_amount} ,null)
                 
     value_format_name: decimal_0
     drill_fields: detail*
