@@ -760,7 +760,7 @@
         - end_date
         - From_City.city
         - To_city.city
-        - order_value
+        - base_orderfinancedetails.freight_amount
         - performance_index
         - Ex_TT
 
