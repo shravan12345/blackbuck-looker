@@ -11,9 +11,9 @@
      LEFT JOIN ( Select c.city as x,K.city as q , CONCAT(b.first_name,' ',b.last_name) as y ,count(a.id) as z FROM base_order as a LEFT JOIN auth_user AS b ON b.id = a.supply_partner_id
      LEFT JOIN base_location AS c ON c.id = a.from_city_id
      LEFT JOIN base_location AS K ON K.id = a.to_city_id
-     WHERE (a.end_date > 2016-09-01 and  a.end_date < 2016-09-10) and a.user_id != 3
+     WHERE (a.end_date between date('2016-09-01') and date('2016-09-10')) and a.user_id != 3
      GROUP BY 1,2,3)new ON new.x = c.city and new.q = K.city
-     WHERE (a.end_date > 2016-09-01 and  a.end_date < 2016-09-10) and a.user_id != 3
+     WHERE (a.end_date between date('2016-09-01') and date('2016-09-10')) and a.user_id != 3
      GROUP BY 1,2,3,4,5) as x, (SELECT @rownum := 0) r
     
    sql_trigger_value: SELECT CURDATE()
