@@ -403,7 +403,7 @@
          
   - measure: Avg_Order_Rate
     type: avg
-    sql: NULLIF(${base_orderfinancedetails.freight_amount},0)
+    sql: NULLIF(${order_value},0)
     value_format_name: decimal_0
     drill_fields: detail*
     filters:
