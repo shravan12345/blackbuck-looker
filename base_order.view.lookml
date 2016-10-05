@@ -761,6 +761,7 @@
         - From_City.city
         - To_city.city
         - base_orderfinancedetails.freight_amount
+        - base_orderdynamicprice.surge_charge
         - performance_index
         - Ex_TT
 
