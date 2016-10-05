@@ -732,6 +732,8 @@
     sql: CASE WHEN ${count} <= 5 THEN ${count}*50
               WHEN ${count} > 5 THEN 250 + (${count}-5)*10
               ELSE 0 END
+              
+ 
   
  
   
