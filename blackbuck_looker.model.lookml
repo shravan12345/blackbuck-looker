@@ -355,18 +355,19 @@
      relationship: many_to_one
      sql_on: ${base_order.assigned_truck_id} = ${base_truck.id}
    
+   - join: auth_user_SP
+     from: auth_user
+     view_label: 'User Name_SP'
+     type: left_outer 
+     relationship: many_to_one
+     sql_on: ${base_order.supply_partner_id} = ${auth_user.id}
+     
    - join: auth_user
      view_label: 'User Name'
      type: left_outer 
-     relationship: one_to_one
-     sql_on: ${base_order.supply_partner_id} = ${auth_user.id}
-     
-   - join: auth_user_1
-     from: auth_user
-     view_label: 'User Name_New'
-     type: left_outer 
      relationship: many_to_one
-     sql_on: ${base_order.owner_id} = ${auth_user.id}
+     sql_on: ${base_order.user_id} = ${auth_user.id}
+     
      
    - join: base_statushistory
      type: left_outer
@@ -464,11 +465,6 @@
      relationship: many_to_one
      sql_on: ${base_userprofile.user_id} = ${base_order.user_id}
      
-   - join: base_userprofile_1
-     from: base_userprofile
-     type: left_outer
-     relationship: one_to_one
-     sql_on: ${base_userprofile.user_id} = ${auth_user_1.id}
      
    - join: base_sectortype
      type: left_outer
