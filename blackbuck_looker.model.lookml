@@ -365,7 +365,7 @@
      from: auth_user
      view_label: 'User Name_New'
      type: left_outer 
-     relationship: one_to_one
+     relationship: many_to_one
      sql_on: ${base_order.owner_id} = ${auth_user.id}
      
    - join: base_statushistory
@@ -467,8 +467,8 @@
    - join: base_userprofile_1
      from: base_userprofile
      type: left_outer
-     relationship: many_to_one
-     sql_on: ${base_userprofile.user_id} = ${base_order.owner_id}
+     relationship: one_to_one
+     sql_on: ${base_userprofile.user_id} = ${auth_user_1.id}
      
    - join: base_sectortype
      type: left_outer
@@ -583,6 +583,12 @@
 - explore: base_placementdata
 
 - explore: base_podspercourier
+  joins:
+     - join: auth_user
+       type: left_outer
+       relationship: many_to_one
+       sql_on: ${base_podspercourier.last_modified_by_id} = ${auth_user.id}
+
 # 
 # - explore: base_product
 # 
