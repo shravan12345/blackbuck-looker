@@ -67,4 +67,5 @@
   - measure: Target_Rate
     type: average 
     sql: ${cft_target_rate}
+    value_format_name: decimal_1
     drill_fields: [from_city_id,to_city_id,from_sublocation_id,to_sublocation_id,truck_type_id,cft_target_rate]
