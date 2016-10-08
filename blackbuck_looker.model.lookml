@@ -347,7 +347,7 @@
      view_label: 'Truck'
      type: left_outer
      relationship: many_to_one
-     sql_on: ${base_order.truck_type_id} = ${base_trucktype.id}
+     sql_on: ${base_truck.truck_type_id} = ${base_trucktype.id}
    
    - join: base_truck
      view_label: 'Truck_Name'
