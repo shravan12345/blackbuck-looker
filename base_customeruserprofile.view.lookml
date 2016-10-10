@@ -288,6 +288,13 @@
   - measure: count
     type: count
     drill_fields: detail*
+    
+  - measure: count_new
+    type: count
+    filters:
+       base_order.end_date: before 0 months ago
+    
+  
 
 
   # ----- Sets of fields for drilling ------
