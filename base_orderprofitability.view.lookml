@@ -96,3 +96,7 @@
   - measure: Revenue_Total
     type: sum
     sql: ${TABLE}.total_revenue
+    
+  - measure: Cost_Total
+    type: sum
+    sql: ${TABLE}.total_cost
