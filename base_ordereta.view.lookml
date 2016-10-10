@@ -40,3 +40,11 @@
     type: tier
     tiers: [0,24,48,72]
     sql: ${deviation_transit}
+    
+    
+  - dimension: transit_count
+    sql_case: 
+       "IN-TIME" : TIMESTAMPDIFF(minute,${TAD.dt_updated_raw},${eta_raw}) > 0
+       "Delayed" : TIMESTAMPDIFF(minute,${TAD.dt_updated_raw},${eta_raw}) < 0 
+       "Not Known" : ${base_order.status} = "Truck In-Transit" and TIMESTAMPDIFF(day,${eta_revised_view.location_update_time_raw},${eta_raw}) > 0
+      

@@ -637,6 +637,8 @@
      type: left_outer
      relationship: one_to_one
      sql_on: ${base_userprofile.user_id} = ${auth_user.id}
+  
+
      
    
    
@@ -940,14 +942,31 @@
        view_label: 'Customer'
        relationship: many_to_one
        sql_on: ${base_order.user_id}=${base_customeruserprofile.user_id}
+       
+     - join: TAD
+       from: base_status
+       relationship: one_to_many
+       sql_on: ${base_ordereta.order_id} = ${TAD.order_id} and ${TAD.status} = "Truck Arrival Destination"
+     
      
 - explore: eta_revised_view
-  fields: [ALL_FIELDS*,-base_ordereta.deviation]
+  fields: [ALL_FIELDS*,-base_ordereta.deviation,-TAD.PI_24,-TAD.PI_48,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.performance_index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Actual_POD_Time,-base_order.Count_Lanes,-base_order.Count_Lane_Dispersion,-base_order.count_no_show,-base_order.count_rejected,-base_order.Target_Adhered,-base_order.Avg_Transit_time,-base_order.supply_demand_ratio,-base_order.Avg_Order_Rate,-base_order.Avg_Order_Rate_2,-base_order.Avg_Order_Rate_3,-base_order.Avg_Order_Rate_4,-base_order.Avg_Order_Rate_5,-base_order.Avg_Order_Rate_6,-base_order.Avg_Order_Rate_7,-base_order.Avg_Order_Rate_mon,-base_order.Avg_Order_Rate_Today,-base_order.Avg_Order_Rate_Yesterday,-base_order.Min_Order_Rate_month,-base_order.Avg_Order_Rate_15]
   joins: 
      - join: base_ordereta
        type: left_outer
        relationship: one_to_one
        sql_on: ${base_ordereta.order_id} = ${eta_revised_view.order_id}
+     
+     - join: TAD
+       from: base_status
+       relationship: one_to_many
+       sql_on: ${eta_revised_view.order_id} = ${TAD.order_id} and ${TAD.status} = "Truck Arrival Destination"
+       
+     - join: base_order
+       type: left_outer
+       relationship: one_to_one
+       sql_on: ${eta_revised_view.order_id} = ${base_order.id}
+       
        
 - explore: supply_breath_calc
   fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.performance_index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Actual_POD_Time,-base_order.Count_Lanes,-base_order.Count_Lane_Dispersion,-base_order.count_no_show,-base_order.count_rejected,-base_order.Target_Adhered,-base_order.Avg_Transit_time,-base_order.supply_demand_ratio,-base_order.Avg_Order_Rate,-base_order.Avg_Order_Rate_2,-base_order.Avg_Order_Rate_3,-base_order.Avg_Order_Rate_4,-base_order.Avg_Order_Rate_5,-base_order.Avg_Order_Rate_6,-base_order.Avg_Order_Rate_7,-base_order.Avg_Order_Rate_mon,-base_order.Avg_Order_Rate_Today,-base_order.Avg_Order_Rate_Yesterday,-base_order.Min_Order_Rate_month,-base_order.Avg_Order_Rate_15]
