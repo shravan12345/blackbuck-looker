@@ -293,7 +293,10 @@
     type: count
     filters:
        base_order.end_date: before 0 months ago
-    
+       
+  - measure: New_customers
+    type: number
+    sql: ${count} - ${count_new}
   
 
 
