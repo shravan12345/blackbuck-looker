@@ -945,8 +945,9 @@
        
      - join: TAD
        from: base_status
+       type: left_outer
        relationship: one_to_many
-       sql_on: ${base_ordereta.order_id} = ${TAD.order_id} and ${TAD.status} = "Truck Arrival Destination"
+       sql_on: ${base_ordereta.order_id} = ${TAD.order_id} and  ${TAD.status} = "Truck Arrival Destination" 
      
      
 - explore: eta_revised_view
@@ -959,8 +960,9 @@
      
      - join: TAD
        from: base_status
+       type: left_outer
        relationship: one_to_many
-       sql_on: ${eta_revised_view.order_id} = ${TAD.order_id} and ${TAD.status} = "Truck Arrival Destination"
+       sql_on: ${eta_revised_view.order_id} = ${TAD.order_id} and  ${TAD.status} = "Truck Arrival Destination" 
        
      - join: base_order
        type: left_outer

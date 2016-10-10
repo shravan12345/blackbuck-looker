@@ -23,7 +23,7 @@
 
   - measure: count
     type: count
-    drill_fields: [order_id,eta_raw,eta_revised_view_raw]
+    drill_fields: [order_id,eta_raw,eta_revised_view_raw,TAD.dt_updated,base_order.status]
     
   - dimension: deviation
     type: tier
@@ -47,4 +47,5 @@
        "IN-TIME" : TIMESTAMPDIFF(minute,${TAD.dt_updated_raw},${eta_raw}) > 0
        "Delayed" : TIMESTAMPDIFF(minute,${TAD.dt_updated_raw},${eta_raw}) < 0 
        "Not Known" : ${base_order.status} = "Truck In-Transit" and TIMESTAMPDIFF(day,${eta_revised_view.location_update_time_raw},${eta_raw}) > 0
+      
       
