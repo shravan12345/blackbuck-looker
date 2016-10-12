@@ -255,7 +255,7 @@
 
   - dimension_group: start
     type: time
-    timeframes: [time, date, week, month,raw]
+    timeframes: [time, date, week, month,raw,hour,hour_of_day]
     sql: ${TABLE}.start_date
     
 
