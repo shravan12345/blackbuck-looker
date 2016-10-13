@@ -118,19 +118,19 @@
     
   - measure: count_surges_today
     type: count_distinct
-    sql: ${id}
+    sql: CASE WHEN ${surge_enabled} = "Yes" THEN ${order_id} ELSE  0 END
     filters:
           base_order.end_date: today
           
   - measure: count_surges_yesterday
     type: count_distinct
-    sql: ${id}
+    sql: CASE WHEN ${surge_enabled} = "Yes" THEN ${order_id} ELSE  0 END
     filters:
         base_order.end_date: yesterday
         
   - measure: count_surges_2
     type: count_distinct
-    sql: ${id}
+    sql: CASE WHEN ${surge_enabled} = "Yes" THEN ${order_id} ELSE  0 END
     filters:
          base_order.end_date: 2 days ago 
     
