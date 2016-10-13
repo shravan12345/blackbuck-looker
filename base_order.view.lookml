@@ -733,6 +733,10 @@
               WHEN ${count} > 5 THEN 250 + (${count}-5)*10
               ELSE 0 END
               
+  - dimension: Flag
+    type: yesno
+    sql: DATE(${end_date} = DATE(${start_date})
+              
  
   
  
