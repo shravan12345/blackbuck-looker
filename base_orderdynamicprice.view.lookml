@@ -121,6 +121,7 @@
     sql: CASE WHEN ${surge_enabled} = "Yes" THEN ${order_id} ELSE  0 END
     filters:
          price_date : today
+         
           
   - measure: count_surges_yesterday
     type: count_distinct
