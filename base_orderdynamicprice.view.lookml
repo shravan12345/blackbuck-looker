@@ -116,6 +116,25 @@
         base_order.end_date : 7 days
     drill_fields: [order_id,cft_price]
     
+  - measure: count_surges_today
+    type: count_distinct
+    sql: ${surge_by_id}
+    filters:
+          base_order.end_date: today
+          
+  - measure: count_surges_yesterday
+    type: count_distinct
+    sql: ${surge_by_id}
+    filters:
+        base_order.end_date: yesterday
+        
+  - measure: count_surges_2
+    type: count_distinct
+    sql: ${surge_by_id}
+    filters:
+         base_order.end_date: 2 days ago 
+    
+    
   
     
  
