@@ -118,7 +118,8 @@
     
   - measure: count_surges_today
     type: count_distinct
-    sql:  ${order_id} 
+    sql:  If
+            ( ${surge_enabled} = "Yes" ,${order_id},0) 
     filters:
          price_date : today
     drill_fields: [order_id,surge_charge,surge_enabled,price_date]
@@ -126,14 +127,16 @@
           
   - measure: count_surges_yesterday
     type: count_distinct
-    sql:  ${order_id} 
+    sql:  If
+            ( ${surge_enabled} = "Yes" ,${order_id},0)
     filters:
         price_date : yesterday
     drill_fields: [order_id,surge_charge,surge_enabled,price_date]
         
   - measure: count_surges_2
     type: count_distinct
-    sql:  ${order_id} 
+    sql:  If
+            ( ${surge_enabled} = "Yes" ,${order_id},0) 
     filters:
          price_date: 2 days ago 
     drill_fields: [order_id,surge_charge,surge_enabled,price_date]
