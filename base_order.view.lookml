@@ -736,7 +736,21 @@
   - dimension: Flag
     type: yesno
     sql: DATE(${end_date} = DATE(${start_date})
-              
+    
+  - measure: count_today
+    type: count
+    filters:
+        base_order.end_date: today
+        
+  - measure: count_yesterday
+    type: count
+    filters:
+       base_order.end_date : yesterday
+       
+  - measure: count_2_days_before
+    type: count
+    filters:
+       base_order.end_date: 2 days ago
  
   
  
