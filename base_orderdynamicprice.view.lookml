@@ -118,24 +118,18 @@
     
   - measure: count_surges_today
     type: count_distinct
-    sql:  ${order_id} 
-    filters:
-         price_date : today
+    sql:  CASE WHEN ${surge_enabled} = "Yes" and ${price_time} = Today THEN ${order_id} ELSE 0 END
     drill_fields: [order_id,surge_charge,surge_enabled,price_date]
          
           
   - measure: count_surges_yesterday
     type: count_distinct
-    sql:  ${order_id} 
-    filters:
-        price_date : yesterday
+    sql:  CASE WHEN ${surge_enabled} = "Yes" and ${price_time} = Yesterday THEN ${order_id} ELSE 0 END 
     drill_fields: [order_id,surge_charge,surge_enabled,price_date]
         
   - measure: count_surges_2
     type: count_distinct
-    sql:  ${order_id} 
-    filters:
-         price_date: 2 days ago 
+    sql:  CASE WHEN ${surge_enabled} = "Yes" and ${price_time} = 2 days ago THEN ${order_id} ELSE 0 END 
     drill_fields: [order_id,surge_charge,surge_enabled,price_date]
     
     
