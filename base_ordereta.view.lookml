@@ -44,8 +44,8 @@
     
   - dimension: transit_count
     sql_case: 
-       "IN-TIME" : TIMESTAMPDIFF(day,${TAD.dt_updated_raw},${eta_raw}) >= 0 OR ${base_order.status} = "Truck Departure Destination" 
-       "Delayed" : TIMESTAMPDIFF(day,${TAD.dt_updated_raw},${eta_raw}) <= 0 OR ( ${base_order.status} = "Truck In-Transit" and TIMESTAMPDIFF(hour,${eta_revised_view.location_update_time_raw},${eta_raw}) <= 24 and TIMESTAMPDIFF(hour,${eta_revised_view.revised_eta_raw},${eta_raw}) > 0)
+       "IN-TIME" : TIMESTAMPDIFF(hour,${TAD.dt_updated_raw},${eta_raw}) >= 0 OR ${base_order.status} = "Truck Departure Destination" 
+       "Delayed" : TIMESTAMPDIFF(hour,${TAD.dt_updated_raw},${eta_raw}) <= 0 OR ( ${base_order.status} = "Truck In-Transit" and TIMESTAMPDIFF(hour,${eta_revised_view.location_update_time_raw},${eta_raw}) <= 24 and TIMESTAMPDIFF(hour,${eta_revised_view.revised_eta_raw},${eta_raw}) > 0)
         
        "Not Known" : ${base_order.status} = "Truck In-Transit" 
       
