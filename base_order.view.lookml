@@ -751,6 +751,18 @@
     type: count
     filters:
        base_order.end_date: 2 days ago
+       
+  - dimension: start_location_1
+    type: location
+    sql_latitude: ${From_City_Coordinates.latitude}
+    sql_longitude: ${From_City_Coordinates.longitude}
+    
+  - dimension: end_location_1
+    type: location
+    sql_latitude: ${To_City_Coordinates.latitude}
+    sql_longitude: ${To_City_Coordinates.longitude}
+    
+    
  
   
  
