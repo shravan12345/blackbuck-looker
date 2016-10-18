@@ -471,6 +471,19 @@
      type: left_outer
      relationship: many_to_one
      sql_on: ${base_customeruserprofile.sector_type_id} = ${base_sectortype.id}
+  
+   - join: From_City_Coordinates
+     from: base_googleplaces
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${From_City.google_place_id} = ${From_City_Coordinates.id}
+     
+   - join: To_City_Coordinates
+     from: base_googleplaces
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${To_city.google_place_id} = ${To_City_Coordinates.id}
+     
      
    
      
