@@ -7,6 +7,8 @@
 
 # - explore: auth_group_permissions
 
+- explore: base_customer_greater_10million
+
 #  - explore: auth_permission
 
 - explore: auth_user
@@ -171,6 +173,14 @@
      type: left_outer
      relationship: one_to_many
      sql_on: ${base_customeruserprofile.id} = ${base_order.user_id}
+   - join: base_customer_greater_10million
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_customeruserprofile.user_id} = ${base_customer_greater_10million.customer_user_id}
+   - join: base_sectortype
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_customeruserprofile.sector_type_id} = ${base_sectortype.id}
 
 # - explore: base_customeruserprofile_reports_to_users
 # 
@@ -1062,6 +1072,6 @@
      sql_on: ${supply_breath_lane_calc.from_city_id} = ${base_order.from_city_id} and ${supply_breath_lane_calc.to_city_id} = ${base_order.to_city_id}
      
 - explore: temp_supply_calc_view
-- explore: base_customer_greater_10million
+
 
 
