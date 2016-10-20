@@ -34,11 +34,12 @@
     type: number
     sql: ${TABLE}.assigned_driver_id
     hidden: true
+    
 
   - dimension: assigned_truck_id
     type: number
     sql: ${TABLE}.assigned_truck_id
-    hidden: true
+    
 
   - dimension: bill_exchange_reqd
     type: yesno
@@ -208,7 +209,7 @@
   - dimension: owner_id
     type: number
     sql: ${TABLE}.owner_id
-    hidden: true
+   
 
   - dimension: payment_status_customer
     type: string
