@@ -1062,5 +1062,6 @@
      sql_on: ${supply_breath_lane_calc.from_city_id} = ${base_order.from_city_id} and ${supply_breath_lane_calc.to_city_id} = ${base_order.to_city_id}
      
 - explore: temp_supply_calc_view
+- explore: base_customer_greater_10million
 
 
