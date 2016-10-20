@@ -296,7 +296,7 @@
        
   - measure: New_customers
     type: number
-    sql: (${count} - ${count_new})
+    sql: (${count}-${count_new})
   
 
 
