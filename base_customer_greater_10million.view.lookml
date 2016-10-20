@@ -5,7 +5,7 @@
      left join base_orderprofitability as b on b.order_id = c.id left join base_customeruserprofile as a on a.user_id = c.user_id  
      where  (c.end_date > (DATE(NOW()) - INTERVAL (EXTRACT( DAY FROM NOW())) DAY) and c.end_date < DATE(NOW())) group by 1,2;
    sql_trigger_value: SELECT CURDATE()
-   indexes: [a.user_id]
+   indexes: [user_id]
     
     
   fields:
