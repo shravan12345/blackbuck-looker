@@ -763,6 +763,11 @@
     sql_latitude: ${To_City_Coordinates.latitude}
     sql_longitude: ${To_City_Coordinates.longitude}
     
+  - measure: Right_truck_count
+    type: sum
+    sql: CASE WHEN ${base_truck.truck_type_id} = ${truck_type_id} THEN 1 ELSE 0 END
+    drill_fields: detail*
+    
     
  
   
