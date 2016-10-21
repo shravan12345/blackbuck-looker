@@ -303,6 +303,10 @@
     type: number
     sql: ${TABLE}.tonnage
     
+  - dimension: settlment_document_status
+    type: number
+    sql: ${TABLE}.settlement_document_status
+    
 
 
   - dimension: truck_type_id
