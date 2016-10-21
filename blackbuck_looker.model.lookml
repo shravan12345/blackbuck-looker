@@ -576,6 +576,10 @@
      type: left_outer
      relationship: many_to_one
      sql_on: ${base_order.from_city_id} = ${To_City.id}
+   - join: base_customeruserprofile
+     type: left_outer
+     relationship: one_to_one
+     sql_on: ${base_customeruserprofile.user_id} = ${base_order.user_id}
   
 
 - explore: base_orderreceivable
