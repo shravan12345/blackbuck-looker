@@ -52,4 +52,4 @@
   - measure: count_pod
     type: sum
     sql: CASE WHEN ${document_status} = 2 THEN 1 ELSE 0 END
-    drill_fields: [order_id,last_modified_date]
+    drill_fields: [order_id]
