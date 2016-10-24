@@ -17,7 +17,7 @@
    - join: base_userprofile
      type: left_outer
      relationship: one_to_one
-     sql_on: ${base_userprofile.id} = ${auth_user.id}
+     sql_on: ${base_userprofile.user_id} = ${auth_user.id}
   
   
   
