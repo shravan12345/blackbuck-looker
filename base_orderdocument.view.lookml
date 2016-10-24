@@ -51,5 +51,5 @@
     
   - measure: count_pod
     type: sum
-    sql: CASE WHEN ${courier_number} IS NOT NULL AND ${document_status} = 2 THEN 1 ELSE 0 END
+    sql: CASE  ${document_status} = 2 THEN 1 ELSE 0 END
     drill_fields: [order_id,last_modified_date]
