@@ -48,3 +48,8 @@
   - measure: count
     type: count
     drill_fields: [id]
+    
+  - measure: count_pod
+    type: count_distinct
+    sql: CASE WHEN ${courier_number} IS NOT NULL AND ${document_status} = 2 THEN ${order_id} ELSE NULL END
+    drill_fields: [order_id]
