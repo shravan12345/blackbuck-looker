@@ -624,6 +624,10 @@
        type: left_outer
        relationship: many_to_one
        sql_on: ${base_podspercourier.last_modified_by_id} = ${auth_user.id}
+     - join: base_orderdocument
+       type: left_outer
+       relationship: many_to_one
+       sql_on: ${base_podspercourier.courier_number} = ${base_orderdocument.courier_number}
 
 # 
 # - explore: base_product
