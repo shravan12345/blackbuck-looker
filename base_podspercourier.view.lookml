@@ -39,6 +39,7 @@
   - dimension: no_of_pods
     type: number
     sql: ${TABLE}.no_of_pods
+    drill_fields: [base_orderdocument.order_id,base_order.last_modified_date]
 
   - measure: count
     type: count
