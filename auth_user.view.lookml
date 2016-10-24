@@ -6,7 +6,7 @@
     primary_key: true
     type: number
     sql: ${TABLE}.id
-    hidden: true
+  
 
   - dimension_group: date_joined
     type: time
