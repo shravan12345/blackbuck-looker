@@ -504,7 +504,7 @@
    - join: base_orderdocument
      type: left_outer
      relationship: many_to_one
-     sql_on: ${base_order.id} = ${base_orderdocument.order_id} and ${base_orderdocument.document_type} = 2
+     sql_on: ${base_order.id} = ${base_orderdocument.order_id}
    
      
    
