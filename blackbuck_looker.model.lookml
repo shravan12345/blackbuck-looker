@@ -674,7 +674,7 @@
 - explore: base_state
 
 - explore: base_status
-  fields: [ALL_FIELDS*,-base_status.Count_24,-base_status.PI_24,-base_status.Count_48,-base_status.PI_48]
+  fields: [ALL_FIELDS*,-base_order.POD_Points_Index,-base_order.Placement_24,-base_order.Transit_time,-base_order.Responsiveness_Index,-base_order.performance_index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Expected_Loss_Index,-base_order.Performance_Index,-base_order.Actual_Transit_Time,-base_order.Avg_POD_Time,-base_order.Responsiveness_Count,-base_order.Count_TAS,-base_order.sp_name,-base_order.count_by_customer,-base_order.Actual_POD_Time,-base_order.Count_Lanes,-base_order.Count_Lane_Dispersion,-base_order.count_no_show,-base_order.count_rejected,-base_order.Target_Adhered,-base_order.Avg_Transit_time,-base_order.supply_demand_ratio,-base_order.Avg_Order_Rate,-base_order.Avg_Order_Rate_2,-base_order.Avg_Order_Rate_3,-base_order.Avg_Order_Rate_4,-base_order.Avg_Order_Rate_5,-base_order.Avg_Order_Rate_6,-base_order.Avg_Order_Rate_7,-base_order.Avg_Order_Rate_mon,-base_order.Avg_Order_Rate_Today,-base_order.Avg_Order_Rate_Yesterday,-base_order.Min_Order_Rate_month,-base_order.Avg_Order_Rate_15,-base_order.start_location_1,-base_order.end_location_1,-base_order.start_location_1_latitude_max,-base_order.start_location_1_latitude_min,-base_order.start_location_1_longitude_max,-base_order.start_location_1_longitude_min,-base_order.end_location_1_latitude_max,-base_order.end_location_1_latitude_min,-base_order.end_location_1_longitude_max,-base_order.end_location_1_longitude_min,-base_order.Right_truck_count]
   joins:
    - join: base_userprofile_role
      type: left_outer
@@ -692,6 +692,11 @@
      type: left_outer
      relationship: one_to_one
      sql_on: ${base_userprofile.user_id} = ${auth_user.id}
+     
+   - join: base_order
+     type: left_outer
+     relationship: one_to_many
+     sql_on: ${base_status.order_id} = ${base_order.id}
   
 
      

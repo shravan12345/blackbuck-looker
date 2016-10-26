@@ -187,6 +187,12 @@
     sql: 100*${Count_POD}/${Count_TAS}
     value_format_name: decimal_1
     
+  - dimension_group: latest_time_stamp
+    type: time
+    timeframes: [time, date, week, month,raw]
+    sql: CASE WHEN ${base_order.status} = ${status} THEN ${dt_updated_raw} ELSE NULL END
+    
+    
 
     
     
