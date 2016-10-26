@@ -506,6 +506,10 @@
      relationship: many_to_one
      sql_on: ${base_order.id} = ${base_orderdocument.order_id}
    
+   - join: base_latest_status_timestamp
+     from: base_status
+     relationship: one_to_one
+     sql_on: ${base_order.status} = ${base_status.status}
      
    
      
