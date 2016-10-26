@@ -482,6 +482,13 @@
      type: left_outer
      relationship: many_to_one
      sql_on: ${base_userprofile.user_id} = ${base_order.user_id}
+  
+   - join: base_spnumber
+     from: base_userprofile
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_userprofile.user_id} = ${base_order.supply_partner_id}
+     
      
      
    - join: base_sectortype
