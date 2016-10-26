@@ -501,7 +501,10 @@
      relationship: one_to_one
      sql_on: ${To_city.google_place_id} = ${To_City_Coordinates.id}
      
-     
+   - join: base_orderdocument
+     type: left_outer
+     relationship: many_to_one
+     sql_on: ${base_order.id} = ${base_orderdocument.order_id} and ${base_orderdocument.document_type} = 2
    
      
    
