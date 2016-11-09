@@ -1165,6 +1165,7 @@ explore: escalation_tnt {
   }
 }
 
+
 explore: supply_breath_lane_calc {
   fields: [ALL_FIELDS*, -base_order.POD_Points_Index, -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
 
