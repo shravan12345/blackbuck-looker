@@ -1,0 +1,30 @@
+view: base_supplyprofilehistory {
+  sql_table_name: zinka.base_supplyprofilehistory ;;
+
+  dimension: id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.id ;;
+  }
+
+  dimension: dnd {
+    type: yesno
+    sql: ${TABLE}.dnd ;;
+  }
+
+  dimension_group: dnd {
+    type: time
+    timeframes: [time, date, week, month]
+    sql: ${TABLE}.dnd_date ;;
+  }
+
+  dimension: supply_profile_id {
+    type: number
+    sql: ${TABLE}.supply_profile_id ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [id]
+  }
+}
