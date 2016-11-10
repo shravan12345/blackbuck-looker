@@ -286,4 +286,10 @@ view: base_orderfinancedetails {
 
     drill_fields: [order_id, halt_charges, dest_halt_charges]
   }
+
+  measure: full_amount {
+    type:  sum
+    sql:  ${total_amount} ;;
+
+  }
 }
