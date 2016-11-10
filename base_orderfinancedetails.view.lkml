@@ -234,7 +234,7 @@ view: base_orderfinancedetails {
 
   measure: count {
     type: count
-    drill_fields: [order_id]
+    drill_fields: [order_id,base_order.status]
   }
 
   measure: Avg_Freight {
