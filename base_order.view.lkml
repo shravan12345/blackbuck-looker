@@ -893,4 +893,14 @@ view: base_order {
   set: detail {
     fields: [id, user_id, status, start_date, end_date, From_City.city, To_city.city, base_orderfinancedetails.freight_amount, base_orderdynamicprice.surge_charge, performance_index, Ex_TT]
   }
+
+  dimension: Penalty_flag {
+    case: {
+      when: {
+        sql:  2*ROUND(${distance}/350000,0)+10 > TIMESTAMPDIFF(day,${end_date},NOW()) ;;
+        label: "1"
+      }
+    else: "0"
+    }
+  }
 }
