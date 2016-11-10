@@ -514,7 +514,7 @@ explore: base_order {
     from: base_userprofile
     type: left_outer
     relationship: many_to_one
-    sql_on: ${base_userprofile.user_id} = ${base_order.supply_partner_id} ;;
+    sql_on: ${base_spnumber.user_id} = ${base_order.supply_partner_id} ;;
   }
 
   join: base_sectortype {
