@@ -897,7 +897,7 @@ view: base_order {
   dimension: Penalty_flag {
     case: {
       when: {
-        sql:  2*ROUND(${distance}/350000,0)+10 >= TIMESTAMPDIFF(day,${end_date},NOW()) ;;
+        sql:  2*ROUND(${distance}/350000,0)+10 <= TIMESTAMPDIFF(day,${end_date},NOW()) ;;
         label: "1"
       }
     else: "0"
