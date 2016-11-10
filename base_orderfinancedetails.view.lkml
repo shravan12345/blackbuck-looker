@@ -292,4 +292,9 @@ view: base_orderfinancedetails {
     sql:  ${total_amount} ;;
 
   }
+
+  measure:  fs_pending {
+    type: sum
+    sql: ${total_amount} - (${advance_cash_amount} + ${advance_etransfer_amount} + ${settlement_cash_amount}+${settlement_etransfer_amount}+${advance_fuel_amount} + ${dest_halt_charges} + ${loading_charges}+${unloading_charges} + ${halt_charges});;
+  }
 }
