@@ -37,7 +37,7 @@ view: base_ordereta {
 
   dimension: deviation_transit {
     type: number
-    sql: IF( TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}) >= 0,TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}),null) ;;
+    sql: IF( TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}) IS NOT NULL ,TIMESTAMPDIFF(hour,${eta_raw},${eta_revised_view.revised_eta_raw}),null) ;;
     value_format_name: decimal_0
   }
 
