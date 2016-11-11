@@ -433,6 +433,17 @@ view: base_order {
     }
   }
 
+  measure: Total_No_of_SP_2 {
+    type: count_distinct
+    sql: ${supply_partner_id} ;;
+    drill_fields: [supply_partner_id, auth_user.full_name, placement]
+
+    filters: {
+      field: base_order.end_date
+      value: "1 month ago"
+    }
+  }
+
   measure: Total_No_of_SP_1 {
     type: count_distinct
     sql: ${supply_partner_id} ;;
