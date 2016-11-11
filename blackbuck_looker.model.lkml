@@ -593,7 +593,13 @@ explore: base_orderinvoicerelatedinfo {
   fields: [ALL_FIELDS*]
 }
 
-explore: base_orderinvoicestatus {}
+explore: base_orderinvoicestatus {
+  join: auth_user {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_orderinvoicestatus.last_modified_by_id} = ${auth_user.id} ;;
+  }
+}
 
 # - explore: base_orderpaneltypayment
 #
