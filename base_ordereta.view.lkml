@@ -50,7 +50,7 @@ view: base_ordereta {
   dimension: transit_count {
     case: {
       when: {
-        sql: TIMESTAMPDIFF(hour,${TAD.dt_updated_raw},${eta_raw}) >= 0 OR ${base_order.status} = "Truck Departure Destination" ;;
+        sql: TIMESTAMPDIFF(hour,${TAD.dt_updated_raw},${eta_raw}) >= 0 OR ${base_order.status} = "Truck Departure Destination" OR "Truck Unloading" ;;
         label: "IN-TIME"
       }
 
