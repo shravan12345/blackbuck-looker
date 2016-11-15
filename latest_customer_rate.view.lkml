@@ -7,33 +7,33 @@ view: latest_customer_rate {
 
   dimension: id {
     type: number
-    sql: ${id};;
+    sql: ${TABLE}.id;;
 
     }
 
   dimension: rate {
     type: number
-    sql: ${rate} ;;
+    sql: ${TABLE}.rate ;;
   }
 
   dimension: customer_id {
     type: number
-    sql: ${customer_id} ;;
+    sql: ${TABLE}.customer_id ;;
   }
 
   dimension: from_city_id  {
     type: number
-    sql: ${from_city_id} ;;
+    sql: ${TABLE}.from_city_id ;;
   }
 
   dimension: to_city_id {
     type: number
-    sql: ${to_city_id} ;;
+    sql: ${TABLE}.to_city_id ;;
   }
 
   dimension: truck_type_id {
     type: number
-    sql: ${truck_type_id} ;;
+    sql: ${TABLE}.truck_type_id ;;
   }
 
   dimension_group: latest_updated_at {
@@ -44,4 +44,3 @@ view: latest_customer_rate {
 
 
   }
-
