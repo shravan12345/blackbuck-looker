@@ -552,7 +552,7 @@ explore: base_order {
   join: base_customermasterfrieghtrates {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${base_customermasterfrieghtrates.from_city_id} = ${base_order.from_city_id} and ${base_customermasterfrieghtrates.to_city_id} = ${base_order.to_city_id} and ${base_customermasterfrieghtrates.truck_type_id} = ${base_order.truck_type_id} and ${base_customermasterfrieghtrates.customer_id} = ${base_customeruserprofile.user_id};;
+    sql_on: ${base_customermasterfrieghtrates.from_city_id} = ${base_order.from_city_id} and ${base_customermasterfrieghtrates.to_city_id} = ${base_order.to_city_id} and ${base_customermasterfrieghtrates.truck_type_id} = ${base_order.truck_type_id} and ${base_customermasterfrieghtrates.customer_id} = ${base_order.user_id};;
 
   }
 }
