@@ -1198,3 +1198,5 @@ explore: supply_breath_lane_calc {
 explore: temp_supply_calc_view {}
 
 explore: latest_customer_rate {}
+
+explore: target_adherance_view {}
