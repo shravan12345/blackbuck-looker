@@ -46,4 +46,10 @@ indexes: ["id"]
     timeframes: [time, date, week, month, hour, hour_of_day, raw, day_of_week]
     sql: ${TABLE}.end_date ;;
   }
+
+  measure: Count_adherance {
+    type: count_distinct
+    sql:  (CASE WHEN ${TABLE}.Target_rate IS NOT NULL AND  ${TABLE}.Target_Rate > ${TABLE}.order_value THEN 1 ELSE 0)  ;;
+    }
+
 }
