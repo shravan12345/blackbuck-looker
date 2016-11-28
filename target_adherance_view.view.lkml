@@ -49,7 +49,7 @@ indexes: ["id"]
 
   measure: Count_adherance {
     type: sum
-    sql:  (CASE WHEN ${TABLE}.Target_rate IS NOT NULL AND  ${TABLE}.Target_Rate > ${TABLE}.order_value THEN 1 ELSE 0 END)  ;;
+    sql:  ((CASE WHEN ${TABLE}.Target_rate IS NOT NULL AND  ${TABLE}.Target_Rate > ${TABLE}.order_value THEN 1 ELSE 0 END))  ;;
     value_format_name: decimal_0
 
     drill_fields: [order_id,order_value,Target_Rate]
