@@ -49,7 +49,7 @@ indexes: ["id"]
 
   measure: Count_adherance {
     type: count_distinct
-    sql:  ((CASE WHEN ${TABLE}.Target_rate IS NOT NULL AND  ${TABLE}.Target_Rate > ${TABLE}.order_value THEN 1 ELSE 0)/${count})*100  ;;
+    sql:  ((CASE WHEN ${TABLE}.Target_rate IS NOT NULL AND  ${TABLE}.Target_Rate > ${TABLE}.order_value THEN 1 ELSE 0)  ;;
     value_format_name: decimal_1
 
     drill_fields: [order_id,order_value,Target_Rate]
