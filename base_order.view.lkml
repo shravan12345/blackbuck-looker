@@ -932,8 +932,8 @@ view: base_order {
   }
 
   measure: POD_Received_Count {
-    type: count_distinct
-    sql: (CASE WHEN ${base_orderdocument.document_type} = "3" and ${base_orderdocument.document_status} = "3" and (${base_order.order_invoice_status} = "Invoice Pending" or ${base_order.order_invoice_status} = "Invoice Ready" or ${base_order.order_invoice_status} IS NULL ) THEN  ${TABLE}.id ELSE NULL END)  ;;
+    type: sum
+    sql: (CASE WHEN ${base_orderdocument.document_type} = "3" and ${base_orderdocument.document_status} = "3" and (${base_order.order_invoice_status} = "Invoice Pending" or ${base_order.order_invoice_status} = "Invoice Ready") THEN  1 ELSE 0 END)  ;;
     drill_fields: [id,order_invoice_status,base_orderdocument.document_type , base_orderdocument.document_status]
 
 
