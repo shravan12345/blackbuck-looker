@@ -930,6 +930,16 @@ view: base_order {
   }
   }
 
+  measure: POD_Received_Count {
+    type: count_distinct
+    sql: ${TABLE}.id  ;;
 
+  filters: {
+    field: base_orderdocument.document_type
+    value: "3"
+
+    field: base_orderdocument.document_status
+    value: "3"}
+  }
 
 }
