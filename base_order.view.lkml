@@ -394,7 +394,8 @@ view: base_order {
   }
 
   measure: count {
-    type: count
+    type: count_distinct
+    sql: ${TABLE}.id ;;
 
     filters: {
       field: base_order.status
@@ -932,10 +933,23 @@ view: base_order {
   }
 
   measure: POD_Received_Count {
-    type: sum
-    sql: (CASE WHEN ${base_orderdocument.document_type} = "3" and ${base_orderdocument.document_status} = "3" and (${base_order.order_invoice_status} = "Invoice Pending" or ${base_order.order_invoice_status} = "Invoice Ready") THEN  1 ELSE 0 END)  ;;
+    type: count_distinct
+    sql: ${TABLE}.id  ;;
     drill_fields: [id,order_invoice_status,base_orderdocument.document_type , base_orderdocument.document_status]
 
+    filters: {
+      field: base_orderdocument.document_type
+      value: "3"}
+
+    filters: {
+      field: base_orderdocument.document_status
+      value: "3"
+    }
+
+    filters: {
+      field: order_invoice_status
+      value: "Invoice Pending , Invoice Ready"
+     }
 
   }
 
