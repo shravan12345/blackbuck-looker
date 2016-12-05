@@ -920,7 +920,15 @@ view: base_order {
   }
 
 
+  measure: Orders_invoiced {
+    type: count_distinct
+    sql: ${TABLE}.id ;;
 
+  filters: {
+    field: base_order.order_invoice_status
+    value: "Invoice Generated,Invoice Rejected , Invoice Sent , Invoice Verified , Invoice Verification Pending , Invoice Generated "
+  }
+  }
 
 
 
