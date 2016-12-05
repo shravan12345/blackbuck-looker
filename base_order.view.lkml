@@ -923,6 +923,7 @@ view: base_order {
   measure: Orders_invoiced {
     type: count_distinct
     sql: ${TABLE}.id ;;
+    drill_fields: [id,order_invoice_status]
 
   filters: {
     field: base_order.order_invoice_status
@@ -933,6 +934,7 @@ view: base_order {
   measure: POD_Received_Count {
     type: count_distinct
     sql: ${TABLE}.id  ;;
+    drill_fields: [id,order_invoice_status,base_orderdocument.document_type , base_orderdocument.document_status]
 
   filters: {
     field: base_orderdocument.document_type
