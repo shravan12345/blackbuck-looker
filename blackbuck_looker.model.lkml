@@ -706,7 +706,7 @@ explore: base_podspercourier {
 #
 # - explore: base_product
 #
-# - explore: base_receivablepayment
+ explore: base_receivablepayment {}
 #
 # - explore: base_relationmanager
 #
