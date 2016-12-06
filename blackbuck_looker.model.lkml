@@ -555,6 +555,13 @@ explore: base_order {
     sql_on: ${latest_customer_rate.from_city_id} = ${base_order.from_city_id} and ${latest_customer_rate.to_city_id} = ${base_order.to_city_id} and ${latest_customer_rate.truck_type_id} = ${base_order.truck_type_id} and ${latest_customer_rate.customer_id} = ${base_order.user_id};;
 
   }
+
+  join: base_receivablepayment {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_customeruserprofile.user_id} = ${base_receivablepayment.customer_id} ;;
+
+  }
 }
 
 # - explore: base_order_freight_bill_number
