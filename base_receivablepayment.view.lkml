@@ -45,7 +45,7 @@ view: base_receivablepayment {
 
   dimension_group: received {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month,day_of_month,day_of_week]
     sql: ${TABLE}.received_date ;;
   }
 
@@ -62,5 +62,10 @@ view: base_receivablepayment {
   measure: count {
     type: count
     drill_fields: [id]
+  }
+
+  measure: Total_payment {
+    type: sum
+    sql: ${amount}  ;;
   }
 }
