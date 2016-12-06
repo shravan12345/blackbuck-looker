@@ -953,4 +953,8 @@ view: base_order {
 
   }
 
+  measure: total_order_value {
+    type: sum
+    sql: NULLIF(${order_value},0) ;;
+  }
 }
