@@ -567,7 +567,7 @@ explore: base_order {
     type: left_outer
     relationship: many_to_one
     sql: ${base_customeruserprofile.user_id} = ${base_warehouse.customer_id} ;;
-    }
+ }
 }
 
 # - explore: base_order_freight_bill_number
