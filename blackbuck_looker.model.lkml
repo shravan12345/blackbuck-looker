@@ -566,7 +566,7 @@ explore: base_order {
   join:  base_warehouse {
     type: left_outer
     relationship: many_to_one
-    sql: ${base_customeruserprofile.user_id} = ${base_warehouse.customer_id} ;;
+    sql_on: ${base_customeruserprofile.user_id} = ${base_warehouse.customer_id} ;;
  }
 }
 
