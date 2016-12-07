@@ -655,6 +655,12 @@ explore: base_orderprofitability {
     relationship: many_to_one
     sql_on: ${base_customeruserprofile.sector_type_id} = ${base_sectortype.id} ;;
   }
+
+  join:  base_warehouse {
+    type: left_outer
+    relationship: many_to_one
+    sql: ${base_customeruserprofile.user_id} = ${base_warehouse.customer_id} ;;
+  }
 }
 
 explore: base_orderreceivable {}
