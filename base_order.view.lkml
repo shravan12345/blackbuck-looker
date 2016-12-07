@@ -737,7 +737,7 @@ view: base_order {
 
   measure: Avg_Freight_Value {
     type: average
-    sql: ${order_value} ;;
+    sql: NULLIF(${order_value},0);;
     value_format_name: decimal_1
   }
 
