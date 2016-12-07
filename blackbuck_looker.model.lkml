@@ -379,14 +379,14 @@ explore: base_order {
     view_label: "From City_sublocation"
     from: base_sublocation
     relationship: many_to_one
-    sql_on: ${base_order.from_sublocation_id} = ${From_City_sublocation.location_id} ;;
+    sql_on: ${base_order.start_location_id} = ${From_City_sublocation.location_id} ;;
   }
 
   join: To_City_sublocation {
     view_label: "To City_sublocation"
     from: base_sublocation
     relationship: many_to_one
-    sql_on: ${base_order.to_sublocation_id} = ${To_City_sublocation.location_id} ;;
+    sql_on: ${base_order.end_location_id} = ${To_City_sublocation.location_id} ;;
   }
 
   join: base_trucktype {
@@ -580,7 +580,8 @@ explore: base_order {
   join:  base_warehouse {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${base_customeruserprofile.user_id} = ${base_warehouse.customer_id} ;;
+    sql_on: ${base_order.start_location_id} = ${base_warehouse.id} ;;
+
  }
 }
 
