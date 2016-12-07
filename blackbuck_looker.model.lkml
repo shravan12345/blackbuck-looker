@@ -375,6 +375,20 @@ explore: base_order {
     sql_on: ${base_order.to_city_id} = ${To_city.id} ;;
   }
 
+  join: From_City_sublocation {
+    view_label: "From City_sublocation"
+    from: base_sublocation
+    relationship: many_to_one
+    sql_on: ${base_order.from_sublocation_id} = ${From_City_sublocation.location_id} ;;
+  }
+
+  join: To_City_sublocation {
+    view_label: "To City_sublocation"
+    from: base_sublocation
+    relationship: many_to_one
+    sql_on: ${base_order.to_sublocation_id} = ${To_City_sublocation.location_id} ;;
+  }
+
   join: base_trucktype {
     view_label: "Truck"
     type: left_outer
