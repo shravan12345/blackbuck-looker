@@ -301,10 +301,12 @@ view: base_orderfinancedetails {
   measure: Average_Loading  {
     type: average
     sql: NULLIF(${loading_charges},0);;
+    drill_fields: [order_id,loading_charges]
   }
 
   measure: Average_Unloading {
     type: average
     sql: NULLIF(${unloading_charges},0) ;;
+    drill_fields: [order_id,unloading_charges]
   }
 }
