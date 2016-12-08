@@ -297,4 +297,14 @@ view: base_orderfinancedetails {
     type: sum
     sql: ${total_amount} - (${advance_cash_amount} + ${advance_etransfer_amount} + ${settlement_cash_amount}+${settlement_etransfer_amount}+${advance_fuel_amount} + ${dest_halt_charges} + ${loading_charges}+${unloading_charges} + ${halt_charges});;
   }
+
+  measure: Average_Loading  {
+    type: average
+    sql: NULLIF(${loading_charges},0);;
+  }
+
+  measure: Average_Unloading {
+    type: average
+    sql: NULLIF(${unloading_charges},0) ;;
+  }
 }
