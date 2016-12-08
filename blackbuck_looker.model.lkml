@@ -438,6 +438,16 @@ explore: base_order {
     from: base_status
     relationship: one_to_many
     sql_on: ${base_order.id} = ${TDS.order_id} and ${TDS.status} = "Payment Done" ;;
+    }
+  join: OA {
+      from: base_status
+      relationship: one_to_many
+      sql_on: ${base_order.id} = ${OA.order_id} and ${OA.status} = "Order Accepted" ;;
+     }
+  join: OB {
+        from: base_status
+        relationship: one_to_many
+        sql_on: ${base_order.id} = ${OB.order_id} and ${OB.status} = "Order Blocked" ;;
   }
 
   join: base_orderdynamicprice {
