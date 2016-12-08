@@ -449,6 +449,11 @@ explore: base_order {
         relationship: one_to_many
         sql_on: ${base_order.id} = ${OB.order_id} and ${OB.status} = "Order Blocked" ;;
   }
+  join: OP {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${OP.order_id} and ${OP.status} = "Order Processing " ;;
+  }
 
   join: base_orderdynamicprice {
     type: left_outer
