@@ -309,4 +309,10 @@ view: base_orderfinancedetails {
     sql: NULLIF(${unloading_charges},0) ;;
     drill_fields: [order_id,unloading_charges]
   }
+
+  measure: Average_Cash_advance {
+    type: average
+    sql: NULLIF(${advance_cash_amount},0) ;;
+    drill_fields: [order_id , advance_cash_amount]
+  }
 }
