@@ -831,10 +831,7 @@ view: base_order {
     drill_fields: [base_statushistory.order_id, base_statushistory.count_rejected]
   }
 
-  measure: repeat_sp {
-    type: count_distinct
-    sql: CASE WHEN ${count} > 1 THEN ${supply_partner_id} ELSE NULL END ;;
-  }
+
 
   measure: Avg_Transit_time {
     type: average
@@ -852,10 +849,6 @@ view: base_order {
     sql: ${order_value}/${distance} ;;
   }
 
-  measure: avg_distance_covered_per_order {
-    type: average
-    sql: ${distance}/${count} ;;
-  }
 
   measure: Order_Index_score {
     type: number

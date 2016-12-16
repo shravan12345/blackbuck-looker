@@ -129,4 +129,9 @@ view: base_financialtransaction {
     type: count
     drill_fields: [id, beneficiary_name, returned_beneficiary_name]
   }
+
+  measure: advance_paid  {
+    type: sum
+    sql: ${TABLE}.amount ;;
+  }
 }
