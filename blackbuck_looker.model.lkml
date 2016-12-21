@@ -851,7 +851,14 @@ explore: base_sublocation {}
 
 # - explore: base_supplyassociatedoes
 #
-# - explore: base_supplybankaccounts
+explore: base_supplybankaccounts {
+  join: base_userprofile {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${base_supplybankaccounts.supply_partner_id} = ${base_userprofile.user_id} ;;
+  }
+}
+
 #
 # - explore: base_supplybankaccountshistory
 #
