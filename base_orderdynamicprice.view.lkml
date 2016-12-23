@@ -179,4 +179,13 @@ view: base_orderdynamicprice {
 
     drill_fields: [order_id, surge_charge, surge_enabled, price_date]
   }
+
+
+  measure: count_surges {
+    type: sum
+    sql: IF ( ${surge_charge} >= 1 and ${surge_enabled} != 0 ,1,0) ;;
+
+
+    drill_fields: [order_id, surge_charge, surge_enabled, price_date]
+  }
 }

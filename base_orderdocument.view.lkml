@@ -61,7 +61,7 @@ view: base_orderdocument {
 
   measure: count_pod {
     type: sum
-    sql: CASE WHEN ${document_status} = 2 THEN 1 ELSE 0 END ;;
-    drill_fields: [order_id]
+    sql: CASE WHEN ${document_status} = 2  THEN 1 ELSE 0 END ;;
+    drill_fields: [order_id,document_status]
   }
 }
