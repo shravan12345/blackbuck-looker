@@ -132,8 +132,8 @@ explore: base_customermasterfrieghtrates {
 
   join: base_order {
     type: left_outer
-    relationship: many_to_one
-    sql_on: ${base_customeruserprofile.user_id} = ${base_order.user_id} ;;
+    relationship: many_to_many
+    sql_on: ${base_customermasterfrieghtrates.from_city_id} = ${base_order.from_city_id} and ${base_customermasterfrieghtrates.to_city_id}= ${base_order.to_city_id} and ${base_customermasterfrieghtrates.customer_id} = ${base_order.user_id} and ${base_customermasterfrieghtrates.truck_type_id} = ${base_order.truck_type_id} ;;
   }
 
   join: base_trucktype {
