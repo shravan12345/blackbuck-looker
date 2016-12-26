@@ -422,6 +422,22 @@ explore: base_order {
     sql_on: ${base_order.id} = ${TAS.order_id} and ${TAS.status} = "Truck Arrival Source" ;;
   }
 
+  join: LR {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${LR.order_id} and ${LR.status} = "LR Generated" ;;
+  }
+
+  join: ADV {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${ADV.order_id} and $ADV.status} = "Advance DocVerification" ;;
+  }
+  join: PP {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${PP.order_id} and $PP.status} = "Payment Pending " ;;
+  }
   join: TAD {
     from: base_status
     relationship: one_to_many
