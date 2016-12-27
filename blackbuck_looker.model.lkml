@@ -614,6 +614,14 @@ explore: base_order {
     sql_on: ${base_order.start_location_id} = ${base_warehouse.id} ;;
 
  }
+
+  join:  base_supplypartnerfeedback {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_order.id} = ${base_supplypartnerfeedback.order_id} ;;
+
+  }
+
 }
 
 # - explore: base_order_freight_bill_number
