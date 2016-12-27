@@ -109,4 +109,6 @@ view: base_customermasterfrieghtrates {
     type: number
     sql: ${rate} ;;
   }
+
+
 }
