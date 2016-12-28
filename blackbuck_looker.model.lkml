@@ -449,6 +449,12 @@ explore: base_order {
     relationship: one_to_many
     sql_on: ${base_order.id} = ${POD_Sub.order_id} and ${POD_Sub.status} = "Docs Received" ;;
   }
+
+  join: To_Be_S {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${To_Be_S.order_id} and ${To_Be_S.status} = "To Be Settled" ;;
+  }
   join: Settlement_P {
     from: base_status
     relationship: one_to_many
