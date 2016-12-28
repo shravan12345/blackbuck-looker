@@ -16,7 +16,7 @@ dimension: Customer_id {
 
 dimension: Customer_name {
   type: string
-  sql: ${TABLE}.name ;;
+  sql: ${TABLE}.Customer_name ;;
 }
 dimension: Total_business_value{
   type: number
