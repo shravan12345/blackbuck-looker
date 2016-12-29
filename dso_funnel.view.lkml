@@ -40,7 +40,7 @@ dimension: Daily_business {
 }
 dimension: Recoinciled_amount {
   type: number
-  sql: NULLIF(${TABLE}.billed_amount,0) ;;
+  sql: NULLIF(${TABLE}.billed_amt,0) ;;
 
 }
 dimension: Unrecoinciled_amount {
