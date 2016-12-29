@@ -7,7 +7,7 @@ FROM base_paymentadvice
 LEFT JOIN base_payments ON base_payments.pa_id = base_paymentadvice.id
 LEFT JOIN base_customeruserprofile ON base_customeruserprofile.user_id = base_paymentadvice.customer_id
 WHERE base_paymentadvice.receivable_payment_id IS NOT NULL
-GROUP BY 1 ) f on f.user_id = a.user_id group by 1 ,2 ;;
+GROUP BY 1 ) f on f.customer_id = a.user_id group by 1 ,2 ;;
     sql_trigger_value: SELECT CURDATE() ;;
     indexes: ["user_id"]
   }
