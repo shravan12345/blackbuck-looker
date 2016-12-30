@@ -460,7 +460,11 @@ explore: base_order {
     relationship: one_to_many
     sql_on: ${base_order.id} = ${Settlement_P.order_id} and ${Settlement_P.status} = "Settlement Pending" ;;
   }
-
+  join: Settlement_D {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${Settlement_D.order_id} and ${Settlement_D.status} = "Settlement Done" ;;
+  }
   join: TDS {
     from: base_status
     relationship: one_to_many
