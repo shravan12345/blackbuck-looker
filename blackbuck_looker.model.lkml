@@ -455,6 +455,11 @@ explore: base_order {
     relationship: one_to_many
     sql_on: ${base_order.id} = ${To_Be_S.order_id} and ${To_Be_S.status} = "To Be Settled" ;;
   }
+  join: SDV {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${SDV.order_id} and ${SDV.status} = "Settlement DocVerification" ;;
+  }
   join: Settlement_P {
     from: base_status
     relationship: one_to_many
