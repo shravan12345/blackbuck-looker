@@ -69,8 +69,50 @@ view: ecom_fuel_banktransaction {
     sql: ${TABLE}.transaction_state ;;
   }
 
-  measure: count {
+  measure: count_tran_nov {
     type: count
     drill_fields: [id]
+
+    filters: {
+      field: dt_added_month
+      value: " 2 months ago"
+    }
+
   }
+
+  measure: count_tran_dec {
+    type: count
+    drill_fields: [id]
+
+    filters: {
+      field: dt_added_month
+      value: " 2 months ago"
+    }
+
+  }
+
+  measure: sum_tran_nov {
+    type: sum
+    sql: ${amount} ;;
+    drill_fields: [id]
+
+    filters: {
+      field: dt_added_month
+      value: " 2 months ago"
+    }
+    }
+
+    measure: sum_tran_dec {
+      type: sum
+      sql: ${amount} ;;
+      drill_fields: [id]
+
+      filters: {
+        field: dt_added_month
+        value: " 1 months ago"
+      }
+
+  }
+
+
 }
