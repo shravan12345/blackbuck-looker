@@ -12,6 +12,11 @@ view: base_sectortype {
     sql: ${TABLE}.sector_name ;;
   }
 
+  dimension: business_type_id {
+    type: number
+    sql: ${TABLE}.business_type_id ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, sector_name]
