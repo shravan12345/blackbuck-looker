@@ -1301,3 +1301,17 @@ explore: latest_customer_rate {}
 explore: target_adherance_view {}
 
 explore: dso_funnel {}
+
+explore: ecom_fuel_cardrequest {
+  join: ecom_fuel_fuelcard {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${ecom_fuel_cardrequest.card_number_id} = ${ecom_fuel_fuelcard.id} ;;
+
+  }
+  join:  ecom_fuel_banktransaction {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${ecom_fuel_banktransaction.fuelcard_id} = ${ecom_fuel_fuelcard.id} ;;
+  }
+}
