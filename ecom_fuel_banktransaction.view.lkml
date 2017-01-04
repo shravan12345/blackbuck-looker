@@ -71,7 +71,7 @@ view: ecom_fuel_banktransaction {
 
   measure: count_tran_nov {
     type: count
-    drill_fields: [id]
+    drill_fields: [id,amount,dt_added_time]
 
     filters: {
       field: dt_added_month
@@ -82,7 +82,7 @@ view: ecom_fuel_banktransaction {
 
   measure: count_tran_dec {
     type: count
-    drill_fields: [id]
+    drill_fields: [id,amount,dt_added_time]
 
     filters: {
       field: dt_added_month
@@ -94,7 +94,7 @@ view: ecom_fuel_banktransaction {
   measure: sum_tran_nov {
     type: sum
     sql: ${amount} ;;
-    drill_fields: [id]
+    drill_fields: [id,amount,dt_added_time]
 
     filters: {
       field: dt_added_month
@@ -105,7 +105,7 @@ view: ecom_fuel_banktransaction {
     measure: sum_tran_dec {
       type: sum
       sql: ${amount} ;;
-      drill_fields: [id]
+      drill_fields: [id,amount,dt_added_time]
 
       filters: {
         field: dt_added_month
