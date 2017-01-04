@@ -75,7 +75,7 @@ view: ecom_fuel_banktransaction {
 
     filters: {
       field: dt_added_month
-      value: " 2 months ago"
+      value: "2016/11"
     }
 
   }
@@ -86,7 +86,7 @@ view: ecom_fuel_banktransaction {
 
     filters: {
       field: dt_added_month
-      value: " 2 months ago"
+      value: "2016/12"
     }
 
   }
@@ -98,7 +98,7 @@ view: ecom_fuel_banktransaction {
 
     filters: {
       field: dt_added_month
-      value: " 2 months ago"
+      value: "2016/11"
     }
     }
 
@@ -109,7 +109,7 @@ view: ecom_fuel_banktransaction {
 
       filters: {
         field: dt_added_month
-        value: " 1 months ago"
+        value: "2016/12"
       }
 
   }
