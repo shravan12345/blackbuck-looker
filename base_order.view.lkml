@@ -456,6 +456,14 @@ view: base_order {
     }
   }
 
+  measure: SP_Count {
+    type: count_distinct
+    sql: ${supply_partner_id} ;;
+    drill_fields: [supply_partner_id, auth_user.full_name, placement]
+
+
+  }
+
   measure: Date {
     type: date
     sql: ${TABLE}.end_date ;;
