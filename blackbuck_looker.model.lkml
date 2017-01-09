@@ -641,6 +641,12 @@ explore: base_order {
     sql_on: ${base_order.id} = ${base_supplypartnerfeedback.order_id} ;;
 
   }
+  join:  base_orderdynamicpricewatcher{
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_orderdynamicprice.id} = ${base_orderdynamicpricewatcher.order_dynamic_price_id} ;;
+
+  }
 
 
 
