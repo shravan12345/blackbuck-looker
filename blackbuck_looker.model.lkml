@@ -652,6 +652,11 @@ explore: base_order {
     relationship: one_to_many
     sql_on: ${base_order.product_id} = ${base_product.id} ;;
   }
+  join: base_truckdocuments {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_truck.id} = ${base_truckdocuments.truck_id} ;;
+  }
 
 
 
