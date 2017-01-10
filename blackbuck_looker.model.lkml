@@ -647,6 +647,11 @@ explore: base_order {
     sql_on: ${base_orderdynamicprice.id} = ${base_orderdynamicpricewatcher.order_dynamic_price_id} ;;
 
   }
+  join:  base_product {
+    type: left_outer
+    relationship: one_to_many
+    sql_on :${base_order.product_id} = ${base_product.id} ;;
+  }
 
 
 
