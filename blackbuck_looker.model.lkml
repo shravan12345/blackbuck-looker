@@ -650,7 +650,7 @@ explore: base_order {
   join:  base_product {
     type: left_outer
     relationship: one_to_many
-    sql_on :${base_order.product_id} = ${base_product.id} ;;
+    sql_on : ${base_order.product_id} = ${base_product.id} ;;
   }
 
 
