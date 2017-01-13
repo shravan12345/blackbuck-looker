@@ -959,52 +959,7 @@ view: base_order {
     sql: NULLIF(${order_value},0) ;;
   }
 
-  dimension:  POD_Flow  {
-    case: {
-      when: {
-        sql: ${base_orderdocument.document_status }=0;;
-        label: "Docs with Driver/SP"
-      }
 
 
-
-      when: {
-        sql: ${base_orderdocument.document_status }=1;;
-        label: "Docs with field ops"
-
-      }
-
-        when: {
-          sql: ${base_orderdocument.document_status }=2;;
-          label: "Docs in transit"
-
-        }
-
-          when: {
-            sql: ${base_orderdocument.document_status }=3;;
-            label: "Docs at HQ"
-
-          }
-
-            when: {
-              sql: ${base_orderdocument.document_status }=4;;
-              label: "Docs LOST"
-
-            }
-
-              when: {
-                sql: ${base_orderdocument.document_status }=5;;
-                label: "Docs incomplete"
-
-              }
-
-                when: {
-                  sql: ${base_orderdocument.document_status }=6;;
-                  label: "Docs ready for filing "
-
-    }
-    else: "unknown"
-    }
-    }
 
 }
