@@ -581,6 +581,12 @@ explore: base_order {
     relationship: many_to_one
     sql_on: ${base_spnumber.user_id} = ${base_order.supply_partner_id} ;;
   }
+  join: base_ownernumber {
+    from: base_userprofile
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_ownernumber.user_id} = ${base_truck.owner_id} ;;
+  }
 
   join: base_sectortype {
     type: left_outer
