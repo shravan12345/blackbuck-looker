@@ -156,7 +156,7 @@ view: base_status {
 
   measure: count {
     type: count
-    drill_fields: [id, blocked_by_name, driver_name, broker_name]
+    drill_fields: [order_id, blocked_by_name, driver_name, broker_name]
   }
 
   measure: Count_24 {
