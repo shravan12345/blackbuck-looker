@@ -663,7 +663,12 @@ explore: base_order {
     relationship: many_to_one
     sql_on: ${base_truck.id} = ${base_truckdocuments.truck_id} ;;
   }
+  join: base_ordersettlementaccount {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_order.id} = ${base_ordersettlementaccount.order_id} ;;
 
+  }
 
 
 }
@@ -1317,12 +1322,15 @@ explore: supply_breath_lane_calc {
 }
 
 explore: temp_supply_calc_view {}
+explore: base_ordersettlementaccount {}
 
 explore: latest_customer_rate {}
 
 explore: target_adherance_view {}
 
 explore: dso_funnel {}
+
+
 
 explore: ecom_fuel_cardrequest {
   join: ecom_fuel_fuelcard {
@@ -1336,4 +1344,9 @@ explore: ecom_fuel_cardrequest {
     relationship: many_to_one
     sql_on: ${ecom_fuel_banktransaction.fuelcard_id} = ${ecom_fuel_fuelcard.id} ;;
   }
-}
+
+
+
+
+
+ }
