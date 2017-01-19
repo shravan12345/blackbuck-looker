@@ -19,7 +19,15 @@ view: base_orderpaneltypayment {
 
   dimension_group: dt_added {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.dt_added ;;
   }
 

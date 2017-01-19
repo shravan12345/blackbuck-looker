@@ -1,20 +1,10 @@
-view: base_orderpaneltystatus {
-  sql_table_name: zinka.base_orderpaneltystatus ;;
+view: base_ordersettlementaccount {
+  sql_table_name: zinka.base_ordersettlementaccount ;;
 
   dimension: id {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
-  }
-
-  dimension: comment {
-    type: string
-    sql: ${TABLE}.comment ;;
-  }
-
-  dimension: created_by_id {
-    type: number
-    sql: ${TABLE}.created_by_id ;;
   }
 
   dimension_group: dt_added {
@@ -31,24 +21,24 @@ view: base_orderpaneltystatus {
     sql: ${TABLE}.dt_added ;;
   }
 
+  dimension: is_active {
+    type: yesno
+    sql: ${TABLE}.is_active ;;
+  }
+
   dimension: order_id {
     type: number
     sql: ${TABLE}.order_id ;;
   }
 
-  dimension: penalty_id {
+  dimension: supply_partner_account_id {
     type: number
-    sql: ${TABLE}.penalty_id ;;
+    sql: ${TABLE}.supply_partner_account_id ;;
   }
 
-  dimension: resubmit_reason {
-    type: string
-    sql: ${TABLE}.resubmit_reason ;;
-  }
-
-  dimension: state {
+  dimension: supply_partner_id {
     type: number
-    sql: ${TABLE}.state ;;
+    sql: ${TABLE}.supply_partner_id ;;
   }
 
   measure: count {
