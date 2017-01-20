@@ -663,10 +663,10 @@ explore: base_order {
     relationship: many_to_one
     sql_on: ${base_truck.id} = ${base_truckdocuments.truck_id} ;;
   }
-  join: base_ordersettlementaccount {
+  join: base_paymentmethod {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${base_order.id} = ${base_ordersettlementaccount.order_id} ;;
+    sql_on: ${base_orderfinancedetails.settlement_payment_method_id} = ${base_paymentmethod.id ;;
 
   }
 
