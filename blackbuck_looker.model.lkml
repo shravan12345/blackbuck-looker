@@ -666,7 +666,7 @@ explore: base_order {
   join: base_paymentmethod {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${base_orderfinancedetails.settlement_payment_method_id} = ${base_paymentmethod.id ;;
+    sql_on: ${base_orderfinancedetails.settlement_payment_method_id} = ${base_paymentmethod.id} ;;
 
   }
 
