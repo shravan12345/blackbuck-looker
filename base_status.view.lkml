@@ -161,24 +161,18 @@ view: base_status {
 
   measure: Count_24 {
     type: sum
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Truck Arrival Source' THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Order Accepted' THEN 1 ELSE 0 END ;;
 
-    filters: {
-      field: base_order.status
-      #X# value: [Truck Arrival Source, LR Generated, Advance DocVerification, Advance Docs Rejected, Advance Docs Approval Requested, Payment Pending, Advance Payment Rejected, Payment Done, Order Finalized, Started Trip, Truck Departure Source, Truck In-Transit, Truck Arrival Destination, Truck Unloading, Truck Departure Destination, Settlement DocVerification, Settlement Docs Rejected, Settlement Docs Approval Requested, Settlement Pending, Settlement Payment Rejected, Settlement Done, Docs Pending, Docs Received, Order Completed]
-    }
+
 
     drill_fields: [order_id, base_order.end_date, base_order.status]
   }
 
   measure: Count_48 {
     type: sum
-    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Truck Arrival Source' THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Order Accepted' THEN 1 ELSE 0 END ;;
 
-    filters: {
-      field: base_order.status
-      #X# value: [Truck Arrival Source, LR Generated, Advance DocVerification, Advance Docs Rejected, Advance Docs Approval Requested, Payment Pending, Advance Payment Rejected, Payment Done, Order Finalized, Started Trip, Truck Departure Source, Truck In-Transit, Truck Arrival Destination, Truck Unloading, Truck Departure Destination, Settlement DocVerification, Settlement Docs Rejected, Settlement Docs Approval Requested, Settlement Pending, Settlement Payment Rejected, Settlement Done, Docs Pending, Docs Received, Order Completed]
-    }
+
 
     drill_fields: [order_id, base_order.end_date, base_order.status]
   }
