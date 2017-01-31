@@ -161,7 +161,7 @@ view: base_status {
 
   measure: Count_24 {
     type: sum
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Order Accepted' THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Truck Arrival Source' THEN 1 ELSE 0 END ;;
 
 
 
@@ -170,7 +170,7 @@ view: base_status {
 
   measure: Count_48 {
     type: sum
-    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Order Accepted' THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'TrUCK Arrival Source' THEN 1 ELSE 0 END ;;
 
 
 
