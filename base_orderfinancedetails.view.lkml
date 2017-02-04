@@ -320,4 +320,9 @@ view: base_orderfinancedetails {
     sql: IF(${advance_fuel_amount} > 0, ${order_id}) ;;
     drill_fields: [order_id , advance_fuel_amount]
   }
+  measure: Count_OrderID {
+    type: count_distinct
+    sql: ${order_id} ;;
+    drill_fields: [order_id , advance_fuel_amount]
+  }
 }
