@@ -124,6 +124,7 @@ view: base_order {
 
   dimension_group: end {
     type: time
+    label: "Shipment Date"
     timeframes: [time, date, week, month, hour, hour_of_day, raw, day_of_week]
     sql: ${TABLE}.end_date ;;
   }
