@@ -311,6 +311,7 @@ view: base_order {
 
   dimension: status {
     type: string
+    label: "Current Status"
     sql: ${TABLE}.status ;;
   }
 
