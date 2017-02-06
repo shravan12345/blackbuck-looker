@@ -122,6 +122,7 @@ view: base_status {
 
   dimension: transition_comment {
     type: string
+    label: "Unblock Comment"
     sql: ${TABLE}.transition_comment ;;
   }
 
