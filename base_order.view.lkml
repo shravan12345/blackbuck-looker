@@ -419,6 +419,7 @@ view: base_order {
   }
   measure: placement_bhiwandi {
     type: count
+    label: "Order Placed Today Bhiwandi"
 
     filters: {
       field: base_order.status
