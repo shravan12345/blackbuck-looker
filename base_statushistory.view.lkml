@@ -91,6 +91,7 @@ view: base_statushistory {
 
   dimension: order_id {
     type: number
+    label: "Order ID "
     sql: ${TABLE}.order_id ;;
   }
 

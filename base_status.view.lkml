@@ -65,6 +65,7 @@ view: base_status {
 
   dimension_group: dt_updated {
     type: time
+    label: "Unblock time "
     timeframes: [time, date, week, month, raw,hour_of_day]
     sql: ${TABLE}.dt_updated ;;
   }
