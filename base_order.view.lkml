@@ -419,7 +419,8 @@ view: base_order {
     drill_fields: [detail*]
   }
   measure: placement_bhiwandi {
-    type: count
+    type: count_distinct
+    sql: ${base_order.id} ;;
     label: "Order Placed Today Bhiwandi"
 
     filters: {
