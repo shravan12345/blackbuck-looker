@@ -395,7 +395,7 @@ view: base_order {
 
   measure: count {
     type: count_distinct
-    sql: ${TABLE}.id ;;
+    sql: CASE WHEN ${manual_placement} = 0 THEN  ${TABLE}.id ELSE NULL END ;;
 
     filters: {
       field: base_order.status
