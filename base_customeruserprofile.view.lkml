@@ -272,6 +272,7 @@ view: base_customeruserprofile {
 
   dimension: short_name {
     type: string
+    label: "Customer Name"
     sql: ${TABLE}.short_name ;;
   }
 
