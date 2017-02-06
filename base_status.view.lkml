@@ -161,7 +161,7 @@ view: base_status {
 
   measure: Count_24 {
     type: sum
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Order Accepted ' AND ${base_order.status} NOT IN ("Cancelled","Cancelled By Customer","Order Incomplete","Order Processing","KAM Review","Ops Review")  THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Order Accepted ' AND ${base_order.manual_placement} = 0 AND ${base_order.status} NOT IN ("Cancelled","Cancelled By Customer","Order Incomplete","Order Processing","KAM Review","Ops Review")  THEN 1 ELSE 0 END ;;
 
 
 
@@ -170,7 +170,7 @@ view: base_status {
 
   measure: Count_48 {
     type: sum
-    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Order Accepted' AND ${base_order.status} NOT IN ("Cancelled","Cancelled By Customer","Order Incomplete","Order Processing","KAM Review","Ops Review")  THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and ${base_order.manual_placement} = 0 and  TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Order Accepted' AND ${base_order.status} NOT IN ("Cancelled","Cancelled By Customer","Order Incomplete","Order Processing","KAM Review","Ops Review")  THEN 1 ELSE 0 END ;;
 
 
 
