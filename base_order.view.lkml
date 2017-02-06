@@ -397,6 +397,7 @@ view: base_order {
 
   measure: count {
     type: count_distinct
+    label: "Total Orders today"
     sql:   ${TABLE}.id  ;;
 
     filters: {
