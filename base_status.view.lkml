@@ -168,7 +168,7 @@ view: base_status {
 
 
 
-    drill_fields: [order_id, base_order.end_raw, base_order.status,dt_updated_raw]
+    drill_fields: [order_id, base_order.end_raw, base_order.status]
   }
 
   measure: Count_48 {
