@@ -418,7 +418,7 @@ view: base_order {
 
     drill_fields: [detail*]
   }
-  measure: placement_bhiwandi {
+  measure: procurement_bhiwandi {
     type: count_distinct
     sql: ${base_order.id} ;;
     label: "Order Procured  Bhiwandi"
@@ -426,6 +426,19 @@ view: base_order {
     filters: {
       field: base_order.status
       value: "Order Accepted,Order Blocked,Truck Arrival Source, LR Generated, Advance DocVerification, Advance Docs Rejected, Advance Docs Approval Requested, Payment Pending, Advance Payment Rejected, Payment Done, Order Finalized, Started Trip, Truck Departure Source, Truck In-Transit, Truck Arrival Destination, Truck Unloading, Truck Departure Destination, Settlement DocVerification, Settlement Docs Rejected, Settlement Docs Approval Requested, Settlement Pending, Settlement Payment Rejected, Settlement Done, Docs Pending, Docs Received, Order Completed"
+    }
+
+    drill_fields: [detail*]
+  }
+
+  measure: placement_bhiwandi {
+    type: count_distinct
+    sql: ${base_order.id} ;;
+    label: "Order Placed  Bhiwandi"
+
+    filters: {
+      field: base_order.status
+      value: "Truck Arrival Source, LR Generated, Advance DocVerification, Advance Docs Rejected, Advance Docs Approval Requested, Payment Pending, Advance Payment Rejected, Payment Done, Order Finalized, Started Trip, Truck Departure Source, Truck In-Transit, Truck Arrival Destination, Truck Unloading, Truck Departure Destination, Settlement DocVerification, Settlement Docs Rejected, Settlement Docs Approval Requested, Settlement Pending, Settlement Payment Rejected, Settlement Done, Docs Pending, Docs Received, Order Completed"
     }
 
     drill_fields: [detail*]
