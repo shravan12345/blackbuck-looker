@@ -47,7 +47,7 @@ dimension: Difference_value {
   type: number
   sql: ${Total_Revenue}-${Payment_received} ;;
 }
-dimension: Avg_business_Past90days {
+dimension: Avg_business_per_month {
   type: number
   sql: ${TABLE}.daily_business_value ;;
 }
