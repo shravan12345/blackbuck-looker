@@ -421,7 +421,7 @@ view: base_order {
   measure: placement_bhiwandi {
     type: count_distinct
     sql: ${base_order.id} ;;
-    label: "Order Placed Today Bhiwandi"
+    label: "Order Procured  Bhiwandi"
 
     filters: {
       field: base_order.status
