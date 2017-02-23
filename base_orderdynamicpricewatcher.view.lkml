@@ -54,4 +54,8 @@ view: base_orderdynamicpricewatcher {
     sql: CASE WHEN ${alarm_price} IS NOT NULL THEN 1 ELSE 0 END ;;
     drill_fields: [id]
   }
+  measure: count_likes_sp {
+    type: count_distinct
+    sql: ${customer_id} ;;
+  }
 }
