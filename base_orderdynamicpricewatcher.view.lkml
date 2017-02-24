@@ -60,6 +60,6 @@ view: base_orderdynamicpricewatcher {
   }
   measure: count_alarm_sp {
     type: count_distinct
-    sql: CASE WHEN ${is_watch} = NO and ${alarm_price} is not null THEN ${customer_id} ELSE NULL END ;;
+    sql: CASE WHEN  ${alarm_price} is not null THEN ${customer_id} ELSE NULL END ;;
   }
 }
