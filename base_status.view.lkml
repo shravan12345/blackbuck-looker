@@ -237,8 +237,13 @@ view: base_status {
     sql: CASE WHEN ${base_order.status} = ${status} THEN ${dt_updated_raw} ELSE NULL END ;;
   }
 
+
   set: detail {
     fields: [base_order.id, base_order.user_id, base_order.status, base_order.end_date, From_City.city, To_city.city, base_order.order_value, base_orderdynamicprice.cft_price, base_order.order_invoice_status]
+  }
+  measure: count_statuschangeoe {
+    type: count_distinct
+    sql: CASE WHEN ${status} = "TRUCK ARRIVAL SOURCE " THEN  ${last_modified_by_id} ELSE NULL END ;;
   }
 }
 

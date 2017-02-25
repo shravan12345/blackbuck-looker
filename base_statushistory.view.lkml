@@ -188,7 +188,7 @@ view: base_statushistory {
   }
   measure: Count_unblocks_app {
     type: sum
-    sql:  CASE WHEN ${transition_type} = 15  THEN 1 ELSE 0 END ;;
+    sql:  CASE WHEN ${transition_type} = 15 or ${transition_type} = 1 THEN 1 ELSE 0 END ;;
     drill_fields: [order_id, transition_type]
   }
 }
