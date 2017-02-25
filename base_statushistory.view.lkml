@@ -186,4 +186,9 @@ view: base_statushistory {
     type: count
     drill_fields: [order_id, status, date_updated]
   }
+  measure: Count_unblocks_app {
+    type: count_distinct
+    sql:  CASE WHEN ${transition_type} = 15  THEN ${order_id} ELSE NULL END ;;
+    drill_fields: [order_id, transition_type]
+  }
 }
