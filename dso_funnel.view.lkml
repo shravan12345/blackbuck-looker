@@ -32,24 +32,34 @@ dimension: Customer_name {
 }
 dimension: Total_Revenue {
   type: number
-  sql: ${TABLE}.total_business ;;
+  sql: (${TABLE}.total_business/100000);;
+  value_format: "0.#"
+  label: "Total Revenue (in Lacs)"
 }
   dimension: Total_Cost {
     type: number
-    sql: ${TABLE}.total_cost ;;
+    sql: (${TABLE}.total_cost/100000) ;;
+    value_format: "0.#"
+    label: "Total Cost (in Lacs)"
   }
 dimension: Payment_received
 {
   type: number
-  sql: ${TABLE}.payment ;;
+  sql: (${TABLE}.payment/100000) ;;
+  value_format: "0.#"
+  label: "Payment Received till date (in lacs)"
 }
 dimension: Difference_value {
   type: number
-  sql: ${Total_Revenue}-${Payment_received} ;;
+  sql: ((${Total_Revenue}-${Payment_received})/100000) ;;
+  value_format: "0.#"
+  label: "Difference Value (in Lacs)"
 }
 dimension: Avg_business_per_month {
   type: number
-  sql: ${TABLE}.daily_business_value ;;
+  sql: ${TABLE}.daily_business_value;;
+  value_format: "0.#"
+  label: "Average Business per month (in Lacs)"
 }
 dimension: Recoinciled_amount {
   type: number
