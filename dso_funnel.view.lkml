@@ -57,7 +57,7 @@ dimension: Difference_value {
 }
 dimension: Avg_business_per_month {
   type: number
-  sql: ${TABLE}.daily_business_value;;
+  sql: (${TABLE}.daily_business_value/100000);;
   value_format: "0.#"
   label: "Average Business per month (in Lacs)"
 }
