@@ -94,13 +94,17 @@ view: base_orderprofitability {
 
   measure: Total_Revenue {
     type: sum
-    sql: CASE WHEN ${total_revenue} > 0 And ${total_cost} > 0 THEN ${total_revenue} ELSE NULL END ;;
+    sql: (CASE WHEN ${total_revenue} > 0 And ${total_cost} > 0 THEN ${total_revenue} ELSE NULL END )/100000;;
+    value_format: "0.#"
+    label: "Total Revenue in Lacs"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
   }
 
   measure: Total_Cost {
     type: sum
-    sql: CASE WHEN ${total_revenue} > 0 And ${total_cost} > 0 THEN ${total_cost} ELSE NULL END ;;
+    sql: (CASE WHEN ${total_revenue} > 0 And ${total_cost} > 0 THEN ${total_cost} ELSE NULL END)/100000;;
+    value_format: "0.#"
+    label: "Total Cost in Lacs"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
   }
 
