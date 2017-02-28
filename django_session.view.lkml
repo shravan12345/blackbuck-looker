@@ -1,18 +1,11 @@
 view: django_session {
-  sql_table_name: newbb.django_session ;;
+
+  sql_table_name: zinka.django_session ;;
 
   dimension_group: expire {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.expire_date ;;
+    timeframes: [time, date, week, month]
+
   }
 
   dimension: session_data {

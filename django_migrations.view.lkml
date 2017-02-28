@@ -1,5 +1,6 @@
 view: django_migrations {
-  sql_table_name: newbb.django_migrations ;;
+
+  sql_table_name: zinka.django_migrations ;;
 
   dimension: id {
     primary_key: yes
@@ -14,15 +15,8 @@ view: django_migrations {
 
   dimension_group: applied {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    timeframes: [time, date, week, month]
+
     sql: ${TABLE}.applied ;;
   }
 

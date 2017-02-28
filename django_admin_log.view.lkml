@@ -1,5 +1,6 @@
 view: django_admin_log {
-  sql_table_name: newbb.django_admin_log ;;
+
+  sql_table_name: zinka.django_admin_log ;;
 
   dimension: id {
     primary_key: yes
@@ -14,15 +15,8 @@ view: django_admin_log {
 
   dimension_group: action {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    timeframes: [time, date, week, month]
+
     sql: ${TABLE}.action_time ;;
   }
 

@@ -1,5 +1,6 @@
 view: base_googleplaces {
-  sql_table_name: newbb.base_googleplaces ;;
+
+  sql_table_name: zinka.base_googleplaces ;;
 
   dimension: id {
     primary_key: yes
@@ -30,12 +31,7 @@ view: base_googleplaces {
   dimension: place_id {
     type: string
     sql: ${TABLE}.place_id ;;
-  }
-
-  dimension: place_type {
-    type: string
-    sql: ${TABLE}.place_type ;;
-  }
+}
 
   dimension: types {
     type: string

@@ -1,5 +1,6 @@
 view: base_bank {
-  sql_table_name: newbb.base_bank ;;
+
+  sql_table_name: zinka.base_bank ;;
 
   dimension: id {
     primary_key: yes
@@ -7,20 +8,10 @@ view: base_bank {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: code {
-    type: string
-    sql: ${TABLE}.code ;;
-  }
-
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
-  }
-
-  dimension: priority {
-    type: number
-    sql: ${TABLE}.priority ;;
-  }
+}
 
   measure: count {
     type: count

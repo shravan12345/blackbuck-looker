@@ -1,5 +1,5 @@
 view: auth_group {
-  sql_table_name: newbb.auth_group ;;
+  sql_table_name: zinka.auth_group ;;
 
   dimension: id {
     primary_key: yes

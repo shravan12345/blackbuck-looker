@@ -1,5 +1,6 @@
 view: auth_user {
-  sql_table_name: newbb.auth_user ;;
+
+  sql_table_name: zinka.auth_user ;;
 
   dimension: id {
     primary_key: yes
@@ -9,21 +10,15 @@ view: auth_user {
 
   dimension_group: date_joined {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    timeframes: [time, date, week, month]
     sql: ${TABLE}.date_joined ;;
+    hidden: yes
   }
 
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
+    hidden: yes
   }
 
   dimension: first_name {
@@ -34,30 +29,26 @@ view: auth_user {
   dimension: is_active {
     type: yesno
     sql: ${TABLE}.is_active ;;
+    hidden: yes
   }
 
   dimension: is_staff {
     type: yesno
     sql: ${TABLE}.is_staff ;;
+    hidden: yes
   }
 
   dimension: is_superuser {
     type: yesno
     sql: ${TABLE}.is_superuser ;;
+    hidden: yes
   }
 
   dimension_group: last_login {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    timeframes: [time, date, week, month]
     sql: ${TABLE}.last_login ;;
+    hidden: yes
   }
 
   dimension: last_name {
@@ -68,15 +59,23 @@ view: auth_user {
   dimension: password {
     type: string
     sql: ${TABLE}.password ;;
+    hidden: yes
   }
 
   dimension: username {
     type: string
     sql: ${TABLE}.username ;;
+    hidden: yes
   }
 
   measure: count {
     type: count
     drill_fields: [id, username, first_name, last_name]
+  }
+
+  dimension: full_name {
+    type: string
+    sql: CONCAT(${first_name},'',${last_name}) ;;
+
   }
 }

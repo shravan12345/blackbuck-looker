@@ -1,5 +1,6 @@
 view: base_apkversion {
-  sql_table_name: newbb.base_apkversion ;;
+
+  sql_table_name: zinka.base_apkversion ;;
 
   dimension: id {
     primary_key: yes
@@ -14,15 +15,8 @@ view: base_apkversion {
 
   dimension_group: dt_added {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    timeframes: [time, date, week, month]
+
     sql: ${TABLE}.dt_added ;;
   }
 

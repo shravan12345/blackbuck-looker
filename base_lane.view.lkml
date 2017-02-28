@@ -1,5 +1,6 @@
 view: base_lane {
-  sql_table_name: newbb.base_lane ;;
+
+  sql_table_name: zinka.base_lane ;;
 
   dimension: id {
     primary_key: yes
@@ -7,14 +8,15 @@ view: base_lane {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: from_location_id {
+  dimension: destination1_id {
     type: number
-    sql: ${TABLE}.from_location_id ;;
+    sql: ${TABLE}.destination1_id ;;
   }
 
-  dimension: to_location_id {
+  dimension: destination2_id {
     type: number
-    sql: ${TABLE}.to_location_id ;;
+    sql: ${TABLE}.destination2_id ;;
+
   }
 
   measure: count {

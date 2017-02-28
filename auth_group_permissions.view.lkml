@@ -1,5 +1,7 @@
 view: auth_group_permissions {
-  sql_table_name: newbb.auth_group_permissions ;;
+
+  sql_table_name: zinka.auth_group_permissions ;;
+
 
   dimension: id {
     primary_key: yes
