@@ -32,20 +32,20 @@ dimension: Customer_name {
 }
 dimension: Total_Revenue {
   type: number
-  sql: NULLIF((${TABLE}.total_business/100000),0);;
+  sql:  IF((${TABLE}.total_business/100000) IS NULL ,0,(${TABLE}.total_business/100000) ) ;;
   value_format: "0.#"
   label: "Total Revenue (in Lacs)"
 }
   dimension: Total_Cost {
     type: number
-    sql: NULLIF((${TABLE}.total_cost/100000),0) ;;
+    sql: IF((${TABLE}.total_cost/100000) IS NULL ,0,(${TABLE}.total_cost/100000))  ;;
     value_format: "0.#"
     label: "Total Cost (in Lacs)"
   }
 dimension: Payment_received
 {
   type: number
-  sql: NULLIF((${TABLE}.payment/100000),0) ;;
+  sql: IF((${TABLE}.payment/100000) IS NULL ,0,(${TABLE}.payment/100000)) ;;
   value_format: "0.#"
   label: "Payment Received till date (in lacs)"
 }
@@ -57,7 +57,7 @@ dimension: Difference_value {
 }
 dimension: Avg_business_per_month {
   type: number
-  sql: (${TABLE}.daily_business_value/100000)*30;;
+  sql: IF((${TABLE}.daily_business_value/100000)*30 IS NULL , 0 ,(${TABLE}.daily_business_value/100000)*30);;
   value_format: "0.#"
   label: "Average Business per month (in Lacs)"
 }
