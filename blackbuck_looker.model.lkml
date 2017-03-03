@@ -669,7 +669,18 @@ explore: base_order {
     sql_on: ${base_orderfinancedetails.settlement_payment_method_id} = ${base_paymentmethod.id} ;;
 
   }
+  join: base_userorderfilters {
+    type: left_outer
+    relationship: many_to_many
+    sql_on: ${base_order.user_id} = ${base_userorderfilters.customer_id} ;;
+  }
+  join: auth_userbd {
+    from: auth_user
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${auth_user.id} = ${base_userorderfilters.user_id} ;;
 
+  }
 
 }
 
