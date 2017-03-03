@@ -32,20 +32,20 @@ dimension: Customer_name {
 }
 dimension: Total_Revenue {
   type: number
-  sql: (${TABLE}.total_business/100000);;
+  sql: NULLIF((${TABLE}.total_business/100000),0);;
   value_format: "0.#"
   label: "Total Revenue (in Lacs)"
 }
   dimension: Total_Cost {
     type: number
-    sql: (${TABLE}.total_cost/100000) ;;
+    sql: NULLIF((${TABLE}.total_cost/100000),0) ;;
     value_format: "0.#"
     label: "Total Cost (in Lacs)"
   }
 dimension: Payment_received
 {
   type: number
-  sql: (${TABLE}.payment/100000) ;;
+  sql: NULLIF((${TABLE}.payment/100000),0) ;;
   value_format: "0.#"
   label: "Payment Received till date (in lacs)"
 }
