@@ -96,7 +96,7 @@ view: base_orderprofitability {
     type: sum
     sql: (CASE WHEN ${total_revenue} > 0 And ${total_cost} > 0 THEN ${total_revenue} ELSE NULL END )/100000;;
     value_format: "0.#"
-    label: "Total Revenue in Lacs"
+    label: "Total Revenue (lacs)"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
   }
 
@@ -104,7 +104,7 @@ view: base_orderprofitability {
     type: sum
     sql: (CASE WHEN ${total_revenue} > 0 And ${total_cost} > 0 THEN ${total_cost} ELSE NULL END)/100000;;
     value_format: "0.#"
-    label: "Total Cost in Lacs"
+    label: "Total Cost (lacs)"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
   }
 
@@ -112,6 +112,7 @@ view: base_orderprofitability {
     type: number
     sql: 100*(${Total_Revenue}-${Total_Cost})/NULLIF(${Total_Revenue},0) ;;
     value_format_name: decimal_1
+    label: "net profitability"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
   }
 
