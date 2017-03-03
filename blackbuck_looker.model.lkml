@@ -671,7 +671,7 @@ explore: base_order {
   }
   join: base_userorderfilters {
     type: left_outer
-    relationship: many_to_many
+    relationship: many_to_one
     sql_on: ${base_order.user_id} = ${base_userorderfilters.customer_id} ;;
   }
   join: auth_userbd {
