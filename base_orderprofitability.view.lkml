@@ -118,7 +118,7 @@ view: base_orderprofitability {
 
   measure: Absolute_Profit {
     type: number
-    sql: 100*(${Total_Revenue}*${Total_Profitability} ;;
+    sql: (${Total_Revenue}*${Total_Profitability})/100 ;;
     value_format_name: decimal_1
     label: "net profit"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
