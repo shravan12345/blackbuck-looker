@@ -70,4 +70,9 @@ dimension: Unrecoinciled_amount {
   type: number
   sql: ${Payment_received} - NULLIF(${Recoinciled_amount},0) ;;
 }
+measure: DSO {
+  type: number
+  sql: (${Total_Revenue}-${Payment_received})*30/${Avg_business_per_month};;
+  value_format_name: decimal_1
+}
 }
