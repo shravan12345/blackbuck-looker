@@ -99,6 +99,16 @@ view: base_orderprofitability {
     label: "Total Revenue (lacs)"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
   }
+  measure: Total_revenue_fill {
+    type: sum
+    sql: ${total_revenue}
+    ;;
+
+  }
+  measure: Total_cost_fill {
+    type: sum
+    sql: ${total_cost} ;;
+  }
 
   measure: Total_Cost {
     type: sum
