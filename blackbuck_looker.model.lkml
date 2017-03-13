@@ -775,6 +775,11 @@ explore: base_orderprofitability {
     relationship: many_to_one
     sql_on: ${base_customeruserprofile.sector_type_id} = ${base_sectortype.id} ;;
   }
+  join: base_status {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${base_orderprofitability.order_id} = ${base_status.order_id} ;;
+  }
 
 
 

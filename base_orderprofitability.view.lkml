@@ -104,11 +104,17 @@ view: base_orderprofitability {
     sql: ${total_revenue}
     ;;
 
-  }
+    filters: {
+      field: base_status.status
+      value: "Payment Done "
+    }}
   measure: Total_cost_fill {
     type: sum
     sql: ${total_cost} ;;
-  }
+    filters: {
+      field: base_status.status
+      value: "Payment Done "
+    }}
 
   measure: Total_Cost {
     type: sum
