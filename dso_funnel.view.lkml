@@ -9,7 +9,8 @@ LEFT JOIN base_customeruserprofile ON base_customeruserprofile.user_id = base_pa
 WHERE base_paymentadvice.receivable_payment_id IS NOT NULL
 GROUP BY 1 ) f on f.customer_id = a.user_id
 LEFT JOIN base_sectortype as m on d.sector_type_id = m.id
-LEFT JOIN base_orderprofitability as j on j.order_id = a.id
+INNER JOIN base_orderprofitability as j on j.order_id = a.id
+LEFT JOIN base_status as p on p.order_id = a.id
 group by 1 ,2,3 ;;
     sql_trigger_value: SELECT CURDATE() ;;
     indexes: ["user_id"]
