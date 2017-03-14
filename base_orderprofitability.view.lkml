@@ -99,18 +99,23 @@ view: base_orderprofitability {
     label: "Total Revenue (lacs)"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
   }
-  measure: Total_revenue_fill {
+  measure: Total_revenue_actual {
     type: sum
-    sql: ${estimated_revenue}
+    sql: ${estimated_revenue}/100000
+
     ;;
+    value_format: "0.#"
+    label: "Total Revenue (in lacs)"
 
     filters: {
       field: base_status.status
       value: "Payment Done "
     }}
-  measure: Total_cost_fill {
+  measure: Total_cost_actual {
     type: sum
-    sql: ${estimated_cost} ;;
+    sql: ${estimated_cost}/100000 ;;
+    value_format: "0.#"
+    label: "Total Cost (in lacs)"
     filters: {
       field: base_status.status
       value: "Payment Done "
@@ -126,7 +131,7 @@ view: base_orderprofitability {
 
   measure: Total_Profitability {
     type: number
-    sql: 100*(${Total_Revenue}-${Total_Cost})/NULLIF(${Total_Revenue},0) ;;
+    sql: 100*(${Total_revenue_actual}-${Total_cost_actual})/NULLIF(${Total_revenue_actual},0) ;;
     value_format_name: decimal_1
     label: "net profitability"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
@@ -134,7 +139,7 @@ view: base_orderprofitability {
 
   measure: Absolute_Profit {
     type: number
-    sql: (${Total_Revenue}*${Total_Profitability})/100 ;;
+    sql: (${Total_revenue_actual}*${Total_Profitability})/100 ;;
     value_format_name: decimal_1
     label: "net profit"
     drill_fields: [order_id, base_order.user_id, auth_user.full_name, From_City.city, To_city.city, base_order.end_date, total_revenue, total_cost, total_profitability]
