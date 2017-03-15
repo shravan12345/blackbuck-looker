@@ -1,6 +1,6 @@
 view: dso_funnel {
   derived_table: {
-    sql: Select m.sector_name, a.user_id ,d.short_name as Customer_name, sum(j.estimated_revenue) as total_business, sum(j.estimated_cost) as total_cost  , c.payment ,f.billed_amt, e.daily_business_value  as daily_business_value from base_order as a left join ( Select b.customer_id , sum(b.amount) as payment from base_receivablepayment as b group by 1) c  on a.user_id = c.customer_id left join
+    sql: Select m.sector_name, a.user_id ,d.short_name as Customer_name, sum(a.order_value) as total_business, sum(j.estimated_cost) as total_cost  , c.payment ,f.billed_amt, e.daily_business_value  as daily_business_value from base_order as a left join ( Select b.customer_id , sum(b.amount) as payment from base_receivablepayment as b group by 1) c  on a.user_id = c.customer_id left join
           base_customeruserprofile as d  ON d.user_id = a.user_id left join (SELECT a.user_id , b.short_name , sum(a.order_value)/90 as daily_business_value from base_order as a left join base_customeruserprofile as b on a.user_id = b.user_id where a.end_date > (DATE(NOW()) - INTERVAL 90 DAY) GROUP BY 1 ) e ON e.user_id = a.user_id
           left join (SELECT base_paymentadvice.customer_id, base_customeruserprofile.short_name, SUM( base_payments.billed_amt ) as billed_amt
 FROM base_paymentadvice
@@ -10,7 +10,6 @@ WHERE base_paymentadvice.receivable_payment_id IS NOT NULL
 GROUP BY 1 ) f on f.customer_id = a.user_id
 LEFT JOIN base_sectortype as m on d.sector_type_id = m.id
 INNER JOIN base_orderprofitability as j on j.order_id = a.id
-LEFT JOIN base_status as p on p.order_id = a.id
 group by 1 ,2,3 ;;
     sql_trigger_value: SELECT CURDATE() ;;
     indexes: ["user_id"]

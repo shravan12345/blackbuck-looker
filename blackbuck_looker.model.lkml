@@ -581,6 +581,11 @@ explore: base_order {
     relationship: many_to_one
     sql_on: ${base_spnumber.user_id} = ${base_order.supply_partner_id} ;;
   }
+  join: bbauth_uservalidation {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${bbauth_uservalidation.user_id} = ${base_spnumber.user_id} ;;
+  }
   join: base_ownernumber {
     from: base_userprofile
     type: left_outer
