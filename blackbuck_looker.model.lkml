@@ -1060,8 +1060,7 @@ explore: base_truckdocuments {}
 # - explore: base_truckpreferredlocation
 #
 # - explore: base_trucktrack
-#
-# - explore: base_trucktrackingdevice
+# explore: base_trucktrackingdevice
 #
 # - explore: base_trucktrackstatus
 #

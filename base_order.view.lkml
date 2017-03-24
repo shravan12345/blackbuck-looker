@@ -212,13 +212,13 @@ view: base_order {
   dimension: num_loading_points {
     type: number
     sql: ${TABLE}.num_loading_points ;;
-    hidden: yes
+
   }
 
   dimension: num_unloading_points {
     type: number
     sql: ${TABLE}.num_unloading_points ;;
-    hidden: yes
+
   }
 
   dimension: ops_user_id {
@@ -236,6 +236,7 @@ view: base_order {
     type: string
     sql: ${TABLE}.order_invoice_status ;;
   }
+
 
   dimension: order_value {
     type: number

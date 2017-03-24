@@ -188,4 +188,8 @@ view: base_orderdynamicprice {
 
     drill_fields: [order_id, surge_charge, surge_enabled, price_date]
   }
+  measure: maximum_price_m {
+    type: number
+    sql: ${maximum_price} ;;
+  }
 }
