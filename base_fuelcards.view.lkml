@@ -23,6 +23,10 @@ view: base_fuelcards {
     sql: ${TABLE}.card_number ;;
   }
 
+  dimension: card_number_conc {
+    type: string
+    sql: CONCAT("#",${TABLE}.card_number) ;;
+  }
   dimension: fuel_partner_id {
     type: number
     sql: ${TABLE}.fuel_partner_id ;;
