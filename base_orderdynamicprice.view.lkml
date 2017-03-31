@@ -192,4 +192,8 @@ view: base_orderdynamicprice {
     type: number
     sql: ${maximum_price} ;;
   }
+  measure: minimum_price_m {
+    type: number
+    sql: ${minimum_price} ;;
+  }
 }
