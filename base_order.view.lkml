@@ -535,7 +535,7 @@ view: base_order {
 
   dimension: Lane_name {
     type: string
-    sql: CONCAT(From_City.city,'',To_city.city) ;;
+    sql: CONCAT(From_City.city,'',To_city.city,'',base_trucktype.trucktype) ;;
   }
 
   measure: Transit_time {
