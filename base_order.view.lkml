@@ -987,7 +987,10 @@ view: base_order {
     type: sum
     sql: NULLIF(${order_value},0) ;;
   }
-
+  dimension: Lane {
+    type: string
+    sql: CONCAT(${From_City.city},${To_city.city},${base_trucktype.truck_type}) ;;
+  }
 
 
 

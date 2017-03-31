@@ -268,4 +268,6 @@ view: base_truck {
     sql: CASE WHEN ${home_location_id} THEN ${From_City.city} ;;
 
   }
+
+
 }
