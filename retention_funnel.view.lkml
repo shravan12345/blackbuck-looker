@@ -38,7 +38,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
     type: count_distinct
     sql: ${TABLE}.supply_partner_id ;;
   }
-  measure: total_orders {
+  dimension: total_orders {
     type: number
     sql: ${TABLE}.number_of_orders ;;
   }
