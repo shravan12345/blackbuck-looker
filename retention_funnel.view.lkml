@@ -43,7 +43,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
 
   dimension: number_of_active_months {
     type: number
-    sql: if(${TABLE}.first_order_month<${TABLE}.order_month,${TABLE}.order_month - ${TABLE}.first_order_month,12+${TABLE}.order_month - ${TABLE}.first_order_month) ;;
+    sql: if(${TABLE}.first_order_month<=${TABLE}.order_month,${TABLE}.order_month - ${TABLE}.first_order_month,12+${TABLE}.order_month - ${TABLE}.first_order_month) ;;
   }
 
 
