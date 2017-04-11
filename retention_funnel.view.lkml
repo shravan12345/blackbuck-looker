@@ -44,7 +44,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
   }
   dimension: months_till_latest_order {
     type: number
-    sql: if(${TABLE}.first_order_month < ${TABLE}.order_month,timestampdiff('month',${TABLE}.first_order_month,${TABLE}.order_month), timestampdiff('month',${TABLE}.first_order_month,12+${TABLE}.order_month));;
+    sql: if(${TABLE}.first_order_month < ${TABLE}.order_month,TIMESTAMPDIFF(month,${TABLE}.first_order_month,${TABLE}.order_month), TIMESTAMPDIFF(month,${TABLE}.first_order_month,12+${TABLE}.order_month));;
   }
   measure: total_active_users {
     type: count_distinct
