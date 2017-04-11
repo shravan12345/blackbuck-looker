@@ -33,8 +33,8 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
     sql: ${TABLE}.order_month ;;
   }
   measure: total_users {
-    type: count_distinct
-    sql: ${TABLE}.supply_partner_id ;;
+    type: sum
+    sql: if(EXTRACT(MONTH FROM NOW()) > ${TABLE}.first_order_month,EXTRACT(MONTH FROM NOW()) - ${TABLE}.first_order_month,12+EXTRACT(MONTH FROM NOW()) - ${TABLE}.first_order_month)  ;;
   }
   dimension: total_orders {
     type: number
@@ -53,7 +53,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
 
   filters: {
     field: total_orders
-    value: ">0"
+    value: ">=1"
   }
 
   }
