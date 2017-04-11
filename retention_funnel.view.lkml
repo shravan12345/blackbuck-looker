@@ -1,7 +1,7 @@
 view: retention_funnel {
   derived_table: {
-    sql: SELECT CAST(@rownum := @rownum + 1 AS UNSIGNED) AS prim_key, x.* FROM(SELECT a.supply_partner_id, MONTH( MIN( a.end_date ) ) as first_order_month, data.order_month as order_month, data.number_of_orders
- AS number_of_orders FROM base_order AS a
+    sql: SELECT CAST(@rownum := @rownum + 1 AS UNSIGNED) AS prim_key, x.* FROM(SELECT a.supply_partner_id, MONTH( MIN( a.end_date ) ) as first_order_month, data.order_month as order_month, COALESCE(data.number_of_orders,0)
+ AS number_of_orders,if(EXTRACT(MONTH FROM NOW())>=MONTH(MIN(a.end_date)),EXTRACT(MONTH FROM NOW()) - MONTH(MIN(a.end_date))+1,13+EXTRACT(MONTH FROM NOW()) - MONTH(MIN(a.end_date))) as total_users FROM base_order AS a
 LEFT JOIN (
 
 SELECT a.supply_partner_id AS sp_id, MONTH( a.end_date ) AS order_month, COUNT( a.id ) AS number_of_orders
@@ -33,8 +33,9 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
     sql: ${TABLE}.order_month ;;
   }
   measure: total_users {
-    type: count_distinct
-    sql: ${TABLE}.supply_partner_id ;;
+    type: sum_distinct
+    sql_distinct_key: ${TABLE}.prim_key ;;
+    sql: ${TABLE}.total_users;;
   }
   dimension: total_orders {
     type: number
@@ -48,13 +49,10 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
 
 
   measure: total_active_users {
-    type: count_distinct
-    sql: ${TABLE}.supply_partner_id ;;
+    type: count
 
-  filters: {
-    field: total_orders
-    value: ">1"
-  }
+
+
 
   }
   measure: percent_of_cohort_active {
