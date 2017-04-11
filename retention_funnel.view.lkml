@@ -22,9 +22,8 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
     type: number
     sql: ${TABLE}.supply_partner_id ;;
   }
-  dimension_group: first_order_month {
-    type: time
-    timeframes: [month]
+  dimension: first_order_month {
+    type: number
     sql: ${TABLE}.first_order_month ;;
 
 
@@ -42,10 +41,8 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
     type: number
     sql: ${TABLE}.number_of_orders ;;
   }
-  dimension: months_till_latest_order {
-    type: number
-    sql: if(${TABLE}.first_order_month < ${TABLE}.order_month,TIMESTAMPDIFF(month,${TABLE}.first_order_month,${TABLE}.order_month), TIMESTAMPDIFF(month,${TABLE}.first_order_month,12+${TABLE}.order_month));;
-  }
+
+
   measure: total_active_users {
     type: count_distinct
     sql: ${TABLE}.supply_partner_id ;;
