@@ -53,7 +53,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
 
   filters: {
     field: total_orders
-    value: ">=1"
+    value: ">1"
   }
 
   }
