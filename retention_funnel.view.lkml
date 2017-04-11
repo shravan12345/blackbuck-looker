@@ -34,7 +34,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
   }
   measure: total_users {
     type: sum
-    sql: ${TABLE}.total_users/(EXTRACT(MONTH FROM NOW()) ;;
+    sql: ${TABLE}.total_users/(EXTRACT(MONTH FROM NOW())) ;;
   }
   dimension: total_orders {
     type: number
