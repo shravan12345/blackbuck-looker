@@ -1,7 +1,7 @@
 view: retention_funnel {
   derived_table: {
     sql: SELECT CAST(@rownum := @rownum + 1 AS UNSIGNED) AS prim_key, x.* FROM(SELECT a.supply_partner_id, MONTH( MIN( a.end_date ) ) as first_order_month, data.order_month as order_month, data.number_of_orders
- AS number_of_orders FROM base_order AS a
+ AS number_of_orders,if(EXTRACT(MONTH FROM NOW())>MONTH(MIN(a.end_date)),EXTRACT(MONTH FROM NOW()) - MONTH(MIN(a.end_date)),12+EXTRACT(MONTH FROM NOW()) - MONTH(MIN(a.end_date))) as total_users FROM base_order AS a
 LEFT JOIN (
 
 SELECT a.supply_partner_id AS sp_id, MONTH( a.end_date ) AS order_month, COUNT( a.id ) AS number_of_orders
@@ -34,7 +34,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
   }
   measure: total_users {
     type: sum
-    sql: if(EXTRACT(MONTH FROM NOW()) > ${TABLE}.first_order_month,EXTRACT(MONTH FROM NOW()) - ${TABLE}.first_order_month,12+EXTRACT(MONTH FROM NOW()) - ${TABLE}.first_order_month)  ;;
+    sql: ${TABLE}.total_users  ;;
   }
   dimension: total_orders {
     type: number
