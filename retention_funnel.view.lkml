@@ -1,6 +1,6 @@
 view: retention_funnel {
   derived_table: {
-    sql: CAST(@rownum := @rownum + 1 AS UNSIGNED) AS prim_key, x.* FROM(SELECT a.supply_partner_id, MONTH( MIN( a.end_date ) ) as first_order_month, data.order_month as order_month, data.number_of_orders
+    sql: SELECT CAST(@rownum := @rownum + 1 AS UNSIGNED) AS prim_key, x.* FROM(SELECT a.supply_partner_id, MONTH( MIN( a.end_date ) ) as first_order_month, data.order_month as order_month, data.number_of_orders
  AS number_of_orders FROM base_order AS a
 LEFT JOIN (
 
@@ -44,7 +44,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
   }
   dimension: months_till_latest_order {
     type: number
-    sql: if(${TABLE}.first_order_month < ${TABLE}.order_month,datediff('month',${TABLE}.first_order_month,${TABLE}.order_month), datediff('month',${TABLE}.first_order_month,12+${TABLE}.order_month));;
+    sql: if(${TABLE}.first_order_month < ${TABLE}.order_month,timestampdiff('month',${TABLE}.first_order_month,${TABLE}.order_month), timestampdiff('month',${TABLE}.first_order_month,12+${TABLE}.order_month));;
   }
   measure: total_active_users {
     type: count_distinct
