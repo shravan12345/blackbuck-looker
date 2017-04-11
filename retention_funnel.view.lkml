@@ -28,9 +28,8 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
 
 
   }
-  dimension_group: order_month {
-    type: time
-    timeframes: [month]
+  dimension: order_month {
+    type: number
     sql: ${TABLE}.order_month ;;
   }
   measure: total_users {
