@@ -41,6 +41,11 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
     sql: ${TABLE}.number_of_orders ;;
   }
 
+  dimension: number_of_active_months {
+    type: number
+    sql: if(${TABLE}.first_order_month<${TABLE}.order_month,${TABLE}.order_month - ${TABLE}.first_order_month,12+${TABLE}.order_month - ${TABLE}.first_order_month) ;;
+  }
+
 
   measure: total_active_users {
     type: count_distinct
