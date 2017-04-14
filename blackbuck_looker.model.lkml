@@ -1013,7 +1013,7 @@ explore: base_truck {
   join: base_trucktrackingdevice {
     type: left_outer
     relationship: one_to_one
-    sql: ${base_truck.id}= ${base_trucktrackingdevice.truck_id};;
+    sql_on: ${base_truck.id}= ${base_trucktrackingdevice.truck_id};;
 
   }
 
