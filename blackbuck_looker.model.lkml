@@ -1010,6 +1010,12 @@ explore: base_truck {
     relationship: many_to_one
     sql_on: ${base_truck.home_location_id} = ${To_city.id} ;;
   }
+  join: base_trucktrackingdevice {
+    type: left_outer
+    relationship: one_to_one
+    sql: ${base_truck.id}= ${base_trucktrackingdevice.truck_id};;
+
+  }
 
   join: base_order {
     type: left_outer

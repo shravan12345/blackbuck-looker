@@ -34,7 +34,7 @@ ORDER BY  `a`.`supply_partner_id` ASC)  as x, (SELECT @rownum := 0) r ;;
   }
   measure: total_users {
     type: sum_distinct
-    sql_distinct_key: ${TABLE}.prim_key ;;
+    sql_distinct_key: ${TABLE}.supply_partner_id ;;
     sql: ${TABLE}.total_users;;
   }
   dimension: total_orders {
