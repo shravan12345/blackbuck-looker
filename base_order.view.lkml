@@ -18,6 +18,7 @@ view: base_order {
     hidden: yes
   }
 
+
   dimension: adhoc_rate {
     type: number
     sql: ${TABLE}.adhoc_rate ;;
@@ -491,6 +492,10 @@ view: base_order {
     drill_fields: [supply_partner_id, auth_user.full_name, placement]
 
 
+  }
+  measure: per_ton_rate_median {
+    type: median
+    sql: (${order_value}/${base_orderinvoicerelatedinfo.weight})/1000 ;;
   }
 
   measure: Date {
