@@ -495,7 +495,7 @@ view: base_order {
   }
   measure: per_ton_rate_median {
     type: median
-    sql: (${order_value}/${base_orderinvoicerelatedinfo.weight}) ;;
+    sql: (${order_value}/${base_orderinvoicerelatedinfo.weight})*1000 ;;
   }
 
   measure: Date {
