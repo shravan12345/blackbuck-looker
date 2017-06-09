@@ -171,7 +171,6 @@ view: base_customeruserprofile {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
-    hidden: yes
   }
 
   dimension: no_order_in_one_invoice {
