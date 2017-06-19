@@ -903,6 +903,11 @@ view: base_order {
     sql: CASE WHEN ${count} <= 5 THEN ${count}*50 WHEN ${count} > 5 THEN 250 + (${count}-5)*10 ELSE 0 END ;;
   }
 
+  measure: indent_compliance  {
+    type: number
+    sql: CASE WHEN TIMESTAMPDIFF(day,${start_date},${end_date}) > 0 and ${start_hour_of_day} <  16 THEN ${base_order.id} ELSE 0 END  ;;
+  }
+
   dimension: Flag {
     type: yesno
     sql: DATE(${end_date} = DATE(${start_date}) ;;
