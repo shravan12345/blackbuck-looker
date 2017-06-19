@@ -522,6 +522,11 @@ view: base_order {
     drill_fields: [id, Responsiveness_Index]
   }
 
+  measure: morning_placement {
+    type: count_distinct
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${end_raw},${TAS.dt_updated_raw}) < 2 THEN ${id} ELSE 0 END;;
+  }
+
   measure: Avg_Order_Rate {
     type: average
     sql: NULLIF(${order_value},0) ;;
@@ -997,6 +1002,7 @@ view: base_order {
     type: string
     sql: CONCAT(${From_City.city},${To_city.city},${base_trucktype.truck_type}) ;;
   }
+
 
 
 
