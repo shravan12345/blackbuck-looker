@@ -524,7 +524,7 @@ view: base_order {
 
   measure: morning_placement {
     type: count_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${end_raw},${TAS.dt_updated_raw}) < 2 THEN ${id} ELSE 0 END;;
+    sql: CASE WHEN TIMESTAMPDIFF(day,${end_raw},${TAS.dt_updated_raw}) == 0 and TIMESTAMPDIFF(hour,${end_raw},${TAS.dt_updated_raw}) < 11 THEN ${id} ELSE 0 END;;
   }
 
   measure: Avg_Order_Rate {
