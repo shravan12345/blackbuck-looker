@@ -79,6 +79,10 @@ view: ecom_fuel_banktransaction {
     }
 
   }
+  measure: count {
+    type: count
+  }
+
 
   measure: count_tran_dec {
     type: count
