@@ -80,7 +80,8 @@ view: ecom_fuel_banktransaction {
 
   }
   measure: count {
-    type: count
+    type: count_distinct
+    sql: ${payment_id} ;;
   }
 
 
