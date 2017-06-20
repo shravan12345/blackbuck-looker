@@ -106,6 +106,11 @@ view: ecom_fuel_banktransaction {
     }
     }
 
+  measure: amount_received {
+    type: sum
+    sql: ${amount} ;;
+  }
+
     measure: sum_tran_dec {
       type: sum
       sql: ${amount} ;;
@@ -115,6 +120,8 @@ view: ecom_fuel_banktransaction {
         field: dt_added_month
         value: "2016/12"
       }
+
+
 
   }
 
