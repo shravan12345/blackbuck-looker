@@ -448,7 +448,7 @@ view: base_order {
 
   measure: placement_index {
     type: number
-    sql: 1.0* ${placement}/ NULLIF(${count}, 0) ;;
+    sql: 1.0* ${placement_bhiwandi}/ NULLIF(${count}, 0) ;;
     drill_fields: [detail*]
     value_format_name: percent_1
   }
@@ -524,7 +524,7 @@ view: base_order {
 
   measure: morning_placement {
     type: count_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(day,${end_raw},${TAS.dt_updated_raw}) == 0 and TIMESTAMPDIFF(hour,${end_raw},${TAS.dt_updated_raw}) < 11 THEN ${id} ELSE 0 END;;
+    sql: CASE WHEN TIMESTAMPDIFF(day,${TAS.dt_updated_raw},${end_raw}) >= 0 and TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},${end_raw}) > -3 THEN ${id} ELSE 0 END;;
   }
 
   measure: Avg_Order_Rate {
