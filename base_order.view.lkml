@@ -893,20 +893,20 @@ view: base_order {
   }
   measure: Acceptance_alert {
     type: number
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},${TAS.dt_updated_raw}) >  2 THEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},${TAS.dt_updated_raw}) ELSE 0 END  ;;
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now()) >  2 THEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now()) ELSE 0 END  ;;
   }
 
   measure: TAS_alert {
     type: number
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},${ADV.dt_updated_raw}) >  6 THEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},${ADV.dt_updated_raw})  ELSE 0 END  ;;
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now()) >  6 THEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now())  ELSE 0 END  ;;
   }
   measure: ADV_alert {
     type: number
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${ADV.dt_updated_raw},${PP.dt_updated_raw}) >  1 THEN TIMESTAMPDIFF(hour,${ADV.dt_updated_raw},${PP.dt_updated_raw}) ELSE 0 END  ;;
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${ADV.dt_updated_raw},now()) >  1 THEN TIMESTAMPDIFF(hour,${ADV.dt_updated_raw},now()) ELSE 0 END  ;;
   }
   measure: PP_alert {
     type: number
-    sql: CASE WHEN TIMESTAMPDIFF(minute,${PP.dt_updated_raw},${TDS.dt_updated_raw}) >  30 THEN TIMESTAMPDIFF(hour,${PP.dt_updated_raw},${TDS.dt_updated_raw}) ELSE 0 END  ;;
+    sql: CASE WHEN TIMESTAMPDIFF(minute,${PP.dt_updated_raw},now()) >  30 THEN TIMESTAMPDIFF(hour,${PP.dt_updated_raw},now()) ELSE 0 END  ;;
   }
   measure: avg_rate_per_km {
     type: average
