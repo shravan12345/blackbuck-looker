@@ -898,7 +898,7 @@ view: base_order {
 
   measure: TAS_alert {
     type: number
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now()) >  6 THEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now())  ELSE 0 END  ;;
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now()) >  2 THEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now())  ELSE 0 END  ;;
   }
   measure: ADV_alert {
     type: number
