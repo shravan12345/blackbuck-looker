@@ -922,7 +922,7 @@ view: base_order {
   measure: indent_compliance  {
     type: count_distinct
     sql: CASE WHEN TIMESTAMPDIFF(day,${start_date},DATE(Now())) > 0 and ${start_hour_of_day} <  16 THEN ${base_order.id} ELSE 0 END  ;;
-    drill_fields: [id,start_time]
+    drill_fields: [id,start_time,end_time]
   }
 
   dimension: Flag {
