@@ -920,8 +920,8 @@ view: base_order {
   }
 
   measure: indent_compliance  {
-    type: count_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(day,${start_time},${end_time}) > 1 and ${start_hour_of_day} <  16 THEN ${base_order.id} ELSE 0 END  ;;
+    type: sum
+    sql: CASE WHEN TIMESTAMPDIFF(day,${start_time},${end_time}) > 0 and ${start_hour_of_day} <  16 THEN 1 ELSE 0 END  ;;
     drill_fields: [id,start_time,end_time]
   }
 
