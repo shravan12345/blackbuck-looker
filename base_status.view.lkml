@@ -59,7 +59,7 @@ view: base_status {
 
   dimension_group: dt_added {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month,hour_of_day]
     sql: ${TABLE}.dt_added ;;
   }
 
