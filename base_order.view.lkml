@@ -921,7 +921,7 @@ view: base_order {
 
   measure: indent_compliance  {
     type: sum
-    sql: CASE WHEN TIMESTAMPDIFF(day,${start_time},${end_time}) > 0 and ${start_hour_of_day} <  16 THEN 1 ELSE 0 END  ;;
+    sql: if((TIMESTAMPDIFF(day,${start_time},${end_time}) > 1) or (TIMESTAMPDIFF(day,${start_time},${end_time}) = 1 and ${start_hour_of_day} < 16) ,1,0) ;;
     drill_fields: [id,start_time,end_time]
   }
 
