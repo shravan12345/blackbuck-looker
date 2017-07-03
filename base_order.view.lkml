@@ -523,9 +523,10 @@ view: base_order {
   }
 
   measure: morning_placement {
-    type: count_distinct
-    sql: CASE WHEN TIMESTAMPDIFF(day,${TAS.dt_updated_raw},${end_raw}) >= 0 and TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},${end_raw}) > -3 THEN ${id} ELSE 0 END;;
-  }
+    type: sum
+    sql: if((TIMESTAMPDIFF(day,${TAS.dt_added_raw},${end_raw}) > 0 ) or (TIMESTAMPDIFF(day,${TAS.dt_updated_raw},${end_raw}) = 0 and ${TAS.dt_added_hour_of_day} < 11),1,0) ;;
+    drill_fields: [id, TAS.dt_added_raw,end_time]
+    }
 
   measure: Avg_Order_Rate {
     type: average
