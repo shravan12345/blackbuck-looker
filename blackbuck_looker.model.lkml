@@ -72,6 +72,8 @@ explore: auth_user {
 
 explore: base_botrecording {}
 
+explore: deep_script {}
+
 explore: base_bottracktrace {}
 
 #  - explore: base_branch
