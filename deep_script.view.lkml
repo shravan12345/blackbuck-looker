@@ -1,6 +1,6 @@
 view: deep_script {
   derived_table: {
-    sql: select date(m.start_date), m.id as 'Order ID', m.status as 'Current Status',
+    sql: select date(m.start_date) as 'Date', m.id as 'Order_ID', m.status as 'Current_Status',
 (case when timestampdiff(minute, oa.dt_added, tas.dt_added) < 60 then "Less than 1 hour"
     when timestampdiff(minute, oa.dt_added, tas.dt_added) between 61 and 240 then "1 hour - 4 hours"
       when timestampdiff(minute, oa.dt_added, tas.dt_added) between 241 and 480 then "4 hour - 8 hours"
@@ -59,6 +59,19 @@ FROM `base_status` WHERE status = "Order Accepted") as oa on oa.order_id = m.id
 where date(m.start_date) = current_date()-2 ;;
   }
 
+  dimension_group: Date {
+    type: time
+    timeframes: [time, date, week, month, hour, hour_of_day, raw, day_of_week]
+    sql: ${TABLE}.Date ;;
+  }
+  dimension: Order_ID {
+    type: number
+    sql: ${TABLE}.Order_ID ;;
+  }
+  dimension: Current_status {
+    type: string
+    sql: ${TABLE}.Current_Status ;;
+  }
   dimension: TA_TAS {
     type: string
     sql: ${TABLE}.TA_TAS ;;
