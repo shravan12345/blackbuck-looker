@@ -1,6 +1,6 @@
 view: deep_script {
   derived_table: {
-    sql: select date(m.start_date) as 'Date', m.id as 'Order_ID', m.status as 'Current Status',
+    sql: select date(m.start_date) as 'Date', m.id as 'Order_ID', m.status as 'Current_Status',
 (case when timestampdiff(minute, oa.dt_added, tas.dt_added) < 60 then "a. Less than 1 hour"
     when timestampdiff(minute, oa.dt_added, tas.dt_added) between 61 and 240 then "b. 1 hour - 4 hours"
       when timestampdiff(minute, oa.dt_added, tas.dt_added) between 241 and 480 then "c. 4 hour - 8 hours"
