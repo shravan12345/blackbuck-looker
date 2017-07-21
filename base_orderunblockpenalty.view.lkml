@@ -9,7 +9,15 @@ view: base_orderunblockpenalty {
 
   dimension_group: accepted {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.accepted_time ;;
   }
 
@@ -25,13 +33,29 @@ view: base_orderunblockpenalty {
 
   dimension_group: dt_added {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.dt_added ;;
   }
 
   dimension_group: dt_updated {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.dt_updated ;;
   }
 
@@ -82,7 +106,15 @@ view: base_orderunblockpenalty {
 
   dimension_group: unblocked {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.unblocked_time ;;
   }
 

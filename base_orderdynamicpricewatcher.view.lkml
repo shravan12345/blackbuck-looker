@@ -49,8 +49,17 @@ view: base_orderdynamicpricewatcher {
     sql: ${TABLE}.watch_start_time ;;
   }
 
-  measure: count {
-    type: count
+  measure: count_alarm {
+    type: sum
+    sql: CASE WHEN ${alarm_price} IS NOT NULL THEN 1 ELSE 0 END ;;
     drill_fields: [id]
+  }
+  measure: count_likes_sp {
+    type: count_distinct
+    sql: ${customer_id} ;;
+  }
+  measure: count_alarm_sp {
+    type: count_distinct
+    sql: CASE WHEN  ${alarm_price} is not null THEN ${customer_id} ELSE NULL END ;;
   }
 }

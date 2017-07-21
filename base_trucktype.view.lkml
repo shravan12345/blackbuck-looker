@@ -1,4 +1,5 @@
 view: base_trucktype {
+
   sql_table_name: zinka.base_trucktype ;;
 
   dimension: id {
@@ -105,5 +106,6 @@ view: base_trucktype {
   measure: count {
     type: count
     drill_fields: [id, sme_app_name]
+
   }
 }

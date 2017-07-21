@@ -18,6 +18,7 @@ view: base_order {
     hidden: yes
   }
 
+
   dimension: adhoc_rate {
     type: number
     sql: ${TABLE}.adhoc_rate ;;
@@ -124,6 +125,7 @@ view: base_order {
 
   dimension_group: end {
     type: time
+    label: "Shipment Date"
     timeframes: [time, date, week, month, hour, hour_of_day, raw, day_of_week]
     sql: ${TABLE}.end_date ;;
   }
@@ -211,13 +213,13 @@ view: base_order {
   dimension: num_loading_points {
     type: number
     sql: ${TABLE}.num_loading_points ;;
-    hidden: yes
+
   }
 
   dimension: num_unloading_points {
     type: number
     sql: ${TABLE}.num_unloading_points ;;
-    hidden: yes
+
   }
 
   dimension: ops_user_id {
@@ -235,6 +237,7 @@ view: base_order {
     type: string
     sql: ${TABLE}.order_invoice_status ;;
   }
+
 
   dimension: order_value {
     type: number
@@ -311,6 +314,7 @@ view: base_order {
 
   dimension: status {
     type: string
+    label: "Current Status"
     sql: ${TABLE}.status ;;
   }
 
@@ -395,7 +399,8 @@ view: base_order {
 
   measure: count {
     type: count_distinct
-    sql: ${TABLE}.id ;;
+    label: "Total Orders "
+    sql:   ${TABLE}.id  ;;
 
     filters: {
       field: base_order.status
@@ -415,10 +420,35 @@ view: base_order {
 
     drill_fields: [detail*]
   }
+  measure: procurement_bhiwandi {
+    type: count_distinct
+    sql: ${base_order.id} ;;
+    label: "Order Procured  Bhiwandi"
+
+    filters: {
+      field: base_order.status
+      value: "Order Accepted,Order Blocked,Truck Arrival Source, LR Generated, Advance DocVerification, Advance Docs Rejected, Advance Docs Approval Requested, Payment Pending, Advance Payment Rejected, Payment Done, Order Finalized, Started Trip, Truck Departure Source, Truck In-Transit, Truck Arrival Destination, Truck Unloading, Truck Departure Destination, Settlement DocVerification, Settlement Docs Rejected, Settlement Docs Approval Requested, Settlement Pending, Settlement Payment Rejected, Settlement Done, Docs Pending, Docs Received, Order Completed"
+    }
+
+    drill_fields: [detail*]
+  }
+
+  measure: placement_bhiwandi {
+    type: count_distinct
+    sql: ${base_order.id} ;;
+    label: "Order Placed  Bhiwandi"
+
+    filters: {
+      field: base_order.status
+      value: "Settlement Issue Raised,Truck Owner Verification Rejected,Settlement Initiated,Settlement Hold,Settlement Images Uploaded,Transit Issue,Transit Exception,Waiting For Customer Invoice,Waiting For Loading, Truck Owner Verification,Truck Checklist Verified,Truck Arrival Source, LR Generated, Advance DocVerification, Advance Docs Rejected, Advance Docs Approval Requested, Payment Pending, Advance Payment Rejected, Payment Done, Order Finalized, Started Trip, Truck Departure Source, Truck In-Transit, Truck Arrival Destination, Truck Unloading, Truck Departure Destination, Settlement DocVerification, Settlement Docs Rejected, Settlement Docs Approval Requested, Settlement Pending, Settlement Payment Rejected, Settlement Done, Docs Pending, Docs Received, Order Completed"
+    }
+
+    drill_fields: [detail*]
+  }
 
   measure: placement_index {
     type: number
-    sql: 1.0* ${placement}/ NULLIF(${count}, 0) ;;
+    sql: 1.0* ${placement_bhiwandi}/ NULLIF(${count}, 0) ;;
     drill_fields: [detail*]
     value_format_name: percent_1
   }
@@ -456,6 +486,19 @@ view: base_order {
     }
   }
 
+  measure: SP_Count {
+    type: count_distinct
+    sql: ${supply_partner_id} ;;
+    drill_fields: [supply_partner_id, auth_user.full_name, placement]
+
+
+  }
+  measure: per_ton_rate_median {
+    type: median
+    sql: (${order_value}/${base_orderinvoicerelatedinfo.weight})*1000 ;;
+    value_format_name: decimal_1
+  }
+
   measure: Date {
     type: date
     sql: ${TABLE}.end_date ;;
@@ -479,6 +522,12 @@ view: base_order {
     drill_fields: [id, Responsiveness_Index]
   }
 
+  measure: morning_placement {
+    type: sum
+    sql: if((TIMESTAMPDIFF(day,${TAS.dt_added_raw},${end_raw}) > 0 ) or (TIMESTAMPDIFF(day,${TAS.dt_updated_raw},${end_raw}) = 0 and ${TAS.dt_added_hour_of_day} < 11),1,0) ;;
+    drill_fields: [id, TAS.dt_added_raw,end_time]
+    }
+
   measure: Avg_Order_Rate {
     type: average
     sql: NULLIF(${order_value},0) ;;
@@ -498,7 +547,7 @@ view: base_order {
 
   dimension: Lane_name {
     type: string
-    sql: CONCAT(From_City.city,'',To_city.city) ;;
+    sql: CONCAT(From_City.city,'',To_city.city,'',base_trucktype.trucktype) ;;
   }
 
   measure: Transit_time {
@@ -843,7 +892,23 @@ view: base_order {
     sql: (${repeat_sp.count}*${supply_breath_calc.supply_breadth})/(${count}*${Avg_Transit_time}) ;;
     value_format_name: decimal_1
   }
+  measure: Acceptance_alert {
+    type: number
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now()) >  2 THEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now()) ELSE 0 END  ;;
+  }
 
+  measure: TAS_alert {
+    type: number
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now()) >  2 THEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now())  ELSE 0 END  ;;
+  }
+  measure: ADV_alert {
+    type: number
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${ADV.dt_updated_raw},now()) >  1 THEN TIMESTAMPDIFF(hour,${ADV.dt_updated_raw},now()) ELSE 0 END  ;;
+  }
+  measure: PP_alert {
+    type: number
+    sql: CASE WHEN TIMESTAMPDIFF(minute,${PP.dt_updated_raw},now()) >  30 THEN TIMESTAMPDIFF(hour,${PP.dt_updated_raw},now()) ELSE 0 END  ;;
+  }
   measure: avg_rate_per_km {
     type: average
     sql: ${order_value}/${distance} ;;
@@ -853,6 +918,12 @@ view: base_order {
   measure: Order_Index_score {
     type: number
     sql: CASE WHEN ${count} <= 5 THEN ${count}*50 WHEN ${count} > 5 THEN 250 + (${count}-5)*10 ELSE 0 END ;;
+  }
+
+  measure: indent_compliance  {
+    type: sum
+    sql: if((TIMESTAMPDIFF(day,${start_time},${end_time}) > 1) or (TIMESTAMPDIFF(day,${start_time},${end_time}) = 1 and ${start_hour_of_day} < 16) ,1,0) ;;
+    drill_fields: [id,start_time,end_time]
   }
 
   dimension: Flag {
@@ -950,4 +1021,12 @@ view: base_order {
     type: sum
     sql: NULLIF(${order_value},0) ;;
   }
+  dimension: Lane {
+    type: string
+    sql: CONCAT(${From_City.city},${To_city.city},${base_trucktype.truck_type}) ;;
+  }
+
+
+
+
 }

@@ -1,4 +1,5 @@
 view: django_content_type {
+
   sql_table_name: zinka.django_content_type ;;
 
   dimension: id {
@@ -25,5 +26,6 @@ view: django_content_type {
   measure: count {
     type: count
     drill_fields: [id, name]
+
   }
 }

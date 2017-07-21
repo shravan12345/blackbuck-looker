@@ -1,4 +1,5 @@
 view: base_bank {
+
   sql_table_name: zinka.base_bank ;;
 
   dimension: id {
@@ -10,7 +11,7 @@ view: base_bank {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
-  }
+}
 
   measure: count {
     type: count

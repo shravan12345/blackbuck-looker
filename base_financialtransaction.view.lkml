@@ -134,4 +134,12 @@ view: base_financialtransaction {
     type: sum
     sql: ${TABLE}.amount ;;
   }
+  measure: fuel_advance_ordercount  {
+    type: sum
+    sql: CASE WHEN ${fuel_partner_id} IS NOT NULL AND ${state} = 2 AND ${payment_reason} = 0 THEN 1 ELSE 0 END ;;
+  }
+  measure: advance_orderscount {
+    type:  count_distinct
+    sql:  CASE WHEN ${state} = 2 AND ${payment_reason} = 0 THEN ${order_id} ELSE NULL END  ;;
+  }
 }

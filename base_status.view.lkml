@@ -59,12 +59,13 @@ view: base_status {
 
   dimension_group: dt_added {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month,hour_of_day]
     sql: ${TABLE}.dt_added ;;
   }
 
   dimension_group: dt_updated {
     type: time
+    label: "Unblock time "
     timeframes: [time, date, week, month, raw,hour_of_day]
     sql: ${TABLE}.dt_updated ;;
   }
@@ -121,6 +122,7 @@ view: base_status {
 
   dimension: transition_comment {
     type: string
+    label: "Unblock Comment"
     sql: ${TABLE}.transition_comment ;;
   }
 
@@ -156,36 +158,42 @@ view: base_status {
 
   measure: count {
     type: count
-    drill_fields: [id, blocked_by_name, driver_name, broker_name]
+    drill_fields: [order_id, blocked_by_name, driver_name, broker_name]
   }
 
   measure: Count_24 {
     type: sum
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 24 AND ${status} = 'Truck Arrival Source' THEN 1 ELSE 0 END ;;
+    label: "Order Procured before shipment date or  Within 24 hrs"
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) <= 24 AND ${status} = 'Order Accepted ' AND ${base_order.manual_placement} = 0 AND ${base_order.status} NOT IN ("Cancelled","Cancelled By Customer","Order Incomplete","Order Processing","KAM Review","Ops Review")  THEN 1 ELSE 0 END ;;
 
-    filters: {
-      field: base_order.status
-      #X# value: [Truck Arrival Source, LR Generated, Advance DocVerification, Advance Docs Rejected, Advance Docs Approval Requested, Payment Pending, Advance Payment Rejected, Payment Done, Order Finalized, Started Trip, Truck Departure Source, Truck In-Transit, Truck Arrival Destination, Truck Unloading, Truck Departure Destination, Settlement DocVerification, Settlement Docs Rejected, Settlement Docs Approval Requested, Settlement Pending, Settlement Payment Rejected, Settlement Done, Docs Pending, Docs Received, Order Completed]
-    }
 
-    drill_fields: [order_id, base_order.end_date, base_order.status]
+
+    drill_fields: [order_id, base_order.end_raw, base_order.status]
+  }
+
+  measure: Count_24_plac {
+    type: sum
+    label: "Order Placed before shipment date or  Within 24 hrs"
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) <= 24 AND ${status} = 'Truck Arrival Source ' AND ${base_order.manual_placement} = 0 AND ${base_order.status} NOT IN ("Cancelled","Cancelled By Customer","Order Incomplete","Order Processing","KAM Review","Ops Review")  THEN 1 ELSE 0 END ;;
+
+
+
+    drill_fields: [order_id, base_order.end_raw, base_order.status]
   }
 
   measure: Count_48 {
     type: sum
-    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) < 48 and TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Truck Arrival Source' THEN 1 ELSE 0 END ;;
+    label: "Order placed within 24 to 48 hrs"
+    sql: CASE WHEN (TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) <= 48 and ${base_order.manual_placement} = 0 and  TIMESTAMPDIFF(hour,${base_order.end_raw},${dt_updated_raw}) > 24) AND ${status} = 'Truck Arrival Source' AND ${base_order.status} NOT IN ("Cancelled","Cancelled By Customer","Order Incomplete","Order Processing","KAM Review","Ops Review")  THEN 1 ELSE 0 END ;;
 
-    filters: {
-      field: base_order.status
-      #X# value: [Truck Arrival Source, LR Generated, Advance DocVerification, Advance Docs Rejected, Advance Docs Approval Requested, Payment Pending, Advance Payment Rejected, Payment Done, Order Finalized, Started Trip, Truck Departure Source, Truck In-Transit, Truck Arrival Destination, Truck Unloading, Truck Departure Destination, Settlement DocVerification, Settlement Docs Rejected, Settlement Docs Approval Requested, Settlement Pending, Settlement Payment Rejected, Settlement Done, Docs Pending, Docs Received, Order Completed]
-    }
+
 
     drill_fields: [order_id, base_order.end_date, base_order.status]
   }
 
   measure: PI_24 {
     type: number
-    sql: 100*${Count_24}/${base_order.count} ;;
+    sql: 100*${Count_24_plac}/${base_order.count} ;;
     value_format_name: decimal_1
     html: <a href={{ base_status.Count_24._link }}> {{ rendered_value }} </a>;;
   }
@@ -229,8 +237,13 @@ view: base_status {
     sql: CASE WHEN ${base_order.status} = ${status} THEN ${dt_updated_raw} ELSE NULL END ;;
   }
 
+
   set: detail {
     fields: [base_order.id, base_order.user_id, base_order.status, base_order.end_date, From_City.city, To_city.city, base_order.order_value, base_orderdynamicprice.cft_price, base_order.order_invoice_status]
+  }
+  measure: count_statuschangeoe {
+    type: count_distinct
+    sql: CASE WHEN ${status} = "TRUCK ARRIVAL SOURCE " THEN  ${last_modified_by_id} ELSE NULL END ;;
   }
 }
 

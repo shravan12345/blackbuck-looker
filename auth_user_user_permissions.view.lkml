@@ -1,5 +1,7 @@
 view: auth_user_user_permissions {
+
   sql_table_name: zinka.auth_user_user_permissions ;;
+
 
   dimension: id {
     primary_key: yes

@@ -1,4 +1,5 @@
 view: base_apkversion {
+
   sql_table_name: zinka.base_apkversion ;;
 
   dimension: id {
@@ -15,6 +16,7 @@ view: base_apkversion {
   dimension_group: dt_added {
     type: time
     timeframes: [time, date, week, month]
+
     sql: ${TABLE}.dt_added ;;
   }
 

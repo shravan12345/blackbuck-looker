@@ -1,4 +1,5 @@
 view: base_role {
+
   sql_table_name: zinka.base_role ;;
 
   dimension: id {

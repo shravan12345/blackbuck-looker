@@ -1,4 +1,5 @@
 view: auth_user_groups {
+
   sql_table_name: zinka.auth_user_groups ;;
 
   dimension: id {

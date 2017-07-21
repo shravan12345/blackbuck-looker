@@ -1,4 +1,5 @@
 view: base_googleplaces {
+
   sql_table_name: zinka.base_googleplaces ;;
 
   dimension: id {
@@ -30,7 +31,7 @@ view: base_googleplaces {
   dimension: place_id {
     type: string
     sql: ${TABLE}.place_id ;;
-  }
+}
 
   dimension: types {
     type: string

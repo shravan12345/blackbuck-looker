@@ -1,4 +1,5 @@
 view: django_admin_log {
+
   sql_table_name: zinka.django_admin_log ;;
 
   dimension: id {
@@ -15,6 +16,7 @@ view: django_admin_log {
   dimension_group: action {
     type: time
     timeframes: [time, date, week, month]
+
     sql: ${TABLE}.action_time ;;
   }
 

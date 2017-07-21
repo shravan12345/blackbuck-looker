@@ -1,10 +1,11 @@
 view: django_session {
+
   sql_table_name: zinka.django_session ;;
 
   dimension_group: expire {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.expire_date ;;
+
   }
 
   dimension: session_data {

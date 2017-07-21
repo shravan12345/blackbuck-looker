@@ -1,4 +1,5 @@
 view: auth_user {
+
   sql_table_name: zinka.auth_user ;;
 
   dimension: id {
@@ -75,5 +76,6 @@ view: auth_user {
   dimension: full_name {
     type: string
     sql: CONCAT(${first_name},'',${last_name}) ;;
+
   }
 }

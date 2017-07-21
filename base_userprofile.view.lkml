@@ -1,4 +1,5 @@
 view: base_userprofile {
+
   sql_table_name: zinka.base_userprofile ;;
 
   dimension: id {
@@ -142,5 +143,5 @@ view: base_userprofile {
   measure: count {
     type: count
     drill_fields: [id, bank_account_name, company_name]
-  }
+}
 }

@@ -72,6 +72,8 @@ explore: auth_user {
 
 explore: base_botrecording {}
 
+explore: deep_script {}
+
 explore: base_bottracktrace {}
 
 #  - explore: base_branch
@@ -110,7 +112,7 @@ explore: base_customermasterdiscount {}
 
 explore: base_customermasterfrieghtrates {
   label: "Customer-Contract-Rates"
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.Actual_POD_Time, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.Lane,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.Actual_POD_Time, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
 
   join: base_customeruserprofile {
     type: left_outer
@@ -132,8 +134,8 @@ explore: base_customermasterfrieghtrates {
 
   join: base_order {
     type: left_outer
-    relationship: many_to_one
-    sql_on: ${base_customeruserprofile.user_id} = ${base_order.user_id} ;;
+    relationship: many_to_many
+    sql_on: ${base_customermasterfrieghtrates.from_city_id} = ${base_order.from_city_id} and ${base_customermasterfrieghtrates.to_city_id}= ${base_order.to_city_id} and ${base_customermasterfrieghtrates.customer_id} = ${base_order.user_id} and ${base_customermasterfrieghtrates.truck_type_id} = ${base_order.truck_type_id} ;;
   }
 
   join: base_trucktype {
@@ -170,7 +172,7 @@ explore: base_customermasterfrieghtrates {
 # - explore: base_customerspecificops_ops_users
 
 explore: base_customeruserprofile {
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.Lane,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
 
   join: base_order {
     type: left_outer
@@ -422,6 +424,22 @@ explore: base_order {
     sql_on: ${base_order.id} = ${TAS.order_id} and ${TAS.status} = "Truck Arrival Source" ;;
   }
 
+  join: LR {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${LR.order_id} and ${LR.status} = "LR Generated" ;;
+  }
+
+  join: ADV {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${ADV.order_id} and ${ADV.status} = "Advance DocVerification" ;;
+  }
+  join: PP {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${PP.order_id} and ${PP.status} = "Payment Pending " ;;
+  }
   join: TAD {
     from: base_status
     relationship: one_to_many
@@ -434,6 +452,27 @@ explore: base_order {
     sql_on: ${base_order.id} = ${POD_Sub.order_id} and ${POD_Sub.status} = "Docs Received" ;;
   }
 
+  join: To_Be_S {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${To_Be_S.order_id} and ${To_Be_S.status} = "To Be Settled" ;;
+  }
+  join: SDV {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${SDV.order_id} and ${SDV.status} = "Settlement DocVerification" ;;
+  }
+  join: Settlement_P {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${Settlement_P.order_id} and ${Settlement_P.status} = "Settlement Pending" ;;
+  }
+
+  join: Settlement_D {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${Settlement_D.order_id} and ${Settlement_D.status} = "Settlement Done" ;;
+  }
   join: TDS {
     from: base_status
     relationship: one_to_many
@@ -545,6 +584,17 @@ explore: base_order {
     relationship: many_to_one
     sql_on: ${base_spnumber.user_id} = ${base_order.supply_partner_id} ;;
   }
+  join: bbauth_uservalidation {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${bbauth_uservalidation.user_id} = ${base_spnumber.user_id} ;;
+  }
+  join: base_ownernumber {
+    from: base_userprofile
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_ownernumber.user_id} = ${base_truck.owner_id} ;;
+  }
 
   join: base_sectortype {
     type: left_outer
@@ -598,6 +648,48 @@ explore: base_order {
     sql_on: ${base_order.start_location_id} = ${base_warehouse.id} ;;
 
  }
+
+  join:  base_supplypartnerfeedback {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_order.id} = ${base_supplypartnerfeedback.order_id} ;;
+
+  }
+  join:  base_orderdynamicpricewatcher{
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_orderdynamicprice.id} = ${base_orderdynamicpricewatcher.order_dynamic_price_id} ;;
+
+  }
+  join:  base_product {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${base_order.product_id} = ${base_product.id} ;;
+  }
+  join: base_truckdocuments {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_truck.id} = ${base_truckdocuments.truck_id} ;;
+  }
+  join: base_paymentmethod {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_orderfinancedetails.settlement_payment_method_id} = ${base_paymentmethod.id} ;;
+
+  }
+  join: base_userorderfilters {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_customeruserprofile.user_id} = ${base_userorderfilters.customer_id} ;;
+  }
+  join: auth_userbd {
+    from: auth_user
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${auth_user.id} = ${base_userorderfilters.user_id} ;;
+
+  }
+
 }
 
 # - explore: base_order_freight_bill_number
@@ -614,7 +706,7 @@ explore: base_ordercreationinfo {}
 
 explore: base_orderdynamicprice {
   label: "Target_Rates Table"
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.Lane,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
 
   join: base_order {
     type: left_outer
@@ -630,7 +722,7 @@ explore: base_orderdynamicpricewatcher {}
 explore: base_orderdynamicpricewatcherstatus {}
 
 explore: base_orderfinancedetails {
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio,   -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.Lane,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio,   -base_order.Right_truck_count]
 
   join: base_order {
     type: left_outer
@@ -658,7 +750,7 @@ explore: base_orderinvoicestatus {
 # - explore: base_orderpaymentadvise
 
 explore: base_orderprofitability {
-  fields: [ALL_FIELDS*, -base_order.POD_Received_Count,-base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median, -base_order.Lane,-base_order.POD_Received_Count,-base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
 
   join: base_order {
     type: left_outer
@@ -690,6 +782,11 @@ explore: base_orderprofitability {
     type: left_outer
     relationship: many_to_one
     sql_on: ${base_customeruserprofile.sector_type_id} = ${base_sectortype.id} ;;
+  }
+  join: base_status {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${base_orderprofitability.order_id} = ${base_status.order_id} ;;
   }
 
 
@@ -780,7 +877,7 @@ explore: base_sectortype {}
 explore: base_state {}
 
 explore: base_status {
-  fields: [ALL_FIELDS*, -base_order.POD_Received_Count,-base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median, -base_order.Lane,-base_order.POD_Received_Count,-base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
 
   join: base_userprofile_role {
     type: left_outer
@@ -851,7 +948,14 @@ explore: base_sublocation {}
 
 # - explore: base_supplyassociatedoes
 #
-# - explore: base_supplybankaccounts
+explore: base_supplybankaccounts {
+  join: base_userprofile {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${base_supplybankaccounts.supply_partner_id} = ${base_userprofile.user_id} ;;
+  }
+}
+
 #
 # - explore: base_supplybankaccountshistory
 #
@@ -888,7 +992,7 @@ explore: base_tolldetails_toll_charges {}
 # - explore: base_transitiongcm
 
 explore: base_truck {
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count, -base_order.POD_Points_Index, -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.POD_Received_Count, -base_order.POD_Points_Index, -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio]
 
   join: base_trucktype {
     type: left_outer
@@ -901,6 +1005,18 @@ explore: base_truck {
     type: left_outer
     relationship: many_to_one
     sql_on: ${base_truck.home_location_id} = ${From_City.id} ;;
+  }
+  join: To_city {
+    from: base_location
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_truck.home_location_id} = ${To_city.id} ;;
+  }
+  join: base_trucktrackingdevice {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${base_truck.id}= ${base_trucktrackingdevice.truck_id};;
+
   }
 
   join: base_order {
@@ -959,8 +1075,7 @@ explore: base_truckdocuments {}
 # - explore: base_truckpreferredlocation
 #
 # - explore: base_trucktrack
-#
-# - explore: base_trucktrackingdevice
+# explore: base_trucktrackingdevice
 #
 # - explore: base_trucktrackstatus
 #
@@ -1095,7 +1210,7 @@ explore: base_warehouse {}
 explore: base_orderetahistory {}
 
 explore: base_ordereta {
-  fields: [ALL_FIELDS*, -base_order.POD_Received_Count,-base_order.POD_Points_Index, -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median, -base_order.Lane,-base_order.POD_Received_Count,-base_order.POD_Points_Index, -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
   join: base_orderetahistory {
     type: left_outer
     relationship: one_to_many
@@ -1144,7 +1259,7 @@ explore: base_ordereta {
 }
 
 explore: eta_revised_view {
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count, -base_ordereta.deviation, -TAD.PI_24, -TAD.PI_48, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.Lane,-base_order.POD_Received_Count, -base_ordereta.deviation, -TAD.PI_24, -TAD.PI_48, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time, -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
 
   join: base_ordereta {
     type: left_outer
@@ -1167,7 +1282,7 @@ explore: eta_revised_view {
 }
 
 explore: supply_breath_calc {
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.Lane,-base_order.POD_Received_Count, -base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
 
   join: supply_breadth_calc_30 {
     type: left_outer
@@ -1201,7 +1316,7 @@ explore: supply_breadth_calc_90 {}
 explore: repeat_sp {}
 
 explore: escalation_tnt {
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count,-base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.Lane,-base_order.POD_Received_Count,-base_order.POD_Points_Index,  -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index,  -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15,  -base_order.Right_truck_count]
 
   join: base_order {
     type: left_outer
@@ -1226,7 +1341,7 @@ explore: escalation_tnt {
 
 
 explore: supply_breath_lane_calc {
-  fields: [ALL_FIELDS*,-base_order.POD_Received_Count,-base_order.POD_Points_Index, -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
+  fields: [ALL_FIELDS*,-base_order.Acceptance_alert,-base_order.TAS_alert,-base_order.PP_alert,-base_order.ADV_alert,-base_order.morning_placement,-base_order.per_ton_rate_median,-base_order.Lane,-base_order.POD_Received_Count,-base_order.POD_Points_Index, -base_order.Transit_time, -base_order.Responsiveness_Index, -base_order.performance_index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Expected_Loss_Index, -base_order.Actual_Transit_Time, -base_order.Avg_POD_Time,  -base_order.Count_TAS, -base_order.sp_name, -base_order.count_by_customer, -base_order.Actual_POD_Time, -base_order.Count_Lanes, -base_order.Count_Lane_Dispersion, -base_order.count_no_show, -base_order.count_rejected, -base_order.Target_Adhered, -base_order.Avg_Transit_time, -base_order.supply_demand_ratio, -base_order.Avg_Order_Rate, -base_order.Avg_Order_Rate_2, -base_order.Avg_Order_Rate_3, -base_order.Avg_Order_Rate_4, -base_order.Avg_Order_Rate_5, -base_order.Avg_Order_Rate_6, -base_order.Avg_Order_Rate_7, -base_order.Avg_Order_Rate_mon, -base_order.Avg_Order_Rate_Today, -base_order.Avg_Order_Rate_Yesterday, -base_order.Min_Order_Rate_month, -base_order.Avg_Order_Rate_15, -base_order.Right_truck_count]
 
   join: repeat_sp_lane {
     type: left_outer
@@ -1242,7 +1357,33 @@ explore: supply_breath_lane_calc {
 }
 
 explore: temp_supply_calc_view {}
+explore: base_ordersettlementaccount {}
 
 explore: latest_customer_rate {}
 
 explore: target_adherance_view {}
+
+explore: dso_funnel {}
+explore: base_userorderfilters {}
+explore: retention_funnel {}
+
+
+
+explore: ecom_fuel_cardrequest {
+  join: ecom_fuel_fuelcard {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${ecom_fuel_cardrequest.card_number_id} = ${ecom_fuel_fuelcard.id} ;;
+
+  }
+  join:  ecom_fuel_banktransaction {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${ecom_fuel_banktransaction.fuelcard_id} = ${ecom_fuel_fuelcard.id} ;;
+  }
+
+
+
+
+
+ }

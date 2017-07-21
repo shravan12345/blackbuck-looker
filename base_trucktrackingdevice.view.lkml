@@ -14,19 +14,43 @@ view: base_trucktrackingdevice {
 
   dimension_group: dt_added {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.dt_added ;;
   }
 
   dimension_group: dt_updated {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.dt_updated ;;
   }
 
   dimension_group: end {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.end_date ;;
   }
 
@@ -40,6 +64,11 @@ view: base_trucktrackingdevice {
     sql: ${TABLE}.msisdn ;;
   }
 
+  dimension: push_operator_count {
+    type: number
+    sql: ${TABLE}.push_operator_count ;;
+  }
+
   dimension: shipment {
     type: string
     sql: ${TABLE}.shipment ;;
@@ -47,7 +76,15 @@ view: base_trucktrackingdevice {
 
   dimension_group: start {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.start_date ;;
   }
 

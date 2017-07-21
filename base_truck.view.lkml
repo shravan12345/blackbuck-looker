@@ -1,4 +1,5 @@
 view: base_truck {
+
   sql_table_name: zinka.base_truck ;;
 
   dimension: id {
@@ -265,5 +266,8 @@ view: base_truck {
 
   dimension: home_location_name {
     sql: CASE WHEN ${home_location_id} THEN ${From_City.city} ;;
+
   }
+
+
 }

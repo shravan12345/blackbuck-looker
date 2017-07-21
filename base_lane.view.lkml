@@ -1,4 +1,5 @@
 view: base_lane {
+
   sql_table_name: zinka.base_lane ;;
 
   dimension: id {
@@ -15,6 +16,7 @@ view: base_lane {
   dimension: destination2_id {
     type: number
     sql: ${TABLE}.destination2_id ;;
+
   }
 
   measure: count {

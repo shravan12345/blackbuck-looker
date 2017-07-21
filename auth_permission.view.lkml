@@ -1,4 +1,5 @@
 view: auth_permission {
+
   sql_table_name: zinka.auth_permission ;;
 
   dimension: id {

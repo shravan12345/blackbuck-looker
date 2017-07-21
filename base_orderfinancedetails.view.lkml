@@ -315,4 +315,14 @@ view: base_orderfinancedetails {
     sql: NULLIF(${advance_cash_amount},0) ;;
     drill_fields: [order_id , advance_cash_amount]
   }
+  measure: Fuel_Advance_Ordercount {
+    type: sum
+    sql: CASE WHEN ${advance_fuel_amount} > 0 THEN 1 ELSE 0 END  ;;
+    drill_fields: [order_id , advance_fuel_amount]
+  }
+  measure: Count_OrderID {
+    type: count_distinct
+    sql: ${order_id} ;;
+    drill_fields: [order_id , advance_fuel_amount]
+  }
 }
