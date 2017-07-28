@@ -26,7 +26,7 @@ order by 3 desc ;;
       sql: ${TABLE}.Order_Id ;;
     }
     dimension: Truck_Num {
-      type: number
+      type: string
       sql: ${TABLE}.Truck_Num ;;
     }
 
