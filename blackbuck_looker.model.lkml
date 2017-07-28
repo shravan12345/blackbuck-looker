@@ -1389,3 +1389,5 @@ explore: ecom_fuel_cardrequest {
  }
 
 explore: pod_penalty_settlement_done {}
+
+explore: morbi_tracking {}
