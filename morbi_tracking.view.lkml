@@ -7,7 +7,7 @@ concat(ifnull(auc.first_name,"")," ",ifnull(auc.last_name,"")) as 'Consignor_Nam
 concat(ifnull(aus.first_name,"")," ",ifnull(aus.last_name,"")) as 'SP_Name',
 concat(ifnull(auo.first_name,"")," ",ifnull(auo.last_name,"")) as 'Owner_Name',
 aus.username as 'SP_Num',
-bupd.mobile1 as 'Driver_Number'
+bupd.mobile1 as 'Driver_Num'
 from base_order bo
 left join auth_user aus on aus.id = bo.supply_partner_id
 left join base_truck bt on bt.id = bo.assigned_truck_id
