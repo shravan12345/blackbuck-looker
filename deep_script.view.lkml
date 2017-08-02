@@ -56,7 +56,7 @@ left join (select order_id, dt_added
 FROM `base_status` WHERE status = "Payment Done") as pd on pd.order_id = m.id
 left join (select order_id, dt_added
 FROM `base_status` WHERE status = "Order Accepted") as oa on oa.order_id = m.id
-where date(m.start_date) = current_date()-2
+where date(m.start_date) = (current_date()-interval 2 day)
 and m.from_city_id in (557,559,562) ;;
   }
 
