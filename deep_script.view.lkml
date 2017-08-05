@@ -1,12 +1,12 @@
 view: deep_script {
   derived_table: {
     sql: select date(m.start_date) as 'Date', m.id as 'Order_ID', m.status as 'Current_Status',
-(case when timestampdiff(minute, oa.dt_added, tas.dt_added) < 60 then "a. Less than 1 hour"
-    when timestampdiff(minute, oa.dt_added, tas.dt_added) between 61 and 240 then "b. 1 hour - 4 hours"
+(case when timestampdiff(minute, oa.dt_added, tas.dt_added) <= 120 then "a. Less than 2 hour"
+    when timestampdiff(minute, oa.dt_added, tas.dt_added) between 121 and 240 then "b. 2 hour - 4 hours"
       when timestampdiff(minute, oa.dt_added, tas.dt_added) between 241 and 480 then "c. 4 hour - 8 hours"
-      when timestampdiff(minute, oa.dt_added, tas.dt_added) between 481 and 720 then "d. 8 hour - 12 hours"
+      when timestampdiff(minute, oa.dt_added, tas.dt_added) between 481 and 1080 then "d. 8 hour - 18 hours"
       when timestampdiff(minute, oa.dt_added, tas.dt_added) is null then "aaNA"
-      else "e. More than 12 hours" end) as 'TA_TAS',
+      else "e. More than 18 hours" end) as 'TA_TAS',
 (case when timestampdiff(minute, tas.dt_added, lr.dt_added) < 60 then "a. Less than 1 hour"
     when timestampdiff(minute, tas.dt_added, lr.dt_added) between 61 and 240 then "b. 1 hour - 4 hours"
       when timestampdiff(minute, tas.dt_added, lr.dt_added) between 241 and 480 then "c. 4 hour - 8 hours"
@@ -19,10 +19,10 @@ view: deep_script {
       when timestampdiff(minute, lr.dt_added, adv.dt_added) between 481 and 720 then "d. 8 hour - 12 hours"
       when timestampdiff(minute, lr.dt_added, adv.dt_added) is null then "aaNA"
       else "e. More than 12 hours" end) as 'LR_ADV',
-(case when timestampdiff(minute, tas.dt_added, adv.dt_added) < 240 then "a. Less than 4 hour"
-    when timestampdiff(minute, tas.dt_added, adv.dt_added) between 721 and 1440 then "d. 12 hour - 24 hours"
-      when timestampdiff(minute, tas.dt_added, adv.dt_added) between 241 and 480 then "b. 4 hour - 8 hours"
-      when timestampdiff(minute, tas.dt_added, adv.dt_added) between 481 and 720 then "c. 8 hour - 12 hours"
+(case when timestampdiff(minute, tas.dt_added, adv.dt_added) < 360 then "a. Less than 6 hour"
+    when timestampdiff(minute, tas.dt_added, adv.dt_added) between 1081 and 1440 then "d. 18 hour - 24 hours"
+      when timestampdiff(minute, tas.dt_added, adv.dt_added) between 361 and 720 then "b. 6 hour - 12 hours"
+      when timestampdiff(minute, tas.dt_added, adv.dt_added) between 721 and 1080 then "c. 12 hour - 18 hours"
       when timestampdiff(minute, tas.dt_added, adv.dt_added) is null then "aaNA"
       else "e. More than 24 hours" end) as 'TAS_ADV',
 (case when timestampdiff(minute, adv.dt_added, pp.dt_added) < 30 then "a. Less than 30 mins"
