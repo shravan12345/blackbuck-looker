@@ -7,6 +7,11 @@ view: base_orderfinancedetails {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: payment_type {
+    type: number
+    sql: ${TABLE}.payment_type ;;
+  }
+
   dimension: advance_cash_amount {
     type: number
     sql: ${TABLE}.advance_cash_amount ;;
