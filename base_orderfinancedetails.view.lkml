@@ -12,6 +12,11 @@ view: base_orderfinancedetails {
     sql: ${TABLE}.payment_type ;;
   }
 
+  dimension: per_ton_rate {
+    type: number
+    sql: ${TABLE}.per_ton_rate ;;
+  }
+
   dimension: advance_cash_amount {
     type: number
     sql: ${TABLE}.advance_cash_amount ;;
