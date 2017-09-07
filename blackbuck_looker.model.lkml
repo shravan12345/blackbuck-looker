@@ -421,6 +421,12 @@ explore: base_order {
     sql_on: ${base_order.id} = ${base_statushistory.order_id} ;;
   }
 
+  join: current_status {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${current_status.order_id} and ${current_status.status} = ${base_order.status} ;;
+  }
+
   join: TAS {
     from: base_status
     relationship: one_to_many
