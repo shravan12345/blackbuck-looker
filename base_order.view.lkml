@@ -522,11 +522,11 @@ view: base_order {
     drill_fields: [id, Responsiveness_Index]
   }
 
-  measure: morning_placement {
-    type: sum
-    sql: if((TIMESTAMPDIFF(day,${TAS.dt_added_raw},${end_raw}) > 0 ) or (TIMESTAMPDIFF(day,${TAS.dt_updated_raw},${end_raw}) = 0 and ${TAS.dt_added_hour_of_day} < 11),1,0) ;;
-    drill_fields: [id, TAS.dt_added_raw,end_time]
-    }
+  #measure: morning_placement {
+  #  type: sum
+  #  sql: if((TIMESTAMPDIFF(day,${TAS.dt_added_raw},${end_raw}) > 0 ) or (TIMESTAMPDIFF(day,${TAS.dt_updated_raw},${end_raw}) = 0 and ${TAS.dt_added_hour_of_day} < 11),1,0) ;;
+  #  drill_fields: [id, TAS.dt_added_raw,end_time]
+  #  }
 
   measure: Avg_Order_Rate {
     type: average
