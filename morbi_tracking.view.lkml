@@ -17,7 +17,7 @@ left join auth_user auo on auo.id = bo.owner_id
 where bo.to_sublocation_id = 1547
 and bo.customer_sector_id = 7
 and date(bo.end_date) >= '2017-07-25'
-and and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
+and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
 order by 3 desc ;;
 
     }
