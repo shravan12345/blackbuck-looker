@@ -7,12 +7,12 @@ view: deep_script {
       when timestampdiff(minute, oa.dt_added, tas.dt_added) between 481 and 1080 then "d. 8 hour - 18 hours"
       when timestampdiff(minute, oa.dt_added, tas.dt_added) is null then "aaNA"
       else "e. More than 18 hours" end) as 'TA_TAS',
-(case when timestampdiff(minute, tas.dt_added, lr.dt_added) < 60 then "a. Less than 1 hour"
-    when timestampdiff(minute, tas.dt_added, lr.dt_added) between 61 and 240 then "b. 1 hour - 4 hours"
-      when timestampdiff(minute, tas.dt_added, lr.dt_added) between 241 and 480 then "c. 4 hour - 8 hours"
-      when timestampdiff(minute, tas.dt_added, lr.dt_added) between 481 and 720 then "d. 8 hour - 12 hours"
-      when timestampdiff(minute, tas.dt_added, lr.dt_added) is null then "aaNA"
-      else "e. More than 12 hours" end) as 'TAS_LR',
+(case when timestampdiff(minute, tas.dt_added, pd.dt_added) < 480 then "a. Less than 8 hour"
+    when timestampdiff(minute, tas.dt_added, pd.dt_added) between 481 and 960 then "b. 8 hour - 16 hours"
+      when timestampdiff(minute, tas.dt_added, pd.dt_added) between 961 and 1440 then "c. 16 hour - 24 hours"
+      when timestampdiff(minute, tas.dt_added, pd.dt_added) between 1441 and 2160 then "d. 24 hour - 36 hours"
+      when timestampdiff(minute, tas.dt_added, pd.dt_added) is null then "aaNA"
+      else "e. More than 36 hours" end) as 'TAS_LR',
 (case when timestampdiff(minute, lr.dt_added, adv.dt_added) < 60 then "a. Less than 1 hour"
     when timestampdiff(minute, lr.dt_added, adv.dt_added) between 61 and 240 then "b. 1 hour - 4 hours"
       when timestampdiff(minute, lr.dt_added, adv.dt_added) between 241 and 480 then "c. 4 hour - 8 hours"
