@@ -60,9 +60,9 @@ and blf.city in ('Anjar','Bhuj','Mundra','Jodiya','Bhachau','Jamnagar') ;;
       sql:${TABLE}.SP_Name  ;;
     }
 
-    dimension: SP_Num {
+    dimension: SP_Number {
       type: number
-      sql:${TABLE}.SP_Num  ;;
+      sql:${TABLE}.SP_Number  ;;
     }
 
 }
