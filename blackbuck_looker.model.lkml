@@ -1423,3 +1423,5 @@ explore: pod_penalty_settlement_done {}
 explore: morbi_tracking {}
 
 explore: in_transit_tracking {}
+
+explore: placement_tracker {}
