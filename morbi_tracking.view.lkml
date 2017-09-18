@@ -7,13 +7,22 @@ concat(ifnull(auc.first_name,"")," ",ifnull(auc.last_name,"")) as 'Consignor_Nam
 concat(ifnull(aus.first_name,"")," ",ifnull(aus.last_name,"")) as 'SP_Name',
 concat(ifnull(auo.first_name,"")," ",ifnull(auo.last_name,"")) as 'Owner_Name',
 aus.username as 'SP_Num',
-bupd.mobile1 as 'Driver_Num'
+bupd.mobile1 as 'Driver_Num',
+blf.city as 'From_City',
+tlf.city as 'To_City',
+ofd.freight_amount as 'Freight_Amount',
+(case when bsp.id is not null then ofd.advance_etransfer_amount+ofd.advance_fuel_amount+ofd.advance_cash_card_amount+ofd.advance_cash_amount else 0 end) as 'Advance',
+(case when bsp.id is not null then ofd.advance_fuel_amount else 0 end) as 'advance_fuel_amount',
+bo.distance as 'Distance'
 from base_order bo
 left join auth_user aus on aus.id = bo.supply_partner_id
 left join base_truck bt on bt.id = bo.assigned_truck_id
 left join base_userprofile bupd on bupd.user_id = bo.assigned_driver_id
 left join auth_user auc on auc.id = bo.user_id
 left join auth_user auo on auo.id = bo.owner_id
+left join base_location blf on blf.id = bo.from_city_id
+left join base_location tlf on tlf.id = bo.to_city_id
+left join base_orderfinancedetails ofd on ofd.order_id = bo.id
 where bo.to_sublocation_id = 1547
 and bo.customer_sector_id = 7
 and date(bo.end_date) >= '2017-07-25'
@@ -61,4 +70,35 @@ order by 3 desc ;;
       sql:${TABLE}.Driver_Num  ;;
     }
 
+    dimension: From_City {
+      type: string
+      sql:${TABLE}.From_City  ;;
+    }
+
+    dimension: To_City {
+      type: string
+      sql:${TABLE}.To_City  ;;
+    }
+
+    dimension: Freight_Amount {
+      type: number
+      sql:${TABLE}.Freight_Amount  ;;
+    }
+
+    dimension: Advance {
+      type: number
+      sql:${TABLE}.Advance  ;;
+    }
+
+    dimension: advance_fuel_amount {
+      type: number
+      sql:${TABLE}.advance_fuel_amount  ;;
+    }
+
+    dimension: Distance {
+      type: number
+      sql:${TABLE}.Distance  ;;
+    }
+
   }
+
