@@ -23,6 +23,7 @@ left join auth_user auo on auo.id = bo.owner_id
 left join base_location blf on blf.id = bo.from_city_id
 left join base_location tlf on tlf.id = bo.to_city_id
 left join base_orderfinancedetails ofd on ofd.order_id = bo.id
+left join base_status bsp on bsp.order_id = bo.id and bsp.status = 'Payment Done'
 where bo.to_sublocation_id = 1547
 and bo.customer_sector_id = 7
 and date(bo.end_date) >= '2017-07-25'
@@ -101,4 +102,3 @@ order by 3 desc ;;
     }
 
   }
-
