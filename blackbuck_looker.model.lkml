@@ -740,6 +740,11 @@ explore: base_orderfinancedetails {
     relationship: one_to_one
     sql_on: ${base_orderfinancedetails.order_id} = ${base_order.id} ;;
   }
+  join: base_financialtransaction {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${base_orderfinancedetails.order_id} = ${base_financialtransaction.order_id} ;;
+  }
   join: base_paymentmethod {
     type: left_outer
     relationship: one_to_one
