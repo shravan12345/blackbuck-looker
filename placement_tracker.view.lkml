@@ -1,7 +1,7 @@
 view: placement_tracker {
   derived_table: {
     sql: select
-      (case when bup.profile_type = 'fleet_owner' then 'FO' else 'Non-FO' end) as 'Profile Type',
+      (case when bup.profile_type in ('fleet_owner','transport_contractor') then 'FO' else 'Non-FO' end) as 'Profile Type',
       eor.business_type,
       bo.id as 'GB Order Id',
       bt.registration_number as 'Truck Num',
