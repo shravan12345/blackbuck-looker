@@ -23,7 +23,7 @@ eor.product,
 eor.unit_price as 'Request_Price',
 eb.unit_price as 'Handshake_Price',
 eb.load as 'Handshake_Tonnage',
-ofd.comission,
+ofd.commission,
 gp.name as 'NB_City'
 from base_order bo
 join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
@@ -211,10 +211,10 @@ and bo.client_order_id is not null
     sql: ${TABLE}.Handshake_Tonnage ;;
   }
 
-  dimension: comission {
+  dimension: commission {
     type: number
-    label: "Comission"
-    sql: ${TABLE}.comission ;;
+    label: "Commission"
+    sql: ${TABLE}.commission ;;
   }
 
   set: detail {
@@ -246,7 +246,7 @@ and bo.client_order_id is not null
       request_price,
       handshake_price,
       handshake_tonnage,
-      comission
+      commission
     ]
   }
 }
