@@ -1432,3 +1432,5 @@ explore: in_transit_tracking {}
 explore: placement_tracker {}
 
 explore: master_dashboard_placement {}
+
+explore: 60day_kandla_placement_data {}
