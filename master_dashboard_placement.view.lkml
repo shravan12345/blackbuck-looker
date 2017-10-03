@@ -15,7 +15,7 @@ view: master_dashboard_placement {
       eor.customer_id as 'Customer Id',
       bupc.name as 'Cust Name', bupc.company_name as 'Cust Company Name',
       auc.username as 'Cust Num',
-      blf.city as 'From City', blf.state as 'From State',
+      blf.city as 'From City', gp.name as 'From State',
       tlf.city as 'To City', tlf.state as 'To State',
       eor.source as 'Request Source', eb.source as 'Bid Source',
       (case when eo.source = 'dashboard' then 'Dashboard' else 'App' end) as 'Handshake Source',
@@ -33,6 +33,9 @@ view: master_dashboard_placement {
       left join newbb.auth_user au on au.id = bup.user_id
       left join newbb.base_userprofile bupc on eor.customer_id = bupc.user_id
       left join newbb.auth_user auc on auc.id = bupc.user_id
+      left join newbb.base_lane bl on bl.id = eor.lane_id
+      left join newbb.base_localityinfo li on li.id = bl.to_location_id
+      left join newbb.base_googleplaces gp on gp.id = li.city_id
       where date(oa.dt_added) between (current_date()-interval 30 day) and (current_date()-interval 1 day)
       and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar')
       and bo.client_order_id is not null
