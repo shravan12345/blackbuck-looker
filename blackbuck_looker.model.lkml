@@ -482,6 +482,12 @@ explore: base_order {
     relationship: one_to_many
     sql_on: ${base_order.id} = ${Settlement_D.order_id} and ${Settlement_D.status} = "Settlement Done" ;;
   }
+  join: Settlement_Images {
+    from: base_status
+    relationship: one_to_many
+    sql_on: ${base_order.id} = ${Settlement_D.order_id} and ${Settlement_D.status} = "Settlement Images Uploaded" ;;
+  }
+
   join: TDS {
     from: base_status
     relationship: one_to_many
