@@ -1434,3 +1434,5 @@ explore: placement_tracker {}
 explore: master_dashboard_placement {}
 
 explore: 60day_kandla_placement_data {}
+
+explore: invoice_data {}
