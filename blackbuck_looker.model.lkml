@@ -1444,3 +1444,5 @@ explore: 60day_kandla_placement_data {}
 explore: invoice_data {}
 
 explore: unloading_poc {}
+
+explore: cancellation_dashboard  {}
