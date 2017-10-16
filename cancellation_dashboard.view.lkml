@@ -34,7 +34,7 @@ left join newbb.base_userprofile bup on eb.supply_partner_id = bup.user_id
 left join newbb.auth_user au on au.id = bup.user_id
 left join newbb.base_userprofile bupc on eor.customer_id = bupc.user_id
 left join newbb.auth_user auc on auc.id = bupc.user_id
-where date(oa.dt_added) between (current_date()-interval 2 day) and current_date()
+where date(oa.dt_added) between '2017-10-01' and current_date()
 and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar')
 and bo.status in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
 and bo.client_order_id is not null
