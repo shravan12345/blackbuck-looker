@@ -1,10 +1,10 @@
 view: cancellation_dashboard {
   derived_table: {
-    sql: select
+    sql: select distinct
 (case when bup.profile_type in ('fleet_owner','transport_contractor') then 'FO' else 'Non-FO' end) as 'Profile_Type',
 eor.business_type,
 bo.id as 'GB_Order_Id',
-oa.registration_number as 'Truck_Number',
+sha.registration_number as 'Truck_Number',
 date(oa.dt_added) as 'Accepted_Date',
 bo.status as 'Current_Status',
 date(cs.dt_added) as 'CurrentStatus_Date',
@@ -28,6 +28,7 @@ left join base_location blf on blf.id = bo.from_city_id
 left join base_location tlf on tlf.id = bo.to_city_id
 left join base_status oa on oa.order_id = bo.id and oa.status = 'Order Accepted'
 left join base_status cs on cs.order_id = bo.id and cs.status = bo.status
+left join base_statushistory sha on sha.order_id = bo.id and sha.status = 'Order Accepted'
 left join newbb.enquiry_orderrequest eor on eo.order_request_id = eor.id
 left join newbb.enquiry_bid eb on eo.bid_id = eb.id
 left join newbb.base_userprofile bup on eb.supply_partner_id = bup.user_id
