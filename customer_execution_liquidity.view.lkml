@@ -7,7 +7,7 @@ view: customer_execution_liquidity {
       r.MTD_R as 'MTD_Requested',
       r.M1_R as 'M1_Requested',
       r.M2_R as 'M2_Requested',
-      e.D1_E as 'D1_Executed_Trucks'
+      e.D1_E as 'D1_Executed_Trucks',
       e.D7_E as 'D7_Executed',
       e.MTD_E as 'MTD_Executed',
       e.M1_E as 'M1_Executed',
