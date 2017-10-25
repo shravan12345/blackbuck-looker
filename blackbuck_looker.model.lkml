@@ -1446,3 +1446,5 @@ explore: invoice_data {}
 explore: unloading_poc {}
 
 explore: cancellation_dashboard  {}
+
+explore: customer_execution_liquidity  {}
