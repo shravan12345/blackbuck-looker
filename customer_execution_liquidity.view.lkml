@@ -84,24 +84,24 @@ view: customer_execution_liquidity {
       sql:${TABLE}.D1_Requested_Trucks  ;;
     }
 
-    dimension: D7_Requested_Trucks {
+    dimension: D7_Requested {
       type: number
-      sql:${TABLE}.D7_Requested_Trucks  ;;
+      sql:${TABLE}.D7_Requested  ;;
     }
 
-    dimension: MTD_Requested_Trucks {
+    dimension: MTD_Requested {
       type: number
-      sql:${TABLE}.MTD_Requested_Trucks  ;;
+      sql:${TABLE}.MTD_Requested  ;;
     }
 
-    dimension: M1_Requested_Trucks {
+    dimension: M1_Requested {
       type: number
-      sql:${TABLE}.M1_Requested_Trucks  ;;
+      sql:${TABLE}.M1_Requested  ;;
     }
 
-    dimension: M2_Requested_Trucks {
+    dimension: M2_Requested {
       type: number
-      sql:${TABLE}.M2_Requested_Trucks  ;;
+      sql:${TABLE}.M2_Requested  ;;
     }
 
     dimension: D1_Executed_Trucks {
@@ -109,24 +109,24 @@ view: customer_execution_liquidity {
       sql:${TABLE}.D1_Executed_Trucks  ;;
     }
 
-    dimension: D7_Executed_Trucks {
+    dimension: D7_Executed {
       type: number
-      sql:${TABLE}.D7_Executed_Trucks  ;;
+      sql:${TABLE}.D7_Executed  ;;
     }
 
-    dimension: MTD_Executed_Trucks {
+    dimension: MTD_Executed {
       type: number
-      sql:${TABLE}.MTD_Executed_Trucks  ;;
+      sql:${TABLE}.MTD_Executed  ;;
     }
 
-    dimension: M1_Executed_Trucks {
+    dimension: M1_Executed {
       type: number
-      sql:${TABLE}.M1_Executed_Trucks  ;;
+      sql:${TABLE}.M1_Executed  ;;
     }
 
-    dimension: M2_Executed_Trucks {
+    dimension: M2_Executed {
       type: number
-      sql:${TABLE}.M2_Executed_Trucks  ;;
+      sql:${TABLE}.M2_Executed  ;;
     }
 
     dimension: D1_Liquidity {
