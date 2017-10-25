@@ -81,27 +81,32 @@ view: customer_execution_liquidity {
 
     dimension: D1_Requested_Trucks {
       type: number
-      sql:${TABLE}.D1_Requested_Trucks  ;;
+      sql:${TABLE}.D1_Requested_Trucks
+      value_format: "0";;
     }
 
     dimension: D7_Requested {
       type: number
-      sql:${TABLE}.D7_Requested  ;;
+      sql:${TABLE}.D7_Requested
+      value_format: "0";;
     }
 
     dimension: MTD_Requested {
       type: number
-      sql:${TABLE}.MTD_Requested  ;;
+      sql:${TABLE}.MTD_Requested
+      value_format: "0";;
     }
 
     dimension: M1_Requested {
       type: number
-      sql:${TABLE}.M1_Requested  ;;
+      sql:${TABLE}.M1_Requested
+      value_format: "0";;
     }
 
     dimension: M2_Requested {
       type: number
-      sql:${TABLE}.M2_Requested  ;;
+      sql:${TABLE}.M2_Requested
+      value_format: "0";;
     }
 
     dimension: D1_Executed_Trucks {
