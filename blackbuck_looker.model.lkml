@@ -1448,3 +1448,5 @@ explore: unloading_poc {}
 explore: cancellation_dashboard  {}
 
 explore: customer_execution_liquidity  {}
+
+explore: payments_dashboard  {}
