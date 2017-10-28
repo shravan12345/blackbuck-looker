@@ -637,6 +637,13 @@ explore: base_order {
     sql_on: ${base_order.id} = ${base_orderdocument.order_id} ;;
   }
 
+  join: OrderDocument_Employee {
+    from: auth_user
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${base_orderdocument.last_modified_by_id} = ${OrderDocument_Employee.id} ;;
+  }
+
   join: base_latest_status_timestamp {
     from: base_status
     relationship: one_to_one
