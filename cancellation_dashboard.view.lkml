@@ -5,9 +5,10 @@ view: cancellation_dashboard {
 eor.business_type,
 bo.id as 'GB_Order_Id',
 sha.registration_number as 'Truck_Number',
-date(oa.dt_added) as 'Accepted_Date',
+oa.dt_added as 'Accepted_Datetime',
 bo.status as 'Current_Status',
-date(cs.dt_added) as 'CurrentStatus_Date',
+cs.dt_added as 'CurrentStatus_Datetime',
+tas.dt_added as 'TAS_Datetime',
 eb.supply_partner_id as 'SP_Id',
 bup.name as 'SP_Name', bup.company_name as 'SP_Company_Name',
 au.username as 'SP_Number',
@@ -28,6 +29,7 @@ left join base_location blf on blf.id = bo.from_city_id
 left join base_location tlf on tlf.id = bo.to_city_id
 left join base_status oa on oa.order_id = bo.id and oa.status = 'Order Accepted'
 left join base_status cs on cs.order_id = bo.id and cs.status = bo.status
+left join base_status tas on tas.order_id = bo.id and tas.status = 'Truck Arrival Source'
 left join base_statushistory sha on sha.order_id = bo.id and sha.status = 'Order Accepted'
 left join newbb.enquiry_orderrequest eor on eo.order_request_id = eor.id
 left join newbb.enquiry_bid eb on eo.bid_id = eb.id
@@ -52,15 +54,47 @@ order by 5 desc ;;
       sql: ${TABLE}.business_type ;;
     }
 
-    dimension: CurrentStatus_Date {
-      type: date
-      sql: ${TABLE}.CurrentStatus_Date ;;
-    }
+  dimension_group: Accepted_Datetime {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.Accepted_Datetime ;;
+  }
 
-    dimension: Accepted_Date {
-      type: date
-      sql: ${TABLE}.Accepted_Date ;;
-    }
+  dimension_group: CurrentStatus_Datetime {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.CurrentStatus_Datetime ;;
+  }
+
+  dimension_group: TAS_Datetime {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.TAS_Datetime ;;
+  }
 
     dimension: GB_Order_Id {
       type: number
