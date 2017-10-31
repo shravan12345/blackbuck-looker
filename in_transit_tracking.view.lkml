@@ -4,7 +4,7 @@ view: in_transit_tracking {
 tts.called_to, tts.secondary_status, tts.comments,
 blf.city as 'From_City', blf.state as 'From_State',
 tlf.city as 'To_City', tlf.state as 'To_State',
-bs.driver_number, aus.username as 'SP_Number'
+bs.driver_number, aus.username as 'SP_Number', bo.status as 'Current_Status'
 from base_trucktrackstatus tts
 left join base_order bo on bo.id = tts.order_id
 left join base_location blf on blf.id = bo.from_city_id
@@ -67,6 +67,11 @@ and blf.city in ('Anjar','Bhuj','Mundra','Jodiya','Bhachau') ;;
   dimension: To_State {
     type: string
     sql: ${TABLE}.To_State ;;
+  }
+
+  dimension: Current_Status {
+    type: string
+    sql: ${TABLE}.Current_Status ;;
   }
 
   dimension: driver_number {
