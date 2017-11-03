@@ -1457,3 +1457,5 @@ explore: cancellation_dashboard  {}
 explore: customer_execution_liquidity  {}
 
 explore: payments_dashboard  {}
+
+explore: topay_payment_followup {}
