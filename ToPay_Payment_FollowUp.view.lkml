@@ -35,7 +35,6 @@ left join newbb.enquiry_loadingunloading elu on elu.order_request_id = eor.id an
 where ofd.payment_type = 1
 and bo.client_order_id is not null
 and eor.cluster_id = 2
-and bo.status not in ('Accept Requested','Approval Pending','Cancelled','Cancelled By Customer','KAM Review','LR Generated','Ops Review','Order Accepted','Order Blocked','Order Incomplete','Order Paused','Order Processing','Rate Pending','Truck Arrival Source','Truck Checklist Verified','Truck Delayed','Truck Owner Verification','Truck Owner Verification Rejected','Truck Rejected','Waiting For Loading')
 order by 3 desc ;;
   }
 
