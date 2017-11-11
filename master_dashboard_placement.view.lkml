@@ -37,7 +37,7 @@ view: master_dashboard_placement {
       left join newbb.base_localityinfo li on li.id = bl.to_location_id
       left join newbb.base_googleplaces gp on gp.id = li.city_id
       where date(oa.dt_added) between (current_date()-interval 30 day) and current_date()
-      and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar')
+      and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar','Jodiya')
       and bo.client_order_id is not null
        ;;
   }
