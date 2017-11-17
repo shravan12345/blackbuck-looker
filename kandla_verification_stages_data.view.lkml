@@ -26,36 +26,37 @@ view: kandla_verification_stages_data {
        ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
+
 
   dimension: gb_order_id {
-    type: string
+    type: number
     sql: ${TABLE}.GB_Order_Id ;;
   }
 
-  dimension: truck_checklist_verified_timestamp {
-    type: string
+  dimension_group: truck_checklist_verified_timestamp {
+    type: time
+    timeframes: [time, date, week, month, hour, hour_of_day, raw, day_of_week]
     label: "Truck Checklist Verified Timestamp"
     sql: ${TABLE}.`Truck Checklist Verified Timestamp` ;;
   }
 
-  dimension: truck_owner_verification_timestamp {
-    type: string
+  dimension_group: truck_owner_verification_timestamp {
+    type: time
+    timeframes: [time, date, week, month, hour, hour_of_day, raw, day_of_week]
     label: "Truck Owner Verification Timestamp"
     sql: ${TABLE}.`Truck Owner Verification Timestamp` ;;
   }
 
-  dimension: waiting_for_loading_timestamp {
-    type: string
+  dimension_group: waiting_for_loading_timestamp {
+    type: time
+    timeframes: [time, date, week, month, hour, hour_of_day, raw, day_of_week]
     label: "Waiting For Loading Timestamp"
     sql: ${TABLE}.`Waiting For Loading Timestamp` ;;
   }
 
-  dimension: advance_doc_verification_timestamp {
-    type: string
+  dimension_group: advance_doc_verification_timestamp {
+    type: time
+    timeframes: [time, date, week, month, hour, hour_of_day, raw, day_of_week]
     label: "Advance DocVerification Timestamp"
     sql: ${TABLE}.`Advance DocVerification Timestamp` ;;
   }
@@ -84,17 +85,5 @@ view: kandla_verification_stages_data {
     sql: ${TABLE}.`Advance DocVerification Employee` ;;
   }
 
-  set: detail {
-    fields: [
-      gb_order_id,
-      truck_checklist_verified_timestamp,
-      truck_owner_verification_timestamp,
-      waiting_for_loading_timestamp,
-      advance_doc_verification_timestamp,
-      truck_checklist_verified_employee,
-      truck_owner_verification_employee,
-      waiting_for_loading_employee,
-      advance_doc_verification_employee
-    ]
-  }
+
 }
