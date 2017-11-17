@@ -1463,3 +1463,5 @@ explore: topay_payment_followup {}
 explore: kandla_verification_stages_data {}
 
 explore: fulfillment_timestamps  {}
+
+explore: davt_tracking {}
