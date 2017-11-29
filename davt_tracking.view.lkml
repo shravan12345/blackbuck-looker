@@ -16,7 +16,6 @@ view: davt_tracking {
       left join newbb.enquiry_orderrequest eor on eo.order_request_id = eor.id
       left join newbb.base_userprofile bupc on eor.customer_id = bupc.user_id
       where date(adv.dt_added) between (current_date()-interval 1 day) and current_date()
-      and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar')
        ;;
   }
 
