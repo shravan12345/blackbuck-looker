@@ -6,9 +6,10 @@ view: davt_tracking {
       tlf.city as 'To_City',
       bupc.name as 'Cust_Name',
       adv.dt_added as 'Advance DocVerification Timestamp',
-      pp.dt_added as 'Payment Pending Timestamp'
+      pp.dt_added as 'Payment Pending Timestamp',
+      bo.client_handshake_order_id
       from base_order bo
-      join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
+      left join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
       left join base_status adv on adv.order_id = bo.id and adv.status = 'Advance DocVerification'
       left join base_status pp on pp.order_id = bo.id and pp.status = 'Payment Pending'
       left join base_location blf on blf.id = bo.from_city_id
@@ -23,6 +24,11 @@ view: davt_tracking {
   dimension: gb_order_id {
     type: number
     sql: ${TABLE}.GB_Order_Id ;;
+  }
+
+  dimension: client_handshake_order_id {
+    type: number
+    sql: ${TABLE}.client_handshake_order_id ;;
   }
 
   dimension: from_city {
