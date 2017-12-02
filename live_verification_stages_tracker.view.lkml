@@ -28,82 +28,63 @@ view: live_verification_stages_tracker {
        ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
-
   dimension: gb_order_id {
     type: string
     sql: ${TABLE}.GB_Order_Id ;;
   }
 
-  dimension: advance_doc_verification {
-    type: string
+  dimension_group: advance_doc_verification {
+    type: time
     label: "Advance DocVerification"
     sql: ${TABLE}.`Advance DocVerification` ;;
   }
 
-  dimension: payment_pending {
-    type: string
+  dimension_group: payment_pending {
+    type: time
     label: "Payment Pending"
     sql: ${TABLE}.`Payment Pending` ;;
   }
 
-  dimension: advance_docs_rejected {
-    type: string
+  dimension_group: advance_docs_rejected {
+    type: time
     label: "Advance Docs Rejected"
     sql: ${TABLE}.`Advance Docs Rejected` ;;
   }
 
-  dimension: settlement_doc_verification {
-    type: string
+  dimension_group: settlement_doc_verification {
+    type: time
     label: "Settlement DocVerification"
     sql: ${TABLE}.`Settlement DocVerification` ;;
   }
 
-  dimension: settlement_pending {
-    type: string
+  dimension_group: settlement_pending {
+    type: time
     label: "Settlement Pending"
     sql: ${TABLE}.`Settlement Pending` ;;
   }
 
-  dimension: settlement_docs_rejected {
-    type: string
+  dimension_group: settlement_docs_rejected {
+    type: time
     label: "Settlement Docs Rejected"
     sql: ${TABLE}.`Settlement Docs Rejected` ;;
   }
 
-  dimension: truck_owner_verification {
-    type: string
+  dimension_group: truck_owner_verification {
+    type: time
     label: "Truck Owner Verification"
     sql: ${TABLE}.`Truck Owner Verification` ;;
   }
 
-  dimension: waiting_for_loading {
-    type: string
+  dimension_group: waiting_for_loading {
+    type: time
     label: "Waiting for Loading"
     sql: ${TABLE}.`Waiting for Loading` ;;
   }
 
-  dimension: truck_owner_verification_rejected {
-    type: string
+  dimension_group: truck_owner_verification_rejected {
+    type: time
     label: "Truck Owner Verification Rejected"
     sql: ${TABLE}.`Truck Owner Verification Rejected` ;;
   }
 
-  set: detail {
-    fields: [
-      gb_order_id,
-      advance_doc_verification,
-      payment_pending,
-      advance_docs_rejected,
-      settlement_doc_verification,
-      settlement_pending,
-      settlement_docs_rejected,
-      truck_owner_verification,
-      waiting_for_loading,
-      truck_owner_verification_rejected
-    ]
-  }
 }
