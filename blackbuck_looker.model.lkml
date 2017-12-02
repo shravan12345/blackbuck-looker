@@ -1465,3 +1465,5 @@ explore: kandla_verification_stages_data {}
 explore: fulfillment_timestamps  {}
 
 explore: davt_tracking {}
+
+explore: live_verification_stages_tracker  {}
