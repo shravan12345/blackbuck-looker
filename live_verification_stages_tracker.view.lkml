@@ -12,7 +12,6 @@ view: live_verification_stages_tracker {
       wfl.dt_added as 'Waiting for Loading',
       tovr.dt_added as 'Truck Owner Verification Rejected'
       from base_order bo
-      join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
       left join base_status adv on adv.order_id = bo.id and adv.status = 'Advance DocVerification'
       left join base_status pp on pp.order_id = bo.id and pp.status = 'Payment Pending'
       left join base_status adr on adr.order_id = bo.id and adr.status = 'Advance Docs Rejected'
@@ -24,7 +23,6 @@ view: live_verification_stages_tracker {
       left join base_status tovr on tovr.order_id = bo.id and tovr.status = 'Truck Owner Verification Rejected'
       left join base_location blf on blf.id = bo.from_city_id
       where (date(adv.dt_added) = current_date() or date(sdv.dt_added) = current_date() or date(tov.dt_added) = current_date())
-      and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar')
        ;;
   }
 
