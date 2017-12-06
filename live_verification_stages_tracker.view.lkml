@@ -22,7 +22,7 @@ view: live_verification_stages_tracker {
       left join base_status wfl on wfl.order_id = bo.id and wfl.status = 'Waiting for Loading'
       left join base_status tovr on tovr.order_id = bo.id and tovr.status = 'Truck Owner Verification Rejected'
       left join base_location blf on blf.id = bo.from_city_id
-      where (date(adv.dt_added) = current_date() or date(sdv.dt_added) = current_date() or date(tov.dt_added) = current_date())
+      where (date(addtime(adv.dt_added, "0 05:30:00")) = current_date() or date(addtime(sdv.dt_added, "0 05:30:00")) = current_date() or date(addtime(tov.dt_added, "0 05:30:00")) = current_date())
        ;;
   }
 
