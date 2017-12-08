@@ -1469,3 +1469,5 @@ explore: davt_tracking {}
 explore: live_verification_stages_tracker  {}
 
 explore: elr_tracking {}
+
+explore: daily_verification_stages_report  {}
