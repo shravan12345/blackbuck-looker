@@ -894,12 +894,12 @@ view: base_order {
   }
   measure: Acceptance_alert {
     type: number
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now()) >  2 THEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now()) ELSE 0 END  ;;
+    sql: TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now())  ;;
   }
 
   measure: TAS_alert {
     type: number
-    sql: CASE WHEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now()) >  2 THEN TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now())  ELSE 0 END  ;;
+    sql: TIMESTAMPDIFF(hour,${TAS.dt_updated_raw},now())  ;;
   }
   measure: ADV_alert {
     type: number
