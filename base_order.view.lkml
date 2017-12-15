@@ -894,7 +894,7 @@ view: base_order {
   }
   measure: Acceptance_alert {
     type: number
-    sql: TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now())  ;;
+    sql: CASE WHEN TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now()) IS NULL THEN TIMESTAMPDIFF(hour,${OB.dt_updated_raw},now()) ELSE TIMESTAMPDIFF(hour,${OA.dt_updated_raw},now()) END;;
   }
 
   measure: TAS_alert {
