@@ -9,7 +9,9 @@ view: round_trip_data {
       bo.status,
       blf.city as 'From City', blf.state as 'From State',
       tlf.city as 'To City', tlf.state as 'To State',
-      concat(ifnull(aus.first_name,"")," ",ifnull(aus.last_name,"")) as 'SP Name'
+      concat(ifnull(aus.first_name,"")," ",ifnull(aus.last_name,"")) as 'SP Name',
+      aus.username as 'SP Num',
+      bupd.mobile1 as 'Driver Number'
       from base_order bo
       left join base_truck bt on bt.id = bo.assigned_truck_id
       left join base_location blf on blf.id = bo.from_city_id
@@ -18,8 +20,9 @@ view: round_trip_data {
       left join base_status ob on ob.order_id = bo.id and ob.status = 'Order Blocked'
       left join base_status adv on adv.order_id = bo.id and adv.status = 'Advance DocVerification'
       left join auth_user aus on aus.id = bo.supply_partner_id
-      where blf.state in ('Gujarat','Haryana','Uttar Pradesh','Uttarakhand','Rajasthan','Punjab')
-      and tlf.state in ('Gujarat','Haryana','Uttar Pradesh','Uttarakhand','Rajasthan','Punjab')
+      left join base_userprofile bupd on bupd.user_id = bo.assigned_driver_id
+      where blf.state in ('Gujarat','Haryana','Uttar Pradesh','Uttarakhand','Rajasthan','Punjab','Delhi')
+      and tlf.state in ('Gujarat','Haryana','Uttar Pradesh','Uttarakhand','Rajasthan','Punjab','Delhi')
       and (
       date(adv.dt_added) between (current_date()-interval 8 day) and current_date()
       or date(oa.dt_added) between (current_date()-interval 8 day) and current_date()
@@ -33,6 +36,18 @@ view: round_trip_data {
     type: number
     label: "GB Order Id"
     sql: ${TABLE}.`GB Order Id` ;;
+  }
+
+  dimension: sp_num {
+    type: number
+    label: "SP Num"
+    sql: ${TABLE}.`SP Num` ;;
+  }
+
+  dimension: driver_number {
+    type: number
+    label: "Driver Number"
+    sql: ${TABLE}.`Driver Number` ;;
   }
 
   dimension: accepted_date {
