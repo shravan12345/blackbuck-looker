@@ -24,9 +24,9 @@ view: round_trip_data {
       where blf.state in ('Gujarat','Haryana','Uttar Pradesh','Uttarakhand','Rajasthan','Punjab','Delhi')
       and tlf.state in ('Gujarat','Haryana','Uttar Pradesh','Uttarakhand','Rajasthan','Punjab','Delhi')
       and (
-      date(adv.dt_added) between (current_date()-interval 15 day) and current_date()
-      or date(oa.dt_added) between (current_date()-interval 15 day) and current_date()
-      or date(ob.dt_added) between (current_date()-interval 15 day) and current_date()
+      date(adv.dt_added) between (current_date()-interval 8 day) and current_date()
+      or date(oa.dt_added) between (current_date()-interval 8 day) and current_date()
+      or date(ob.dt_added) between (current_date()-interval 8 day) and current_date()
       )
        ;;
   }
