@@ -11,7 +11,7 @@ view: weighslip_elr_kandla_tracking {
       auc.username as 'Cust_Num',
       blf.city as 'From_City',
       tlf.city as 'To_City', tlf.state as 'To_State',
-      lr.lr_date as 'e-LR_Time',
+      lr.created_date as 'e-LR_Time',
       adv.dt_Added as 'DAVT_Time',
       pd.dt_Added as 'Payment_Done_Time'
       from base_order bo
