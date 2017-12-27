@@ -1475,3 +1475,5 @@ explore: daily_verification_stages_report  {}
 explore: round_trip_data  {}
 
 explore: weighslip_elr_kandla_tracking {}
+
+explore: fo_contract_data  {}
