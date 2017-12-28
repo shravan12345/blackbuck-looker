@@ -11,7 +11,9 @@ view: fo_contract_data {
       tlf.city as 'To City', tlf.state as 'To State',
       eor.product,
       adv.dt_Added as 'DAVT_Time',
+      eor.unit_price as 'Request Price',
       eb.unit_price as 'Handshake Price',
+      bo.tonnage,
       ofd.commission
       from base_order bo
       join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
@@ -111,6 +113,17 @@ view: fo_contract_data {
     type: string
     label: "Handshake Price"
     sql: ${TABLE}.`Handshake Price` ;;
+  }
+
+  dimension: request_price {
+    type: string
+    label: "Request Price"
+    sql: ${TABLE}.`Request Price` ;;
+  }
+
+  dimension: tonnage {
+    type: string
+    sql: ${TABLE}.tonnage ;;
   }
 
   dimension: commission {
