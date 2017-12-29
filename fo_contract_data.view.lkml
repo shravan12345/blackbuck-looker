@@ -14,7 +14,8 @@ view: fo_contract_data {
       eor.unit_price as 'Request Price',
       eb.unit_price as 'Handshake Price',
       bo.tonnage,
-      ofd.commission
+      ofd.commission,
+      ofd.payment_type
       from base_order bo
       join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
       left join base_truck bt on bt.id = bo.assigned_truck_id
@@ -129,6 +130,11 @@ view: fo_contract_data {
   dimension: commission {
     type: string
     sql: ${TABLE}.commission ;;
+  }
+
+  dimension: payment_type {
+    type: string
+    sql: ${TABLE}.payment_type ;;
   }
 
   set: detail {
