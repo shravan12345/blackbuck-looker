@@ -2,7 +2,7 @@ view: fo_contract_data {
   derived_table: {
     sql: select
       eb.supply_partner_id as 'SP Id',
-      bup.name as 'SP Name',
+      aus.first_name as 'SP Name',
       bt.registration_number as 'Truck Num',
       bo.id as 'GB Order Id',
       date(oa.dt_added) as 'Accepted Date',
@@ -17,7 +17,7 @@ view: fo_contract_data {
       ofd.commission,
       ofd.payment_type
       from base_order bo
-      join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
+      left join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
       left join base_truck bt on bt.id = bo.assigned_truck_id
       left join base_location blf on blf.id = bo.from_city_id
       left join base_location tlf on tlf.id = bo.to_city_id
@@ -28,10 +28,10 @@ view: fo_contract_data {
       left join newbb.base_userprofile bup on eb.supply_partner_id = bup.user_id
       left join newbb.auth_user au on au.id = bup.user_id
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
+      left join auth_user aus on aus.id = bo.supply_partner_id
       where date(oa.dt_added) >= '2017-12-27'
-      and bo.client_order_id is not null
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
-      and au.username in (9950824867,9991101202)
+      and aus.username in (9950824867,9991101202)
       order by 5 desc,3
        ;;
   }
