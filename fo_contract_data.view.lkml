@@ -6,6 +6,7 @@ view: fo_contract_data {
       bt.registration_number as 'Truck Num',
       bo.id as 'GB Order Id',
       date(oa.dt_added) as 'Accepted Date',
+      date(ob.dt_added) as 'Blocked Date',
       bo.status,
       blf.city as 'From City', blf.state as 'From State',
       tlf.city as 'To City', tlf.state as 'To State',
@@ -22,6 +23,7 @@ view: fo_contract_data {
       left join base_location blf on blf.id = bo.from_city_id
       left join base_location tlf on tlf.id = bo.to_city_id
       left join base_status oa on oa.order_id = bo.id and oa.status = 'Order Accepted'
+      left join base_status ob on ob.order_id = bo.id and ob.status = 'Order Blocked'
       left join base_status adv on adv.order_id = bo.id and adv.status = 'Advance DocVerification'
       left join newbb.enquiry_orderrequest eor on eo.order_request_id = eor.id
       left join newbb.enquiry_bid eb on eo.bid_id = eb.id
@@ -29,7 +31,7 @@ view: fo_contract_data {
       left join newbb.auth_user au on au.id = bup.user_id
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join auth_user aus on aus.id = bo.supply_partner_id
-      where date(oa.dt_added) >= '2017-12-27'
+      where (date(oa.dt_added) >= '2017-12-27' or date(ob.dt_added) >= '2017-12-27')
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
       and aus.username in (9950824867,9991101202)
       order by 5 desc,3
@@ -69,6 +71,12 @@ view: fo_contract_data {
     type: date
     label: "Accepted Date"
     sql: ${TABLE}.`Accepted Date` ;;
+  }
+
+  dimension: blocked_date {
+    type: date
+    label: "Blocked Date"
+    sql: ${TABLE}.`Blocked Date` ;;
   }
 
   dimension: status {
