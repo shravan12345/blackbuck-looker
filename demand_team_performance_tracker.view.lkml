@@ -5,7 +5,7 @@ view: demand_team_performance_tracker {
       (case when oa.dt_added is null then date(ob.dt_added) else date(oa.dt_added) end) as 'Accepted Date',
       bo.status,
       bo.tonnage,
-      adr.adhoc_rate as 'Customer Adhoc Rate',
+      (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
       (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate'
       from base_order bo
       left join base_customeruserprofile cup on cup.user_id = bo.user_id
