@@ -9,7 +9,8 @@ view: supply_performance_tracker {
       blf.city as 'From City', blf.state as 'From State',
       tlf.city as 'To City', tlf.state as 'To State',
       (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
-      (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate'
+      (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate',
+      bo.tonnage
       from base_order bo
       left join auth_user aus on aus.id = bo.supply_partner_id
       left join base_location blf on blf.id = bo.from_city_id
@@ -55,6 +56,11 @@ view: supply_performance_tracker {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+  }
+
+  dimension: tonnage {
+    type: number
+    sql: ${TABLE}.tonnage ;;
   }
 
   dimension: sp_name {
