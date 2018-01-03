@@ -8,7 +8,7 @@ view: supply_performance_tracker {
       aus.username as 'SP Number',
       blf.city as 'From City', blf.state as 'From State',
       tlf.city as 'To City', tlf.state as 'To State',
-      (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
+      (case when adr.adhoc_rate is null then bop.total_revenue/bo.tonnage when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
       (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate',
       bo.tonnage
       from base_order bo
