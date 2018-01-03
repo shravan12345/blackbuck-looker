@@ -19,6 +19,7 @@ view: supply_performance_tracker {
       left join base_status ob on ob.order_id = bo.id and ob.status = 'Order Blocked'
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
+      left join base_orderprofitability bop on bop.order_id = bo.id
       where (date(oa.dt_added) >= (current_date()-interval 30 day) or date(ob.dt_added) >= (current_date()-interval 30 day))
       and blf.city in ('Anjar','Mundra','Jodiya','Jamnagar','Siddhpur','Jetpur','Bhachau','Rajkot','Bhuj','Karnal','Safidon','Sri Muktsar Sahib','Rajsamand','Udaipur','Kolayat','Bikaner','Beawar','Kherwara','Kishangarh','Parbatsar','Bhilwara','Vallabhnagar','Sri Muktsar Sahib','Ferozepur','New Delhi')
       and aus.username in
