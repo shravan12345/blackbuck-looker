@@ -3,7 +3,7 @@ view: demand_team_performance_tracker {
     sql: select distinct bst.sector_name, cup.name as 'Customer Name', bup.mobile1 as 'Mobile',
       bo.id as 'Order ID',
       (case when oa.dt_added is null then date(ob.dt_added) else date(oa.dt_added) end) as 'Accepted Date',
-      bo.status,
+      ofd.commission as 'status',
       bo.tonnage,
       (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
       (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate'
@@ -54,7 +54,7 @@ view: demand_team_performance_tracker {
   }
 
   dimension: status {
-    type: string
+    type: number
     sql: ${TABLE}.status ;;
   }
 
