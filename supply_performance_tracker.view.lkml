@@ -7,7 +7,7 @@ view: supply_performance_tracker {
       aus.first_name as 'SP Name',
       aus.username as 'SP Number',
       blf.city as 'From City', bt.registration_number as 'From State',
-      tlf.city as 'To City', tlf.state as 'To State',
+      tlf.city as 'To City', ofd.commission as 'To State',
       (case when adr.adhoc_rate is null then bop.total_revenue/bo.tonnage when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
       (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate',
       bo.tonnage
@@ -21,7 +21,7 @@ view: supply_performance_tracker {
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
       left join base_orderprofitability bop on bop.order_id = bo.id
-      where (date(oa.dt_added) >= (current_date()-interval 30 day) or date(ob.dt_added) >= (current_date()-interval 30 day))
+      where (date(oa.dt_added) >= (current_date()-interval 40 day) or date(ob.dt_added) >= (current_date()-interval 40 day))
       and blf.city in ('Anjar','Mundra','Jodiya','Jamnagar','Siddhpur','Jetpur','Bhachau','Rajkot','Bhuj','Karnal','Safidon','Sri Muktsar Sahib','Rajsamand','Udaipur','Kolayat','Bikaner','Beawar','Kherwara','Kishangarh','Parbatsar','Bhilwara','Vallabhnagar','Sri Muktsar Sahib','Ferozepur','New Delhi')
       and aus.username in
       (
@@ -96,7 +96,7 @@ view: supply_performance_tracker {
   }
 
   dimension: to_state {
-    type: string
+    type: number
     label: "To State"
     sql: ${TABLE}.`To State` ;;
   }
