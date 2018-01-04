@@ -6,12 +6,13 @@ view: supply_performance_tracker {
       bo.status,
       aus.first_name as 'SP Name',
       aus.username as 'SP Number',
-      blf.city as 'From City', blf.state as 'From State',
+      blf.city as 'From City', bt.registration_number as 'From State',
       tlf.city as 'To City', tlf.state as 'To State',
       (case when adr.adhoc_rate is null then bop.total_revenue/bo.tonnage when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
       (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate',
       bo.tonnage
       from base_order bo
+      left join base_truck bt on bt.id = bo.assigned_truck_id
       left join auth_user aus on aus.id = bo.supply_partner_id
       left join base_location blf on blf.id = bo.from_city_id
       left join base_location tlf on tlf.id = bo.to_city_id
