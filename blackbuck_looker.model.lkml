@@ -1481,3 +1481,5 @@ explore: fo_contract_data  {}
 explore: demand_team_performance_tracker  {}
 
 explore: supply_performance_tracker {}
+
+explore: collections_report  {}
