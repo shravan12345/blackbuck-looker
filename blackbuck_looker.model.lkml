@@ -1483,3 +1483,5 @@ explore: demand_team_performance_tracker  {}
 explore: supply_performance_tracker {}
 
 explore: collections_report  {}
+
+explore: all_orders_cluster{}
