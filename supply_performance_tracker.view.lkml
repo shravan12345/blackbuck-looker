@@ -10,7 +10,12 @@ view: supply_performance_tracker {
       tlf.city as 'To City', ofd.commission as 'To State',
       (case when adr.adhoc_rate is null then bop.total_revenue/bo.tonnage when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
       (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate',
-      bo.tonnage
+      bo.tonnage,
+      blf.state as 'F_State',
+      tlf.state as 'T_State',
+      bst.sector_name,
+      bt.business_name,
+      cup.name as 'Customer_Name'
       from base_order bo
       left join base_truck bt on bt.id = bo.assigned_truck_id
       left join auth_user aus on aus.id = bo.supply_partner_id
@@ -21,6 +26,9 @@ view: supply_performance_tracker {
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
       left join base_orderprofitability bop on bop.order_id = bo.id
+      left join base_sectortype bst on bst.id = cup.sector_type_id
+      left join base_businesstype bt on bt.id = bst.business_type_id
+      left join base_customeruserprofile cup on cup.user_id = bo.user_id
       where (date(oa.dt_added) >= (current_date()-interval 40 day) or date(ob.dt_added) >= (current_date()-interval 40 day))
       and blf.city in ('Anjar','Mundra','Jodiya','Jamnagar','Siddhpur','Jetpur','Bhachau','Rajkot','Bhuj','Karnal','Safidon','Sri Muktsar Sahib','Rajsamand','Udaipur','Kolayat','Bikaner','Beawar','Kherwara','Kishangarh','Parbatsar','Bhilwara','Vallabhnagar','Sri Muktsar Sahib','Ferozepur','New Delhi')
       and aus.username in
@@ -30,6 +38,32 @@ view: supply_performance_tracker {
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
        ;;
   }
+
+  dimension: F_State {
+    type: string
+    sql: ${TABLE}.F_State ;;
+  }
+
+  dimension: T_State {
+    type: string
+    sql: ${TABLE}.T_State ;;
+  }
+
+  dimension: Customer_Name {
+    type: string
+    sql: ${TABLE}.Customer_Name ;;
+  }
+
+  dimension: business_name {
+    type: string
+    sql: ${TABLE}.business_name ;;
+  }
+
+  dimension: sector_name {
+    type: string
+    sql: ${TABLE}.sector_name ;;
+  }
+
 
   dimension: gb_order_id {
     type: number
