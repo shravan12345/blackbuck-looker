@@ -6,7 +6,8 @@ view: demand_team_performance_tracker {
       ofd.commission as 'status',
       bo.tonnage,
       (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
-      (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate'
+      (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate',
+      pd.dt_added as 'Payment Done Date'
       from base_order bo
       left join base_customeruserprofile cup on cup.user_id = bo.user_id
       left join base_userprofile bup on cup.user_id = bup.user_id
@@ -15,6 +16,7 @@ view: demand_team_performance_tracker {
       left join base_location tlf on tlf.id = bo.to_city_id
       left join base_status oa on oa.order_id = bo.id and oa.status = 'Order Accepted'
       left join base_status ob on ob.order_id = bo.id and ob.status = 'Order Blocked'
+      left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
       where (date(oa.dt_added) >= (current_date()-interval 40 day) or date(ob.dt_added) >= (current_date()-interval 40 day))
@@ -51,6 +53,12 @@ view: demand_team_performance_tracker {
     type: date
     label: "Accepted Date"
     sql: ${TABLE}.`Accepted Date` ;;
+  }
+
+  dimension: payment_done_date {
+    type: date
+    label: "Payment Done Date"
+    sql: ${TABLE}.`Payment Done Date` ;;
   }
 
   dimension: status {
