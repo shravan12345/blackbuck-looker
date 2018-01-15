@@ -15,7 +15,8 @@ view: supply_performance_tracker {
       tlf.state as 'T_State',
       bst.sector_name,
       bbt.business_name,
-      cup.name as 'Customer_Name'
+      cup.name as 'Customer_Name',
+      pd.dt_added as 'Payment Done Date'
       from base_order bo
       left join base_truck bt on bt.id = bo.assigned_truck_id
       left join auth_user aus on aus.id = bo.supply_partner_id
@@ -23,6 +24,7 @@ view: supply_performance_tracker {
       left join base_location tlf on tlf.id = bo.to_city_id
       left join base_status oa on oa.order_id = bo.id and oa.status = 'Order Accepted'
       left join base_status ob on ob.order_id = bo.id and ob.status = 'Order Blocked'
+      left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
       left join base_orderprofitability bop on bop.order_id = bo.id
@@ -42,6 +44,12 @@ view: supply_performance_tracker {
   dimension: F_State {
     type: string
     sql: ${TABLE}.F_State ;;
+  }
+
+  dimension: payment_done_date {
+    type: date
+    label: "Payment Done Date"
+    sql: ${TABLE}.`Payment Done Date` ;;
   }
 
   dimension: T_State {
