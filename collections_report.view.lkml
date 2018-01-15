@@ -27,7 +27,7 @@ view: collections_report {
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
       where (date(oa.dt_added) >= '2017-12-15' or date(ob.dt_added) >= '2017-12-15')
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
-      bst.business_type_id = 1
+      and bst.business_type_id = 1
        ;;
   }
 
