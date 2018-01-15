@@ -14,7 +14,7 @@ view: collections_report {
       ofd.payment_type,
       bo.tonnage,
       (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
-      bod.document_status
+      bod.document_status as 'POD_Status'
       from base_order bo
       left join base_customeruserprofile cup on cup.user_id = bo.user_id
       left join base_userprofile bup on cup.user_id = bup.user_id
@@ -38,6 +38,12 @@ view: collections_report {
     type: string
     sql: ${TABLE}.sector_name ;;
   }
+
+  dimension: pod_status {
+    type: number
+    sql: ${TABLE}.POD_Status ;;
+  }
+
 
   dimension: order_id {
     type: number
