@@ -29,7 +29,7 @@ view: fo_contract_rajasthan {
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
       left join payment.payment_order po on po.oms_order_id = bo.id
       left join payment.charge c on c.payment_order_id = po.id and c.type = 10
-      where (date(oa.dt_added) >= '2018-01-15' or date(ob.dt_added) >= '2018-01-15')
+      where (date(oa.dt_added) >= '2018-01-10' or date(ob.dt_added) >= '2018-01-10')
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
       and aus.username in (9785916984,9829666303)
       order by 4 desc,1
