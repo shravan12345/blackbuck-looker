@@ -32,7 +32,7 @@ view: supply_performance_tracker {
       left join base_sectortype bst on bst.id = cup.sector_type_id
       left join base_businesstype bbt on bbt.id = bst.business_type_id
       where (date(pd.dt_added) >= (current_date()-interval 30 day) or date(oa.dt_added) >= (current_date()-interval 30 day) or date(ob.dt_added) >= (current_date()-interval 30 day))
-      and blf.city in ('Anjar','Mundra','Jodiya','Jamnagar','Siddhpur','Jetpur','Bhachau','Rajkot','Bhuj','Karnal','Safidon','Sri Muktsar Sahib','Rajsamand','Udaipur','Kolayat','Bikaner','Beawar','Kherwara','Kishangarh','Parbatsar','Bhilwara','Vallabhnagar','Sri Muktsar Sahib','Ferozepur','New Delhi')
+      and blf.city in ('Anjar','Mundra','Jodiya','Jamnagar','Siddhpur','Jetpur','Bhachau','Rajkot','Bhuj','Karnal','Safidon','Sri Muktsar Sahib','Rajsamand','Udaipur','Kolayat','Bikaner','Beawar','Kherwara','Kishangarh','Parbatsar','Bhilwara','Vallabhnagar','Sri Muktsar Sahib','Ferozepur','New Delhi','Dholka')
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
        ;;
   }
