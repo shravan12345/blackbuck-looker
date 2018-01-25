@@ -1485,3 +1485,5 @@ explore: supply_performance_tracker {}
 explore: collections_report  {}
 
 explore: all_orders_cluster{}
+
+explore: fo_contract_rajasthan  {}

@@ -13,7 +13,8 @@ view: collections_report {
       tlf.city as 'To City', tlf.state as 'To State',
       ofd.payment_type,
       bo.tonnage,
-      (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate'
+      (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
+      bod.document_status as 'POD_Status'
       from base_order bo
       left join base_customeruserprofile cup on cup.user_id = bo.user_id
       left join base_userprofile bup on cup.user_id = bup.user_id
@@ -25,9 +26,10 @@ view: collections_report {
       left join base_status ob on ob.order_id = bo.id and ob.status = 'Order Blocked'
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
+      left join base_orderdocument bod on bod.order_id = bo.id and bod.document_type = 2
       where (date(oa.dt_added) >= '2017-12-15' or date(ob.dt_added) >= '2017-12-15')
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
-      and bst.id in (6,9)
+      and bst.business_type_id = 1
        ;;
   }
 
@@ -36,6 +38,12 @@ view: collections_report {
     type: string
     sql: ${TABLE}.sector_name ;;
   }
+
+  dimension: pod_status {
+    type: number
+    sql: ${TABLE}.POD_Status ;;
+  }
+
 
   dimension: order_id {
     type: number
