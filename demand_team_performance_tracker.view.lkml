@@ -21,7 +21,7 @@ view: demand_team_performance_tracker {
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
       where (date(oa.dt_added) >= (current_date()-interval 40 day) or date(ob.dt_added) >= (current_date()-interval 40 day))
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
-      and bst.id in (6,7,9,11,16,18)
+      and bst.id in (6,7,9,11,16,17,18,19)
        ;;
   }
 
