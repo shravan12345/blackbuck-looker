@@ -31,7 +31,7 @@ view: fo_contract_rajasthan {
       left join payment.charge c on c.payment_order_id = po.id and c.type = 10
       where (date(oa.dt_added) >= '2018-01-10' or date(ob.dt_added) >= '2018-01-10')
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
-      and aus.username in (9785916984,9829666303)
+      and aus.username in (9785916984,9829666303,9521146475)
       order by 4 desc,1
        ;;
   }
