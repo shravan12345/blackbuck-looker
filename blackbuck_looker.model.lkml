@@ -1487,3 +1487,5 @@ explore: collections_report  {}
 explore: all_orders_cluster{}
 
 explore: fo_contract_rajasthan  {}
+
+explore: nw_corridor_all_data {}
