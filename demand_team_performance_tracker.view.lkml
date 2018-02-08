@@ -7,7 +7,9 @@ view: demand_team_performance_tracker {
       bo.tonnage,
       (case when adr.adhoc_rate > 4000 then adr.adhoc_rate/bo.tonnage else adr.adhoc_rate end) as 'Customer Adhoc Rate',
       (case when ofd.per_ton_rate is null then ofd.freight_amount/bo.tonnage else ofd.per_ton_rate end) as 'Supply Per Ton Rate',
-      pd.dt_added as 'Payment Done Date'
+      pd.dt_added as 'Payment Done Date',
+      blf.city as 'From City',
+      tlf.city as 'To City'
       from base_order bo
       left join base_customeruserprofile cup on cup.user_id = bo.user_id
       left join base_userprofile bup on cup.user_id = bup.user_id
@@ -19,9 +21,9 @@ view: demand_team_performance_tracker {
       left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
-      where (date(oa.dt_added) >= (current_date()-interval 40 day) or date(ob.dt_added) >= (current_date()-interval 40 day))
+      where (date(oa.dt_added) >= (current_date()-interval 30 day) or (oa.dt_added is null and date(ob.dt_added) >= (current_date()-interval 30 day)))
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
-      and bst.id in (6,7,9,11,16,17,18,19)
+      and (bst.id in (6,7,9,11,16,17,18,19) or blf.city in ('Ahmedabad','Anand','Himmatnagar','Palanpur','Sanand','Gandhinagar','Godhra','Halol','Himmatnagar','Kadi','Kalol','Matar','Mehsana','Vadgam','Vijapur','Anjar','Bhuj','Jamnagar','Jetpur','Jodiya','Lakhatar','Mundra','Rajkot','Ankleshwar','Dahej','Hazira','Bharuch','Jhagadia','Karjan','Surat','Vyara','Gurgaon','Hassangarh','Faridabad','Hisar','Panipat','Bahadurgarh','Gannaur','Karnal','Rohtak','Safidon','Sonipat','Alipur','Delhi','New Delhi','Jaipur','Newai','Chomu','Kishangarh','Niwai','Agucha','Chanderia','Dariba','Beawar','Bhilwara','Bikaner','Chittorgarh','Gulabpura','Kherwara','Kolayat','Rajsamand','Relmangra','Udaipur','Dasna','Ghaziabad'))
        ;;
   }
 
@@ -36,6 +38,18 @@ view: demand_team_performance_tracker {
     type: string
     label: "Customer Name"
     sql: ${TABLE}.`Customer Name` ;;
+  }
+
+  dimension: from_city {
+    type: string
+    label: "From City"
+    sql: ${TABLE}.`From City` ;;
+  }
+
+  dimension: to_city {
+    type: string
+    label: "To City"
+    sql: ${TABLE}.`To City` ;;
   }
 
   dimension: mobile {
