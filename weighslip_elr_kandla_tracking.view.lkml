@@ -30,7 +30,7 @@ view: weighslip_elr_kandla_tracking {
       left join base_orderdocument bod on bod.order_id = bo.id and bod.document_type = 13
       left join base_status adv on adv.order_id = bo.id and adv.status = 'Advance DocVerification'
       left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
-      where date(oa.dt_added) >=  '2018-02-01'
+      where date(oa.dt_added) >=  '2018-02-07'
       and blf.city in ('Anjar','Bhuj','Mundra')
       and bo.client_order_id is not null
       order by 1 desc
