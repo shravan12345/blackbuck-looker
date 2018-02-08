@@ -2,6 +2,7 @@ view: nw_live_placement {
   derived_table: {
     sql: select
       bo.id as 'GB Order Id',
+      fo.profile_type,
       (case when oa.dt_added is null then date(ob.dt_added) else date(oa.dt_added) end) as 'Accepted Date',
       bo.status,
       aus.first_name as 'SP Name',
@@ -29,18 +30,21 @@ view: nw_live_placement {
       left join base_customeruserprofile cup on cup.user_id = bo.user_id
       left join base_sectortype bst on bst.id = cup.sector_type_id
       left join base_businesstype bbt on bbt.id = bst.business_type_id
+      left join
+      (
+      select au.username,
+      (case when bup.profile_type in ('fleet_owner','transport_contractor') then 'FO' else 'Non-FO' end) as 'profile_type'
+      from newbb.auth_user au left join newbb.base_userprofile bup on bup.user_id = au.id
+      ) fo on fo.username = aus.username
       where (date(oa.dt_added) = current_date() or (oa.dt_added is null and date(ob.dt_added) = current_date()))
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
       and (bst.id in (6,7,9,11,16,17,18,19) or blf.city in ('Ahmedabad','Anand','Himmatnagar','Palanpur','Sanand','Gandhinagar','Godhra','Halol','Himmatnagar','Kadi','Kalol','Matar','Mehsana','Vadgam','Vijapur','Anjar','Bhuj','Jamnagar','Jetpur','Jodiya','Lakhatar','Mundra','Rajkot','Ankleshwar','Dahej','Hazira','Bharuch','Jhagadia','Karjan','Surat','Vyara','Gurgaon','Hassangarh','Faridabad','Hisar','Panipat','Bahadurgarh','Gannaur','Karnal','Rohtak','Safidon','Sonipat','Alipur','Delhi','New Delhi','Jaipur','Newai','Chomu','Kishangarh','Niwai','Agucha','Chanderia','Dariba','Beawar','Bhilwara','Bikaner','Chittorgarh','Gulabpura','Kherwara','Kolayat','Rajsamand','Relmangra','Udaipur','Dasna','Ghaziabad'))
        ;;
   }
 
-
-
-  dimension: payment_done_date {
-    type: date
-    label: "Payment Done Date"
-    sql: ${TABLE}.`Payment Done Date` ;;
+  dimension: profile_type {
+    type: string
+    sql: ${TABLE}.profile_type ;;
   }
 
   dimension: commission {
