@@ -34,7 +34,6 @@ view: placement_tracker {
       left join newbb.auth_user auc on auc.id = bupc.user_id
       where date(oa.dt_added) = current_date()
       and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar','Jodiya')
-      and bo.client_order_id is not null
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
        ;;
   }
