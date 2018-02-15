@@ -2,24 +2,22 @@ view: fulfillment_timestamps {
   derived_table: {
     sql: select distinct
       bo.id as 'GB_Order_Id',
-      eor.business_type,
+      (case when bo.procurement_type = "CLUSTER" then 'nb' else 'gb' end) as 'business_type',
       blf.city as 'From_City',
-      bupc.name as 'Cust_Name',
+      cup.name as 'Cust_Name',
       oa.dt_added as 'Order Accepted Timestamp',
       tas.dt_added as 'TAS Timestamp',
       adv.dt_added as 'DAVT Timestamp',
       pp.dt_added as 'Payment Pending Timestamp',
       pd.dt_added as 'Payment Done Timestamp'
       from base_order bo
-      join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
       left join base_status oa on oa.order_id = bo.id and oa.status = 'Order Accepted'
       left join base_status tas on tas.order_id = bo.id and tas.status = 'Truck Arrival Source'
       left join base_status adv on adv.order_id = bo.id and adv.status = 'Advance DocVerification'
       left join base_status pp on pp.order_id = bo.id and pp.status = 'Payment Pending'
       left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
       left join base_location blf on blf.id = bo.from_city_id
-      left join newbb.enquiry_orderrequest eor on eo.order_request_id = eor.id
-      left join newbb.base_userprofile bupc on eor.customer_id = bupc.user_id
+      left join base_customeruserprofile cup on cup.user_id = bo.user_id
       where date(pd.dt_added) between (current_date()-interval 31 day) and current_date()
       and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar')
        ;;

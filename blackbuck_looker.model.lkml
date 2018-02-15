@@ -1493,3 +1493,9 @@ explore: nw_corridor_all_data {}
 explore: live_advance_docs_rejection {}
 
 explore: live_fs_docs_rejection {}
+
+explore: nw_live_placement {}
+
+explore: settlement_tracking {}
+
+explore: transit_status_nw_orders  {}

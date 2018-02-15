@@ -10,8 +10,8 @@ view: placement_tracker {
       bo.status,
       eor.id as 'Request Id',
       eb.supply_partner_id as 'SP Id',
-      bup.name as 'SP Name', bup.company_name as 'SP Company Name',
-      au.username as 'SP Num',
+      aus.first_name as 'SP Name', bup.company_name as 'SP Company Name',
+      aus.username as 'SP Num',
       eor.customer_id as 'Customer Id',
       bupc.name as 'Cust Name', bupc.company_name as 'Cust Company Name',
       auc.username as 'Cust Num',
@@ -21,20 +21,21 @@ view: placement_tracker {
       (case when eo.source = 'dashboard' then 'Dashboard' else 'App' end) as 'Handshake Source',
       eor.product
       from base_order bo
-      join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
+      left join auth_user aus on aus.id = bo.supply_partner_id
+      left join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
       left join base_truck bt on bt.id = bo.assigned_truck_id
       left join base_location blf on blf.id = bo.from_city_id
       left join base_location tlf on tlf.id = bo.to_city_id
       left join base_status oa on oa.order_id = bo.id and oa.status = 'Order Accepted'
       left join newbb.enquiry_orderrequest eor on eo.order_request_id = eor.id
       left join newbb.enquiry_bid eb on eo.bid_id = eb.id
-      left join newbb.base_userprofile bup on eb.supply_partner_id = bup.user_id
-      left join newbb.auth_user au on au.id = bup.user_id
+      left join newbb.auth_user au on au.username = aus.username
+      left join newbb.base_userprofile bup on au.id = bup.user_id
       left join newbb.base_userprofile bupc on eor.customer_id = bupc.user_id
       left join newbb.auth_user auc on auc.id = bupc.user_id
+
       where date(oa.dt_added) = current_date()
       and blf.city in ('Anjar','Bhuj','Mundra','Jamnagar','Jodiya')
-      and bo.client_order_id is not null
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
        ;;
   }

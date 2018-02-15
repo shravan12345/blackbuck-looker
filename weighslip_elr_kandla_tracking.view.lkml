@@ -6,33 +6,24 @@ view: weighslip_elr_kandla_tracking {
       bt.registration_number as 'Truck_Num',
       oa.dt_added as 'Accepted_Time',
       bo.status as 'Current_Status',
-      eor.customer_id as 'Customer_Id',
-      bupc.name as 'Cust_Name',
-      auc.username as 'Cust_Num',
+      cup.name as 'Cust_Name',
       blf.city as 'From_City',
       tlf.city as 'To_City', tlf.state as 'To_State',
       lr.created_date as 'e-LR_Time',
       adv.dt_Added as 'DAVT_Time',
       pd.dt_Added as 'Payment_Done_Time'
       from base_order bo
-      join newbb.enquiry_order eo on eo.id = bo.client_handshake_order_id
       left join base_truck bt on bt.id = bo.assigned_truck_id
+      left join base_customeruserprofile cup on cup.user_id = bo.user_id
       left join base_location blf on blf.id = bo.from_city_id
       left join base_location tlf on tlf.id = bo.to_city_id
       left join base_status oa on oa.order_id = bo.id and oa.status = 'Order Accepted'
-      left join newbb.enquiry_orderrequest eor on eo.order_request_id = eor.id
-      left join newbb.enquiry_bid eb on eo.bid_id = eb.id
-      left join newbb.base_userprofile bup on eb.supply_partner_id = bup.user_id
-      left join newbb.auth_user au on au.id = bup.user_id
-      left join newbb.base_userprofile bupc on eor.customer_id = bupc.user_id
-      left join newbb.auth_user auc on auc.id = bupc.user_id
       left join base_lorryreceipt lr on lr.order_id = bo.id
       left join base_orderdocument bod on bod.order_id = bo.id and bod.document_type = 13
       left join base_status adv on adv.order_id = bo.id and adv.status = 'Advance DocVerification'
       left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
       where date(oa.dt_added) >=  '2018-02-07'
       and blf.city in ('Anjar','Bhuj','Mundra')
-      and bo.client_order_id is not null
       order by 1 desc
        ;;
   }
@@ -63,19 +54,10 @@ view: weighslip_elr_kandla_tracking {
     sql: ${TABLE}.Current_Status ;;
   }
 
-  dimension: customer_id {
-    type: number
-    sql: ${TABLE}.Customer_Id ;;
-  }
 
   dimension: cust_name {
     type: string
     sql: ${TABLE}.Cust_Name ;;
-  }
-
-  dimension: cust_num {
-    type: number
-    sql: ${TABLE}.Cust_Num ;;
   }
 
   dimension: from_city {
