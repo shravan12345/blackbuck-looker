@@ -1499,3 +1499,5 @@ explore: nw_live_placement {}
 explore: settlement_tracking {}
 
 explore: transit_status_nw_orders  {}
+
+explore: cancellations_nw_raw_dump {}
