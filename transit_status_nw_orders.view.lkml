@@ -1,7 +1,8 @@
 view: transit_status_nw_orders {
   derived_table: {
     sql: select
-      bo.id as 'GB Order Id',
+      bo.id as 'Order Id',
+      (case when bst.business_type_id = 1 then 'Spot' when bst.business_type_id = 2 then 'Contract' end) as 'Business Type',
       bo.status as 'Current Status',
       bt.registration_number as 'Truck Num',
       aus.first_name as 'SP Name',
@@ -9,7 +10,7 @@ view: transit_status_nw_orders {
       blf.city as 'From City', blf.state as 'From State',
       tlf.city as 'To City', tlf.state as 'To State',
       cup.name as 'Customer Name',
-      pd.dt_added as 'Payment Done Time',
+      pd.dt_added as 'Advance Payment',
       bo.distance,
       ofd.payment_type
       from base_order bo
@@ -29,10 +30,16 @@ view: transit_status_nw_orders {
   }
 
 
-  dimension: gb_order_id {
+  dimension: order_id {
     type: string
-    label: "GB Order Id"
-    sql: ${TABLE}.`GB Order Id` ;;
+    label: "Order Id"
+    sql: ${TABLE}.`Order Id` ;;
+  }
+
+  dimension: business_type {
+    type: string
+    label: "Business Type"
+    sql: ${TABLE}.`Business Type` ;;
   }
 
   dimension: current_status {
@@ -89,10 +96,10 @@ view: transit_status_nw_orders {
     sql: ${TABLE}.`Customer Name` ;;
   }
 
-  dimension_group: payment_done_time {
+  dimension_group: advance_payment {
     type: time
-    label: "Payment Done Time"
-    sql: ${TABLE}.`Payment Done Time` ;;
+    label: "Advance Payment"
+    sql: ${TABLE}.`Advance Payment` ;;
   }
 
   dimension: distance {
