@@ -27,7 +27,7 @@ view: collections_report {
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
       left join base_adhocorderrates adr on adr.id = bo.adhoc_rate_reference_id
       left join base_orderdocument bod on bod.order_id = bo.id and bod.document_type = 2
-      where date(bo.end_data) >= '2018-01-01'
+      where date(bo.end_date) >= '2018-01-01'
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
       and bst.business_type_id = 1
        ;;
