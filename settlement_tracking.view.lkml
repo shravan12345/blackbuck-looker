@@ -1,8 +1,10 @@
 view: settlement_tracking {
   derived_table: {
     sql: select
-      bo.id as 'GB Order Id',
+      bo.id as 'Order Id',
+      (case when bst.business_type_id = 1 then 'Spot' when bst.business_type_id = 2 then 'Contract' end) as 'Business Type',
       bt.registration_number as 'Truck Num',
+      bo.status as 'Current Status',
       aus.first_name as 'SP Name',
       aus.username as 'SP Number',
       blf.city as 'From City', blf.state as 'From State',
@@ -11,7 +13,10 @@ view: settlement_tracking {
       pd.dt_added as 'Payment Done Time',
       sdv.dt_added as 'Settlement DocVerification Time',
       sd.dt_added as 'Settlement Done Time',
-      bo.distance
+      bo.distance,
+      ofd.payment_type,
+      bod.document_status as 'POD_Status',
+      aup.email as 'Updated_By'
       from base_order bo
       left join auth_user aus on aus.id = bo.supply_partner_id
       left join base_truck bt on bt.id = bo.assigned_truck_id
@@ -21,24 +26,50 @@ view: settlement_tracking {
       left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
       left join base_status sd on sd.order_id = bo.id and sd.status = 'Settlement Done'
       left join base_sectortype bst on bst.id = bo.customer_sector_id
+      left join base_orderfinancedetails ofd on ofd.order_id = bo.id
+      left join base_orderdocument bod on bod.order_id = bo.id and bod.document_type = 2
+      left join auth_user aup on aup.id = bod.last_modified_by_id
       left join
       (
       select order_id, min(dt_Added) as 'dt_added' from base_status where status = 'Settlement DocVerification' group by 1
       ) sdv on sdv.order_id = bo.id
-      where date(sd.dt_Added) >= (current_date()-interval 30 day)
-      and bst.id in (6,7,9,11,16,17)
+      where date(sdv.dt_Added) >= '2018-01-01'
+      and ofd.payment_type <> 1
+      and (bst.id in (6,7,9,11,16,17,18,19) or blf.city in ('Ahmedabad','Anand','Himmatnagar','Palanpur','Sanand','Gandhinagar','Godhra','Halol','Himmatnagar','Kadi','Kalol','Matar','Mehsana','Vadgam','Vijapur','Anjar','Bhuj','Jamnagar','Jetpur','Jodiya','Lakhatar','Mundra','Rajkot','Ankleshwar','Dahej','Hazira','Bharuch','Jhagadia','Karjan','Surat','Vyara','Gurgaon','Hassangarh','Faridabad','Hisar','Panipat','Bahadurgarh','Gannaur','Karnal','Rohtak','Safidon','Sonipat','Alipur','Delhi','New Delhi','Jaipur','Newai','Chomu','Kishangarh','Niwai','Agucha','Chanderia','Dariba','Beawar','Bhilwara','Bikaner','Chittorgarh','Gulabpura','Kherwara','Kolayat','Rajsamand','Relmangra','Udaipur','Dasna','Ghaziabad'))
        ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
+  dimension: order_id {
+    type: string
+    label: "Order Id"
+    sql: ${TABLE}.`Order Id` ;;
   }
 
-  dimension: gb_order_id {
+  dimension: current_status {
     type: string
-    label: "GB Order Id"
-    sql: ${TABLE}.`GB Order Id` ;;
+    label: "Current Status"
+    sql: ${TABLE}.`Current Status` ;;
+  }
+
+  dimension: pod_status {
+    type: string
+    sql: ${TABLE}.`POD_Status` ;;
+  }
+
+  dimension: updated_by {
+    type: string
+    sql: ${TABLE}.`Updated_By` ;;
+  }
+
+  dimension: business_type {
+    type: string
+    label: "Business Type"
+    sql: ${TABLE}.`Business Type` ;;
+  }
+
+  dimension: payment_type {
+    type: number
+    sql: ${TABLE}.payment_type ;;
   }
 
   dimension: truck_num {
@@ -112,21 +143,5 @@ view: settlement_tracking {
     sql: ${TABLE}.distance ;;
   }
 
-  set: detail {
-    fields: [
-      gb_order_id,
-      truck_num,
-      sp_name,
-      sp_number,
-      from_city,
-      from_state,
-      to_city,
-      to_state,
-      customer_name,
-      payment_done_time,
-      settlement_doc_verification_time,
-      settlement_done_time,
-      distance
-    ]
-  }
+
 }
