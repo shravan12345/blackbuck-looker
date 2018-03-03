@@ -24,7 +24,7 @@ view: transit_status_nw_orders {
       left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
       left join base_sectortype bst on bst.id = bo.customer_sector_id
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
-      left join base_orderdocument bod on bod.order_id = bo.id and bod.document_type = 2
+      left join base_orderdocument bod on bod.order_id = bo.id and bod.document_type = 2 and bod.document_url is not null
       left join auth_user aupod on aupod.id = bod.added_by_id
       where bo.status in ('Truck In-Transit','Truck Arrival Destination','Transit Issue','Truck Departure Destination')
       and ofd.payment_type <> 1
