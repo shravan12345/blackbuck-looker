@@ -12,7 +12,9 @@ view: transit_status_nw_orders {
       cup.name as 'Customer Name',
       pd.dt_added as 'Advance Payment',
       bo.distance,
-      ofd.payment_type
+      ofd.payment_type,
+      bod.doc_img_capture_time as 'Soft Copy Upload',
+      aupod.email as 'Soft Copy Uploaded By'
       from base_order bo
       left join auth_user aus on aus.id = bo.supply_partner_id
       left join base_truck bt on bt.id = bo.assigned_truck_id
@@ -22,9 +24,11 @@ view: transit_status_nw_orders {
       left join base_status pd on pd.order_id = bo.id and pd.status = 'Payment Done'
       left join base_sectortype bst on bst.id = bo.customer_sector_id
       left join base_orderfinancedetails ofd on ofd.order_id = bo.id
+      left join base_orderdocument bod on bod.order_id = bo.id and bod.document_type = 2
+      left join auth_user aupod on aupod.id = bod.added_by_id
       where bo.status in ('Truck In-Transit','Truck Arrival Destination','Transit Issue','Truck Departure Destination')
       and ofd.payment_type <> 1
-      and date(pd.dt_Added) >= '2017-08-01'
+      and date(pd.dt_Added) >= '2018-01-01'
       and (bst.id in (6,7,9,11,16,17,18,19) or blf.city in ('Ahmedabad','Anand','Himmatnagar','Palanpur','Sanand','Gandhinagar','Godhra','Halol','Himmatnagar','Kadi','Kalol','Matar','Mehsana','Vadgam','Vijapur','Anjar','Bhuj','Jamnagar','Jetpur','Jodiya','Lakhatar','Mundra','Rajkot','Ankleshwar','Dahej','Hazira','Bharuch','Jhagadia','Karjan','Surat','Vyara','Gurgaon','Hassangarh','Faridabad','Hisar','Panipat','Bahadurgarh','Gannaur','Karnal','Rohtak','Safidon','Sonipat','Alipur','Delhi','New Delhi','Jaipur','Newai','Chomu','Kishangarh','Niwai','Agucha','Chanderia','Dariba','Beawar','Bhilwara','Bikaner','Chittorgarh','Gulabpura','Kherwara','Kolayat','Rajsamand','Relmangra','Udaipur','Dasna','Ghaziabad'))
        ;;
   }
@@ -34,6 +38,18 @@ view: transit_status_nw_orders {
     type: string
     label: "Order Id"
     sql: ${TABLE}.`Order Id` ;;
+  }
+
+  dimension_group: soft_copy_upload {
+    type: time
+    label: "Soft Copy Upload"
+    sql: ${TABLE}.`Soft Copy Upload` ;;
+  }
+
+  dimension: soft_copy_uploaded_by {
+    type: string
+    label: "Soft Copy Uploaded By"
+    sql: ${TABLE}.`Soft Copy Uploaded By` ;;
   }
 
   dimension: business_type {
