@@ -1501,3 +1501,7 @@ explore: settlement_tracking {}
 explore: transit_status_nw_orders  {}
 
 explore: cancellations_nw_raw_dump {}
+
+explore: cancellations_nw_customer_summary {}
+
+explore: cancellations_nw_supply_summary {}
