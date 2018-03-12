@@ -14,7 +14,8 @@ view: cancellations_nw_raw_dump {
       sha.registration_number as 'Truck_Number',
       fo.profile_type,
       str.reason,
-      bsh.transition_comment as 'Comment'
+      bsh.transition_comment as 'Comment',
+      sha.order_value
       from base_order bo
       left join base_truck bt on bt.id = bo.assigned_truck_id
       left join base_location blf on blf.id = bo.from_city_id
@@ -40,10 +41,7 @@ view: cancellations_nw_raw_dump {
        ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
+
 
   dimension: order_id {
     type: string
@@ -65,6 +63,11 @@ view: cancellations_nw_raw_dump {
   dimension: sector_name {
     type: string
     sql: ${TABLE}.sector_name ;;
+  }
+
+  dimension: order_value {
+    type: string
+    sql: ${TABLE}.order_value ;;
   }
 
   dimension: customer_name {
@@ -135,24 +138,5 @@ view: cancellations_nw_raw_dump {
     sql: ${TABLE}.Comment ;;
   }
 
-  set: detail {
-    fields: [
-      order_id,
-      status,
-      placed_date,
-      sector_name,
-      customer_name,
-      customer_number,
-      sp_name,
-      sp_number,
-      from_city,
-      from_state,
-      to_city,
-      to_state,
-      truck_number,
-      profile_type,
-      reason,
-      comment
-    ]
-  }
+
 }
