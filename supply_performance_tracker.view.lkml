@@ -32,7 +32,7 @@ view: supply_performance_tracker {
       left join base_sectortype bst on bst.id = cup.sector_type_id
       left join base_businesstype bbt on bbt.id = bst.business_type_id
       where (date(oa.dt_added) >= (current_date()-interval 31 day) or (oa.dt_added is null and date(ob.dt_added) >= (current_date()-interval 31 day)))
-      and (bst.id in (6,7,9,11,16,17,18,19) or blf.city in ('Ahmedabad','Anand','Himmatnagar','Palanpur','Sanand','Gandhinagar','Godhra','Halol','Himmatnagar','Kadi','Kalol','Matar','Mehsana','Vadgam','Vijapur','Vadodara','Matonda','Surendarnagar','Anjar','Mundra','Jodiya','Jamnagar','Siddhpur','Jetpur','Bhachau','Rajkot','Bhuj','Karnal','Safidon','Sri Muktsar Sahib','Rajsamand','Udaipur','Kolayat','Bikaner','Beawar','Kherwara','Kishangarh','Parbatsar','Bhilwara','Vallabhnagar','Sri Muktsar Sahib','Ferozepur','New Delhi','Dholka','Ahmedabad'))
+      and (bst.id in (6,7,9,11,16,17,18,19) or blf.city in ('Ahmedabad','Anand','Himmatnagar','Palanpur','Sanand','Gandhinagar','Godhra','Halol','Himmatnagar','Kadi','Kalol','Matar','Mehsana','Vadgam','Vijapur','Vadodara','Matonda','Surendarnagar','Anjar','Mundra','Jodiya','Jamnagar','Siddhpur','Jetpur','Bhachau','Rajkot','Bhuj','Karnal','Safidon','Sri Muktsar Sahib','Rajsamand','Udaipur','Kolayat','Bikaner','Beawar','Kherwara','Kishangarh','Parbatsar','Bhilwara','Vallabhnagar','Sri Muktsar Sahib','Ferozepur','New Delhi','Dholka','Ahmedabad','Rudrapur'))
       and bo.status not in ('Cancelled By Customer','Cancelled','Order Processing','KAM Review','Ops Review','Order Incomplete')
        ;;
   }
